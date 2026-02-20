@@ -11,6 +11,31 @@ description: Technical implementation notes, patterns, and code guidelines
 - **Task list and order:** See `docs/ai/planning/feature-ai-devkit-v013-integration.md` §2 (Execution Matrix) and §6 (Current Status & Next Steps).
 - **Non-tech founder guide:** Same planning doc, **§5 – Implementation & upgrade guide**. Use it to add ai-devkit to new projects, to “merge” into projects with custom docs without overwriting, and to upgrade the kit safely in the future.
 
+### Validated init command (preserves docs/ai/)
+
+- **Template:** `ai-devkit-init-merge.yaml` (repo root). Validated: `phases: []`, `environments: [cursor]` — no phase files will be copied.
+- **Exact command:**  
+  `npx ai-devkit init -t ai-devkit-init-merge.yaml -e cursor`
+- **Never use:** `-a` (all phases) or `-p requirements,design,planning,...` — either would overwrite `docs/ai/<phase>/README.md`.
+
+### Runbook (merge init without overwriting docs/ai/)
+
+1. **Backup:** Ensure `docs/ai/` and `docs/project_handoff.md` are committed or on a branch you can restore from.
+2. **Template:** Use `ai-devkit-init-merge.yaml` (or equivalent with `phases: []`). Do not add phase names.
+3. **Run once:** `npx ai-devkit init -t ai-devkit-init-merge.yaml -e cursor`. Do **not** pass `-a` or `-p <phases>`.
+4. **When prompted "Which phases do you want to initialize?":** Deselect all (e.g. press `i` to invert selection so none are checked, then Enter). This keeps `docs/ai/` untouched.
+5. **Verify:** Check that `docs/ai/requirements/README.md`, `docs/ai/design/README.md`, `docs/ai/planning/README.md`, and `docs/project_handoff.md` are unchanged (e.g. `git diff docs/ai/ docs/project_handoff.md`).
+
+### Rollback (if init overwrote docs/ai/ or project_handoff.md)
+
+- **From backup branch:**  
+  `git checkout backup/pre-ai-devkit-v013-phase1 -- docs/ai/ docs/project_handoff.md`
+- **From a specific commit (e.g. before init):**  
+  `git checkout <commit-hash> -- docs/ai/ docs/project_handoff.md`
+- **Discard local changes to those paths only:**  
+  `git restore docs/ai/ docs/project_handoff.md`  
+  (only if you have not committed the overwrite)
+
 ## Development Setup
 **How do we get started?**
 
