@@ -25,7 +25,7 @@ description: Clarify the problem space, gather requirements, and define success 
     * *Acceptance Criteria:* [e.g., "Output is consistent everytime",  "No API keys exposed", "99% data accuracy"]
 
 * **Efficiency Adverbs (Utility/Speed):** [How do they do it well?]
-    * *Adverb:* [e.g., "Quickly", "Cheaply"
+    * *Adverb:* [e.g., "Quickly", "Cheaply"]
     * *Acceptance Criteria:* [e.g., "Response under 2s", "Must not exceed $0.50 per run"]
 
 * **Scalability Adverbs (Growth):** [How do they do it repeatedly?]
