@@ -30,16 +30,16 @@ description: High-density execution matrix for tracking Micro-tasks and Macro-ri
 | **T-003** | **Validate** template: confirm no `phases` or `phases: []` and document exact init command | *Securely* (no accidental phase copy) | **M** (Imp:9, Prob:0.15) | T-002 | 🔴 To Do |
 | **T-004** | **Document** runbook: exact `npx ai-devkit init -t <path> -e cursor`; never use `-a` or `-p <phases>` | *Repeatably* (same steps every time) | **L** (Imp:6, Prob:0.2) | T-002 | 🔴 To Do |
 | **T-005** | **Test** init in a copy of repo or a new branch (run init with template, then diff docs/ai/) | *Securely* (verify no overwrite before real run) | **H** (Imp:9, Prob:0.25) | T-002, T-003 | 🔴 To Do |
-| **T-006** | **Define** rollback: git restore docs/ai/ and docs/project_handoff.md if overwritten | *Securely* (recovery path) | **L** (Imp:7, Prob:0.1) | T-001 | 🔴 To Do |
+| **T-006** | **Define** rollback: git restore docs/ai/ and docs/project_handoff.md if overwritten | *Securely* (recovery path) | **L** (Imp:7, Prob:0.1) | T-001 | 🟢 Done |
 
 ## PHASE 2: Safe integration (delivery)
 
 | ID | Task (Verb) | Target Outcome (Adverb) | Risk Factor | Deps/Blockers | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **T-007** | **Add** `.cursor/mcp.json` with ai-devkit-memory server (`npx -y @ai-devkit/memory`) | *Correctly* (Cursor can use Memory MCP) | **L** (Imp:5, Prob:0.15) | T-005 | 🔴 To Do |
-| **T-008** | **Run** `npx ai-devkit init -t <template> -e cursor` once (no `-a`, no `-p`) | *Efficiently* (new capabilities, no phase overwrite) | **H** (Imp:9, Prob:0.2) | T-002–T-005 | 🔴 To Do |
-| **T-009** | **Verify** docs/ai/requirements, design, planning READMEs and project_handoff.md unchanged | *Correctly* (acceptance criteria met) | **M** (Imp:8, Prob:0.1) | T-008 | 🔴 To Do |
-| **T-010** | **Confirm** Memory MCP in Cursor (restart Cursor; check MCP tools available) | *Correctly* (agents can store/search knowledge) | **L** (Imp:4, Prob:0.2) | T-007, T-008 | 🔴 To Do |
+| **T-007** | **Add** `.cursor/mcp.json` with ai-devkit-memory server (`npx -y @ai-devkit/memory`) | *Correctly* (Cursor can use Memory MCP) | **L** (Imp:5, Prob:0.15) | T-005 | 🟢 Done |
+| **T-008** | **Run** `npx ai-devkit init -t <template> -e cursor` once (no `-a`, no `-p`) | *Efficiently* (new capabilities, no phase overwrite) | **H** (Imp:9, Prob:0.2) | T-002–T-005 | 🟢 Done |
+| **T-009** | **Verify** docs/ai/requirements, design, planning READMEs and project_handoff.md unchanged | *Correctly* (acceptance criteria met) | **M** (Imp:8, Prob:0.1) | T-008 | 🟢 Done |
+| **T-010** | **Confirm** Memory MCP in Cursor (restart Cursor; check MCP tools available) | *Correctly* (agents can store/search knowledge) | **L** (Imp:4, Prob:0.2) | T-007, T-008 | 🟢 Done |
 
 ## PHASE 3: Skills, docs & handoff
 
@@ -161,14 +161,14 @@ Then **restart Cursor** so it loads the Memory tool. The AI will be able to stor
 
 # 6. CURRENT STATUS & NEXT STEPS
 
-**Current status:** Planning complete; no implementation tasks started. All tasks T-001–T-013 are **To Do**.
+**Current status:** Phase 1 (T-001–T-006) and Phase 2 (T-007–T-010) **complete**. Phase 3 (T-011–T-013) still To Do.
 
-**Next steps (in order):**
-1. **T-001** – Snapshot/backup `docs/ai/` and `docs/project_handoff.md`.
-2. **T-002** – Create `ai-devkit-init-merge.yaml` (or equivalent) with `phases: []`.
-3. **T-003** – Validate template and document exact init command in implementation doc.
+**Completed:** Backup branch, init template, runbook, rollback, test in branch (T-005 confirmed), `.cursor/mcp.json`, init run (via test merge to main), verification of protected docs unchanged. Memory MCP config in place; user should restart Cursor to confirm tools (see implementation doc “Memory MCP: how to confirm it’s active”).
 
-**Risky areas:** T-005 (must verify no overwrite in test run) and T-008 (only run after T-005 passes).
+**Next steps (Phase 3):**
+1. **T-011** – Add Skills via template or CLI if desired; document Approach 2 in Skill if needed.
+2. **T-012** – Update implementation doc with any final runbook notes.
+3. **T-013** – Ensure “Implementation & upgrade guide” (§5) is in sync.
 
 **Documentation to update as you go:**  
-`docs/ai/implementation/feature-ai-devkit-v013-integration.md` — add runbook and any deviations; keep §5 (this guide) in sync if you change the process.
+`docs/ai/implementation/feature-ai-devkit-v013-integration.md` — runbook, rollback, and MCP confirmation steps are in place; keep §5 in sync if the process changes.

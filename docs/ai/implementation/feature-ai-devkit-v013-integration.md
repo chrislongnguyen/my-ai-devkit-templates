@@ -26,6 +26,12 @@ description: Technical implementation notes, patterns, and code guidelines
 4. **When prompted "Which phases do you want to initialize?":** Deselect all (e.g. press `i` to invert selection so none are checked, then Enter). This keeps `docs/ai/` untouched.
 5. **Verify:** Check that `docs/ai/requirements/README.md`, `docs/ai/design/README.md`, `docs/ai/planning/README.md`, and `docs/project_handoff.md` are unchanged (e.g. `git diff docs/ai/ docs/project_handoff.md`).
 
+### Memory MCP: how to confirm it’s active
+
+- **Restart Cursor** so it loads `.cursor/mcp.json` (MCP servers are read at startup).
+- In Cursor: **Settings → Tools & MCP** (or **Cursor Settings → MCP**). You should see **ai-devkit-memory** in the list and it should be connected/enabled.
+- In chat, the AI can use the Memory tools: **memory.storeKnowledge**, **memory.searchKnowledge**, **memory.updateKnowledge** (e.g. “store this in memory” or “search memory for …”).
+
 ### Rollback (if init overwrote docs/ai/ or project_handoff.md)
 
 - **From backup branch:**  
