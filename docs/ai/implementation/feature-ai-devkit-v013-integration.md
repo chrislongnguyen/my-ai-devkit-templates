@@ -32,6 +32,16 @@ description: Technical implementation notes, patterns, and code guidelines
 - In Cursor: **Settings → Tools & MCP** (or **Cursor Settings → MCP**). You should see **ai-devkit-memory** in the list and it should be connected/enabled.
 - In chat, the AI can use the Memory tools: **memory.storeKnowledge**, **memory.searchKnowledge**, **memory.updateKnowledge** (e.g. “store this in memory” or “search memory for …”).
 
+### dev-lifecycle skill and governance
+
+- **dev-lifecycle skill:** The 8-step development workflow is installed via `npx ai-devkit skill add codeaholicguy/ai-devkit dev-lifecycle`. It is symlinked to `.cursor/skills/dev-lifecycle`.
+- **Execution Governance:** The dev-lifecycle skill is governed dynamically by **Persistent Memory** and the **Effective System Design** framework. A global rule (tagged `execution-governance`, `dev-lifecycle`, `effective-system-design`) instructs AI agents to read `docs/ai/frameworks/effective-system-design.md` before Step 1 (Requirements) or Step 3 (Design), and to follow Phase 1 (Problem Discovery) and Phase 2 (The System Design) causal mapping before outputting formal requirements.
+- **Effective System Design framework:** See `docs/ai/frameworks/effective-system-design.md`. It defines the Prime Directive and the three-phase structure (Problem Discovery, System Design, Formalization) that all AI agents should follow when executing requirements and design work.
+
+### Implementation & upgrade guide (non-tech founder)
+
+The full guide for adding AI DevKit to new projects, merging into projects with custom docs, and upgrading safely is in **`docs/ai/planning/feature-ai-devkit-v013-integration.md` §5**. Use it for: new projects from scratch, projects with existing custom `docs/ai/`, standard MCP setup, future upgrades, and the one-page checklist.
+
 ### Rollback (if init overwrote docs/ai/ or project_handoff.md)
 
 - **From backup branch:**  

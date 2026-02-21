@@ -4,11 +4,10 @@
 
 ---
 
-## 1. Active Phase & Current Task ID
+## 1. Feature Status
 
-- **Active feature:** ai-devkit v0.13.0 integration (`feature-ai-devkit-v013-integration`)
-- **Phase:** Phase 3 (Skills, docs & handoff)
-- **Current task:** T-011 (next up)
+- **Feature:** ai-devkit v0.13.0 integration (`feature-ai-devkit-v013-integration`)
+- **Status:** ✅ **100% Complete — Closed**
 - **Branch:** `main`
 
 ---
@@ -24,35 +23,42 @@
 
 ---
 
-## 3. The Solution & Cost (from docs/ai/design/)
+## 3. Architectural Changes (Effective Product Manager Rewiring)
+
+The following changes were implemented to align the dev-lifecycle with the Effective System Design / User Enablement philosophy:
+
+1. **Created the global Constitution** — `docs/ai/frameworks/effective-system-design.md` defines the Prime Directive and the three-phase structure (Problem Discovery, System Design, Formalization) that all AI agents must follow before proposing technical solutions.
+
+2. **Injected the global Persistent Memory rule** — A rule (tagged `execution-governance`, `dev-lifecycle`, `effective-system-design`) forces the Agent to read the Constitution before Step 1 (Requirements) or Step 3 (Design) of the dev-lifecycle skill.
+
+3. **Overwrote the Agent's internal SOP** — `.cursor/skills/dev-lifecycle/references/new-requirement.md` now enforces a 4-part Interactive Discovery loop (Discovery & Context → Causal Map → EPS Prescription → Workspace Setup & Formalization) with explicit gates and user approval at each sub-step.
+
+4. **Rewired the three base templates** — `docs/ai/requirements/README.md`, `docs/ai/design/README.md`, and `docs/ai/planning/README.md` now physically enforce:
+   - Understanding of the User's System (UDO, UDS, UBS causal map)
+   - System Design (Principles, Environment, Tools, SOP)
+   - Verb/Noun acceptance criteria (Phase 3 formalization)
+   - The 4-Iteration Execution Roadmap (Concept → Working Prototype → MVE → Enablement Leadership)
+
+---
+
+## 4. The Solution & Cost (from docs/ai/design/)
 
 **Feature design** (see `docs/ai/design/feature-ai-devkit-v013-integration.md`):
 
-- **Init template mode:** Use `ai-devkit init -t ai-devkit-init-merge.yaml -e cursor`; template has `phases: []` so no phase files overwritten; when prompted, deselect all phases.
+- **Init template mode:** Use `ai-devkit init -t ai-devkit-init-merge.yaml -e cursor`; template has `phases: []` so no phase files overwritten.
 - **Architecture:** Cursor (client) ↔ stdio ↔ @ai-devkit/memory (MCP server) ↔ SQLite.
 - **Config:** `.cursor/mcp.json` with `npx -y @ai-devkit/memory`.
 - **Resource impact:** 90% risk management, 10% output; OpEx $0.
 
 ---
 
-## 4. The Sprint Board & Active Tasks (from docs/ai/planning/)
+## 5. Sprint Board — All Phases Complete (from docs/ai/planning/)
 
 **Feature planning** (see `docs/ai/planning/feature-ai-devkit-v013-integration.md`):
 
-- **Phase 1 (T-001–T-006):** Done — backup, init template, runbook, rollback, test in branch.
-- **Phase 2 (T-007–T-010):** Done — `.cursor/mcp.json`, init run (merge to main), verification, MCP config in place.
-- **Phase 3 (T-011–T-013):** To Do  
-  - T-011: Add Skills via template or `ai-devkit skill`; document Approach 2 in Skill if needed  
-  - T-012: Update implementation doc with final runbook notes  
-  - T-013: Ensure §5 (non-tech founder guide) is in sync  
-
----
-
-## 5. Modified Files in This Session
-
-- `docs/ai/implementation/feature-ai-devkit-v013-integration.md` — runbook, rollback, MCP confirmation steps
-- `docs/ai/planning/feature-ai-devkit-v013-integration.md` — T-006–T-010 marked done, §6 status updated
-- `docs/.DS_Store` (local)
+- **Phase 1 (T-001–T-006):** ✅ Done — backup, init template, runbook, rollback, test in branch.
+- **Phase 2 (T-007–T-010):** ✅ Done — `.cursor/mcp.json`, init run, verification, MCP config in place.
+- **Phase 3 (T-011–T-013):** ✅ Done — dev-lifecycle skill, implementation doc, non-tech founder guide.
 
 ---
 
@@ -60,5 +66,4 @@
 
 1. **Pull on new computer:** `git pull` (after push from this machine).
 2. **Restart Cursor** to load MCP and confirm `ai-devkit-memory` is active (Settings → Tools & MCP).
-3. **Resume Phase 3:** Start with T-011 (Skills setup) if desired.
-4. **Run `/update-planning`** to reconcile planning doc with any local changes.
+3. **For new features:** Use the dev-lifecycle skill; the Agent will read `docs/ai/frameworks/effective-system-design.md` and follow the 4-part Interactive Discovery loop before generating requirements.

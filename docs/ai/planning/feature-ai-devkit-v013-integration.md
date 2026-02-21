@@ -45,9 +45,9 @@ description: High-density execution matrix for tracking Micro-tasks and Macro-ri
 
 | ID | Task (Verb) | Target Outcome (Adverb) | Risk Factor | Deps/Blockers | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **T-011** | **Add** Skills via template or `ai-devkit skill` if desired; document Approach 2 in Skill if needed | *Repeatably* (skills usable; 90/10 preserved) | **L** (Imp:3, Prob:0.2) | T-008 | 🔴 To Do |
-| **T-012** | **Update** docs/ai/implementation/feature-ai-devkit-v013-integration.md with runbook and notes | *Repeatably* (future you or others can follow) | **L** (Imp:4, Prob:0.15) | T-008 | 🔴 To Do |
-| **T-013** | **Add** “Implementation & upgrade guide” for non-tech founder (see §5 below) | *Correctly* (easy to apply in other projects) | **L** (Imp:3, Prob:0.1) | T-012 | 🔴 To Do |
+| **T-011** | **Add** Skills via template or `ai-devkit skill` if desired; document Approach 2 in Skill if needed | *Repeatably* (skills usable; 90/10 preserved) | **L** (Imp:3, Prob:0.2) | T-008 | 🟢 Done |
+| **T-012** | **Update** docs/ai/implementation/feature-ai-devkit-v013-integration.md with runbook and notes | *Repeatably* (future you or others can follow) | **L** (Imp:4, Prob:0.15) | T-008 | 🟢 Done |
+| **T-013** | **Add** “Implementation & upgrade guide” for non-tech founder (see §5 below) | *Correctly* (easy to apply in other projects) | **L** (Imp:3, Prob:0.1) | T-012 | 🟢 Done |
 
 ---
 
@@ -161,14 +161,15 @@ Then **restart Cursor** so it loads the Memory tool. The AI will be able to stor
 
 # 6. CURRENT STATUS & NEXT STEPS
 
-**Current status:** Phase 1 (T-001–T-006) and Phase 2 (T-007–T-010) **complete**. Phase 3 (T-011–T-013) still To Do.
+**Status:** 🟢 **Project closed — 100% complete.** All phases delivered.
 
-**Completed:** Backup branch, init template, runbook, rollback, test in branch (T-005 confirmed), `.cursor/mcp.json`, init run (via test merge to main), verification of protected docs unchanged. Memory MCP config in place; user should restart Cursor to confirm tools (see implementation doc “Memory MCP: how to confirm it’s active”).
+**Phase 1–3 summary:** Backup, init template, runbook, rollback, test in branch (T-005 confirmed), `.cursor/mcp.json`, init run (via test merge to main), verification of protected docs unchanged. Memory MCP config in place. dev-lifecycle skill installed; Execution Governance rule in Persistent Memory; Effective System Design at `docs/ai/frameworks/effective-system-design.md`. User should restart Cursor to confirm tools (see implementation doc “Memory MCP: how to confirm it’s active”).
 
-**Next steps (Phase 3):**
-1. **T-011** – Add Skills via template or CLI if desired; document Approach 2 in Skill if needed.
-2. **T-012** – Update implementation doc with any final runbook notes.
-3. **T-013** – Ensure “Implementation & upgrade guide” (§5) is in sync.
+**Phase 1–3 complete:** Backup, init template, runbook, rollback, test in branch, `.cursor/mcp.json`, init run, verification, MCP config, dev-lifecycle skill, Execution Governance rule, Effective System Design framework.
 
-**Documentation to update as you go:**  
-`docs/ai/implementation/feature-ai-devkit-v013-integration.md` — runbook, rollback, and MCP confirmation steps are in place; keep §5 in sync if the process changes.
+**Phase 3 done:**
+1. **T-011** – dev-lifecycle skill installed via `npx ai-devkit skill add codeaholicguy/ai-devkit dev-lifecycle`.
+2. **T-012** – Implementation doc updated with runbook notes.
+3. **T-013** – “Implementation & upgrade guide” (§5) referenced in implementation doc.
+
+**Effective Product Manager rewiring complete:** Global Constitution, Persistent Memory rule, Agent SOP (4-part Interactive Discovery loop), and base templates (requirements, design, planning) enforce UDO/UDS/UBS mapping, Verb/Noun acceptance criteria, and 4-Iteration Execution Roadmap.
