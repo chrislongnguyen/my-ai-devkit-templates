@@ -42,18 +42,20 @@ To start building a new feature, database, or venture, open your AI IDE (Cursor)
 * **`/debug`** — Hit a bug? Do not guess. Run this to force the AI into a Root-Cause Analysis to identify the Ultimate Blocking System (UBS) before changing any code.
 * **`/remember`** — Push new First-Principles or venture rules into the persistent AI memory server (`@ai-devkit/memory`).
 
+**New venture checklist:** 1. Clone this repo (or duplicate the folder). 2. Open in Cursor. 3. Run **/state-a** and give the feature/venture name; complete the four sub-steps. 4. Run **/state-b** to execute the first task; approve and repeat. *When to use which:* /state-a = new feature or re-planning; /state-b = next task; /debug = something broke; /ship = ready to commit; /remember = capture a principle for future runs.
+
 ---
 
 ## 📂 The Holy Trinity (Documentation)
 
-You will notice there are no folders for testing, implementation, deployment, or monitoring. Those are *Actions*, not *Documents*. 
+You will notice there are no folders for testing, implementation, deployment, or monitoring. Those are *Actions*, not *Documents*. The `docs/ai/archive/` folder is historical only; do not edit. Live docs are `docs/ai/requirements/`, `docs/ai/design/`, and `docs/ai/planning/`.
 
 Our state is managed entirely within `docs/ai/` via three canonical templates:
-1.  **`requirements-README.md`**: The System Map & Grammar.
-2.  **`design-README.md`**: The Architecture & Adjectives.
-3.  **`planning-README.md`**: The 4-Iteration Execution Matrix.
+1.  **`requirements-README.md`**: The System Map & Grammar (Phase 3: A.C. with stable IDs — Verb-AC1, SustainAdv-AC1, etc.).
+2.  **`design-README.md`**: The Architecture & Adjectives (maps to Requirements A.C. and Planning iterations; defines how to build).
+3.  **`planning-README.md`**: The 4-Iteration Execution Matrix (Master Scope Mapping = which A.C. in which iteration + evidence; tasks per iteration).
 
-*For full operational details, read the [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md).*
+*Document flow:* Requirements Phase 3 → A.C.; Design → architecture & attributes; Planning Master Scope → which A.C. in which iteration + deterministic evidence; Execution Matrix → tasks. *For full operational details, read the [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md).*
 
 ---
 **⚠️ CANONICAL SOURCE:** This repository is the LTC Master Template. To start a new venture, clone or duplicate this folder. Do not overwrite the underlying `.cursor/skills/` logic without explicit Founder approval.

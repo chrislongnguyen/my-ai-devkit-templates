@@ -37,6 +37,8 @@ description: Translates the System Design into technical architecture and physic
 # 3. EFFECTIVENESS ATTRIBUTES OF THE SOLUTION / ENABLEMENT (The Adjectives)
 *How the feature attributes enable the user to reach the Effectiveness Outcomes.*
 
+*Map each attribute below to the corresponding Requirements A.C. IDs (e.g. SustainAdj-AC1, EffAdj-AC1, ScalAdj-AC1) and to the Planning iteration where that A.C. is validated. Design defines how; Requirements and Planning define what and when.*
+
 * **Sustainability (Risk/Safety):** [List Adjectives + Exact Implementation Strategy]
 * **Efficiency (Speed/Utility):** [List Adjectives + Exact Implementation Strategy]
 * **Scalability (Growth):** [List Adjectives + Exact Implementation Strategy]
@@ -47,3 +49,10 @@ description: Translates the System Design into technical architecture and physic
 * **Financial Cost (OpEx):** [Estimated monthly/fixed costs]
 * **Build Complexity:** [Low/Medium/High]
 * **ROI Sanity Check:** [Does this architecture respect the Principle of Efficiency?]
+
+*Ongoing tracking:* See Planning §3 (Resource & Budget Tracker) for current usage vs limits.
+
+**Requesting Resources / Budget from the User (optional):** When the design or execution requires a budget increase, new tool, or paid service:
+1. **When to ask:** Before committing to a task that exceeds current limits (e.g. new API, hosting, paid tier). Do not assume; request explicit approval.
+2. **What to specify:** Amount or ceiling (e.g. $X/month, Y API calls/day), purpose (which A.C. or task it serves), and alternative if the User says no.
+3. **Approval gate:** Do not spend or integrate until the User approves. Record the approved limit in Planning §3 (Hard Limit) and proceed. If the User declines, adjust scope or task (e.g. mark 🟠 Stuck and propose an alternative).

@@ -16,8 +16,22 @@ We operate a **2-State Effective Execution Engine** instead of a multi-phase wat
 
 ### State B: Execute One Micro-Task (The Execution Loop)
 - **Purpose:** Execute exactly ONE task from the planning document, then hard-stop for Founder validation.
-- **One task per run.** The Agent reads the first `🔴 To Do` task, builds the minimal deliverable, presents evidence that Acceptance Criteria are met, then stops. No next task until the Founder replies "Approved" (or gives feedback).
+- **One task per run.** The Agent reads `docs/ai/planning/README.md`, picks the first `🔴 To Do` task (skips `🟠 Stuck` until the Founder unblocks), builds the minimal deliverable, presents evidence, marks the task **🔵 Draft Completed (by the Agent)**, then stops. No next task until the Founder replies "Approved" (then mark **🟢 Reviewed/Tested (by the User)**) or gives feedback.
+- **Task flow (solo Founder):** ⚪ Pending → 🔴 To Do → 🔵 Draft Completed → 🟢 Reviewed/Tested. 🟠 Stuck = off-ramp when blocked.
 - **Entry:** Use `/state-b` or trigger the Dev Lifecycle Skill → State B.
+
+**Document flow (Holy Trinity):** Requirements Phase 3 → A.C. with stable IDs; Design → architecture & attributes (maps to those A.C. and Planning iterations); Planning Master Scope Mapping → which A.C. in which iteration + deterministic evidence; Execution Matrix → tasks. All tasks require User review and approval before marking 🟢 Reviewed/Tested (last node for solo Founder projects).
+
+**Utility Belt:** `/state-a` (plan), `/state-b` (execute one task), `/ship` (commit & push), `/debug` (root-cause before fix), `/remember` (persist principles to memory).
+
+**When to use which:**
+- **/state-a** — New feature, change of scope, or re-planning. No code.
+- **/state-b** — Execute the next task from the plan. One task, then stop.
+- **/debug** — Something broke; root-cause (UBS) before any fix.
+- **/ship** — Ready to commit; sync planning status first if needed.
+- **/remember** — Capture a principle or rule for future runs (memory).
+
+For freeform feature/add-on requests (no command invoked), the Agent follows `.cursor/rules/ambient-flow.mdc`: nudge to /state-a, help populate requirements/design/planning from the request, get approval before any execution. If scope or direction changes materially, re-run /state-a to update requirements, design, and planning before continuing with /state-b.
 
 ---
 

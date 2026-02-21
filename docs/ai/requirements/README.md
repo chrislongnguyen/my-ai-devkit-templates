@@ -37,6 +37,10 @@ description: The causal mapping of the User's reality and the deterministic cons
 # Phase 3: THE FORMALIZATION (The Output)
 Goal: Translate the System Design into strict, deterministic engineering requirements.
 
+**A.C. ID naming convention (use across Requirements, Design, and Planning):** Short, stable IDs so Planning can reference exactly one A.C. per row. Format: `{Grammar}-AC{n}`. Grammar prefixes: **Verb**, **SustainAdv**, **EffAdv**, **ScalAdv**, **Noun**, **SustainAdj**, **EffAdj**, **ScalAdj**. Examples: `Verb-AC1`, `SustainAdv-AC1`, `EffAdj-AC2`. Number A.C. per block (1, 2, … N). Do not rename once used in Planning.
+
+---
+
 1. USER(S): [Define detailed User Persona and Anti-Persona (Who is not the User)]
 * **Primary User Persona:** [Detailed description]
 * **Anti-Persona:** [Who is explicitly NOT the user]    
@@ -45,56 +49,72 @@ Goal: Translate the System Design into strict, deterministic engineering require
 
 Verb: [The core action to achieve the UDO]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Verb]
-Acceptance Criteria 2: [Measurement of Acceptance for the Verb]
-Acceptance Criteria N: [Measurement of Acceptance for the Verb]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| Verb-AC1 | [Measurement of Acceptance for the Verb] |
+| Verb-AC2 | [Measurement of Acceptance for the Verb] |
+| Verb-ACN | [Measurement of Acceptance for the Verb] |
 
 Adverbs (The Effectiveness Outcomes - What the UDO comprises of):
 
 Sustainability Adverb: [Risk/Safety outcomes, e.g., "Correctly", "Securely", "Deterministically"]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Sustainability Adverb]
-Acceptance Criteria 2: [Measurement of Acceptance for the Sustainability Adverb]
-Acceptance Criteria N: [Measurement of Acceptance for the Sustainability Adverb]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| SustainAdv-AC1 | [Measurement of Acceptance for the Sustainability Adverb] |
+| SustainAdv-AC2 | [Measurement of Acceptance for the Sustainability Adverb] |
+| SustainAdv-ACN | [Measurement of Acceptance for the Sustainability Adverb] |
 
 Efficiency Adverb: [Speed/Utility outcomes, e.g., "Incrementally" "Frugally", "Surgically"]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Efficiency Adverb]
-Acceptance Criteria 2: [Measurement of Acceptance for the Efficiency Adverb]
-Acceptance Criteria N: [Measurement of Acceptance for the Efficiency Adverb]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| EffAdv-AC1 | [Measurement of Acceptance for the Efficiency Adverb] |
+| EffAdv-AC2 | [Measurement of Acceptance for the Efficiency Adverb] |
+| EffAdv-ACN | [Measurement of Acceptance for the Efficiency Adverb] |
 
 Scalability Adverb: [Growth outcomes, e.g., "Repeatedly", "Comparatively"]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Efficiency Adverb]
-Acceptance Criteria 2: [Measurement of Acceptance for the Efficiency Adverb]
-Acceptance Criteria N: [Measurement of Acceptance for the Efficiency Adverb]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| ScalAdv-AC1 | [Measurement of Acceptance for the Scalability Adverb] |
+| ScalAdv-AC2 | [Measurement of Acceptance for the Scalability Adverb] |
+| ScalAdv-ACN | [Measurement of Acceptance for the Scalability Adverb] |
 
 3. FEATURE:
 
 Noun: [The specific Tool built for the User to execute the Verb in the prescribed Environment respecting the Principles]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Noun]
-Acceptance Criteria 2: [Measurement of Acceptance for the Noun]
-Acceptance Criteria N: [Measurement of Acceptance for the Noun]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| Noun-AC1 | [Measurement of Acceptance for the Noun] |
+| Noun-AC2 | [Measurement of Acceptance for the Noun] |
+| Noun-ACN | [Measurement of Acceptance for the Noun] |
 
 Adjectives The attributes of the Noun (Features) that best enable the Users to take Action reaching the above Effectiveness Outcomes (Adverb)
 
 Sustainability Adjective: [e.g., "Encrypted", "Offline-first"]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Sustainability Adjective]
-Acceptance Criteria 2: [Measurement of Acceptance for the Sustainability Adjective]
-Acceptance Criteria N: [Measurement of Acceptance for the Sustainability Adjective]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| SustainAdj-AC1 | [Measurement of Acceptance for the Sustainability Adjective] |
+| SustainAdj-AC2 | [Measurement of Acceptance for the Sustainability Adjective] |
+| SustainAdj-ACN | [Measurement of Acceptance for the Sustainability Adjective] |
 
 Efficiency Adjective: [e.g., "Automated", "Lightweight"]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Efficiency Adjective]
-Acceptance Criteria 2: [Measurement of Acceptance for the Efficiency Adjective]
-Acceptance Criteria N: [Measurement of Acceptance for the Efficiency Adjective]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| EffAdj-AC1 | [Measurement of Acceptance for the Efficiency Adjective] |
+| EffAdj-AC2 | [Measurement of Acceptance for the Efficiency Adjective] |
+| EffAdj-ACN | [Measurement of Acceptance for the Efficiency Adjective] |
 
 Scalability Adjective: [e.g., "Modular", "API-driven"]
 
-Acceptance Criteria 1: [Measurement of Acceptance for the Scalability Adjective]
-Acceptance Criteria 2: [Measurement of Acceptance for the Scalability Adjective]
-Acceptance Criteria N: [Measurement of Acceptance for the Scalability Adjective]
+| A.C. ID | Acceptance Criteria |
+| :--- | :--- |
+| ScalAdj-AC1 | [Measurement of Acceptance for the Scalability Adjective] |
+| ScalAdj-AC2 | [Measurement of Acceptance for the Scalability Adjective] |
+| ScalAdj-ACN | [Measurement of Acceptance for the Scalability Adjective] |
 
 ---

@@ -13,6 +13,7 @@ Ask the Founder:
 Analyze the system to find the Root Blocker. 
 - Prove it by finding the exact line, log, or logic flaw. 
 - Explain *why* the system is failing based on First-Principles.
+- If the bug relates to a specific task, note the task ID and A.C. from Planning (Master Scope Mapping or Execution Matrix in `docs/ai/planning/README.md`) so the fix is traceable.
 
 ## Step 3: The Fix
 Present the proposed solution to the Founder. 
