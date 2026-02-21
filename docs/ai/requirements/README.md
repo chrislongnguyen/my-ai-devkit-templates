@@ -1,10 +1,10 @@
 ---
 phase: requirements
-title: Effective Requirements & System Map
+title: Effective Requirements & User's System Map
 description: The causal mapping of the User's reality and the deterministic constraints for the solution.
 ---
 
-# PHASE 1: PROBLEM DISCOVERY (The System Map)
+# PHASE 1: PROBLEM DISCOVERY (The User's System Map)
 *Goal: Understand the human reality before introducing technology.*
 
 * **User Persona & Anti-Persona:** [Who is the User of this System and who is NOT the User]
@@ -34,7 +34,7 @@ description: The causal mapping of the User's reality and the deterministic cons
 * **SOP (How):** [The step-by-step action by the User leveraging the Tools and Environment that has the highest confidence level in reaching the UDO]
 
 ---
-# $hase 3: THE FORMALIZATION (The Output)
+# Phase 3: THE FORMALIZATION (The Output)
 Goal: Translate the System Design into strict, deterministic engineering requirements.
 
 1. USER(S): [Define detailed User Persona and Anti-Persona (Who is not the User)]

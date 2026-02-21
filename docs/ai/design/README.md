@@ -1,7 +1,7 @@
 ---
 phase: design
 title: Effective System Design & Architecture
-description: Translates the EPS Prescription into technical architecture and physical data models.
+description: Translates the System Design into technical architecture and physical data models.
 ---
 
 # 1. THE SYSTEM DESIGN (Context & Bridge)
