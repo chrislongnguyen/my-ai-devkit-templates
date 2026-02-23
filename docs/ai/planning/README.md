@@ -19,14 +19,28 @@ description: Strict prioritization and sequencing of tasks to manage failure ris
 
 **Status legend:** ⚪ Pending · 🔴 To Do / In Progress · 🔵 Draft Completed (by the Agent) · 🟢 Reviewed/Tested (by the User) · 🟠 Stuck (off-ramp when blocked). *Task flow: Pending → To Do → Draft Completed → Reviewed/Tested. All tasks must be reviewed and approved by the User before marking Reviewed/Tested (last node for solo Founder projects).* When syncing to company board: map To Do → TODO/READY TO DO, Draft Completed → DRAFT COMPLETED, Reviewed/Tested → REVIEWED/TESTED, Stuck → STUCK. To unblock 🟠 Stuck: Founder resolves (decision, resource, or dependency), then move the task back to 🔴 To Do.
 
-| Target A.C. (from Req) | Targeted Iteration | Deterministic Evidence of Completion | Status |
-| :--- | :--- | :--- | :--- |
-| Verb-AC1 | Iteration 1 | [e.g. CLI log / Screenshot] | 🔴 |
-| Verb-AC2 | Iteration 1 | [e.g. User flow screenshot] | 🔴 |
-| SustainAdv-AC1 | Iteration 2 | [e.g. Security / audit log] | ⚪ |
-| ScalAdj-AC1 | Iteration 4 | [e.g. Load test report] | ⚪ |
+### Table A — By iteration (what's in scope per iteration)
 
-*Populate from Requirements Phase 3 (Verb, Adverb, Noun, Adjective A.C.). Do not invent A.C. here.*
+| Iteration | A.C. IDs in scope |
+| :--- | :--- |
+| **1** | [e.g. Verb-AC1, Verb-AC2, Verb-AC3, SustainAdv-AC1] |
+| **2** | [e.g. Verb-AC4, SustainAdv-AC2, Noun-AC1, Noun-AC2, SustainAdj-AC1] |
+| **3** | [e.g. EffAdv-AC1, EffAdj-AC1, Noun-AC3] |
+| **4** | [e.g. ScalAdv-AC1, ScalAdj-AC1, Noun-AC4] |
+
+*Use this table to see at a glance which A.C. are tackled in each iteration. For requirement text, evidence, and status, use Table B.*
+
+### Table B — By A.C. (detail: requirement, iteration, evidence, status)
+
+*One row per A.C. ID. Traceability: A.C. ID matches Requirements Phase 3 (e.g. `docs/ai/requirements/README.md` or venture-specific requirements doc).*
+
+| A.C. ID | Requirement (from Req Phase 3) | Iter | Deterministic Evidence | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| Verb-AC1 | [Requirement text from Req Phase 3] | 1 | [e.g. doc ref; T-101 approved] | 🔴 |
+| Verb-AC2 | [Requirement text from Req Phase 3] | 1 | [e.g. screenshot; T-102 approved] | 🔴 |
+| SustainAdv-AC1 | [Requirement text from Req Phase 3] | 2 | [e.g. audit log; T-201 approved] | ⚪ |
+
+*Populate from Requirements Phase 3 (Verb, Adverb, Noun, Adjective A.C.). Do not invent A.C. here. When a task is approved (🟢 in Execution Matrix), update Table B for every A.C. that task delivers: set that row's Status to 🟢 and Evidence to the task's deliverables (e.g. doc refs, T-XXX approved).*
 
 ---
 
