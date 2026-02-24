@@ -17,10 +17,10 @@ If the user requests a **new feature**, **add-on**, or **build/implement/add X**
    Briefly state that new scope should go through `/state-a` first for scoping, then `/state-b` for execution. Example: *"To add this properly, we should run `/state-a` first to scope it into requirements, design, and planning—then execute one task at a time with `/state-b`. I can help you do that here."*
 
 2. **Help populate the Holy Trinity from their request.**  
-   Using what they asked for (feature/add-on description):
-   - Propose **additions or updates** to `docs/ai/requirements/README.md` (e.g. new or refined Verb, Adverb, Noun, Adjective and A.C. with stable IDs).
-   - Propose **additions or updates** to `docs/ai/design/README.md` (e.g. how this fits the architecture, Effectiveness Attributes).
-   - Propose **additions or updates** to `docs/ai/planning/README.md` (e.g. new rows in Master Scope Mapping, new tasks in the Execution Matrix for the relevant iteration).
+   **Ask for the project/feature name** if not already known (e.g. integrated-learning-environment). Use that name for doc paths: when `docs/ai/requirements/feature-{name}.md` (or design/planning) exists, propose updates there; otherwise use the README templates. Using what they asked for (feature/add-on description):
+   - Propose **additions or updates** to the requirements doc (e.g. `docs/ai/requirements/feature-{name}.md` if it exists, else `docs/ai/requirements/README.md`): new or refined Verb, Adverb, Noun, Adjective and A.C. with stable IDs.
+   - Propose **additions or updates** to the design doc (`docs/ai/design/feature-{name}.md` if it exists, else `docs/ai/design/README.md`): how this fits the architecture, Effectiveness Attributes.
+   - Propose **additions or updates** to the planning doc (`docs/ai/planning/feature-{name}.md` if it exists, else `docs/ai/planning/README.md`): new rows in Master Scope Mapping, new tasks in the Execution Matrix for the relevant iteration.
    - Use the existing templates and A.C. ID convention (Verb-ACn, SustainAdv-ACn, etc.). Do not invent A.C. that conflict with existing ones.
 
 3. **Get explicit approval before any execution.**  

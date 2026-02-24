@@ -30,7 +30,7 @@ description: Technical implementation notes, patterns, and code guidelines
 - **Iteration 4:** Lock files; update workspace documentation (e.g. project_handoff_status.md, implementation doc).
 
 ### Patterns & Best Practices
-- All prompts must enforce 1-to-1 task-to-Acceptance-Criteria mapping; hard stop for Founder approval.
+- All prompts must enforce 1-to-1 task-to-Acceptance-Criteria mapping; hard stop for User approval.
 - Align strategy-mapping.md to `docs/ai/frameworks/effective-system-design.md` Phase 1 and Phase 2.
 
 ## Integration Points
@@ -47,4 +47,4 @@ description: Technical implementation notes, patterns, and code guidelines
 ## Security Notes
 **What security measures are in place?**
 
-- No new secrets. Skill files are markdown prompts; Founder retains Accountable role for all validation.
+- No new secrets. Skill files are markdown prompts; User retains Accountable role for all validation.
