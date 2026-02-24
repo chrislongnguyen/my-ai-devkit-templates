@@ -4,7 +4,7 @@ All notable changes to the Master Template (this repo) are documented here. Vent
 
 ---
 
-## [1.3.0] — 2026-02-20
+## [1.3.0] — 2026-02-24
 
 ### Added
 - **Glossary** in `docs/ai/frameworks/effective-system-design.md`: 20+ terms (UDO, UBS, Verb, Noun, A.C., MECE, Holy Trinity, etc.) with plain-English definitions. Referenced from README.
