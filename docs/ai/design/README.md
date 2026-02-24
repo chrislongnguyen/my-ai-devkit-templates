@@ -17,7 +17,7 @@ description: Translates the System Design into technical architecture and physic
 ---
 
 # 2. TECHNICAL ARCHITECTURE (The Noun)
-*Goal: Provide clear, material explanation of the architecture so the Founder/User fully understands how the Wrapper and Core physically operate.*
+*Goal: Provide clear, material explanation of the architecture so the User fully understands how the Wrapper and Core physically operate.*
 
 * **Feature Noun:** [What specific Tool/Solution/Enablement are we building?]
 

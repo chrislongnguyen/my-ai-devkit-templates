@@ -2,6 +2,36 @@
 
 The Prime Directive: Never propose a technical solution / user enablement (Noun) or write code until the causal reality of the User's system is fully mapped. Software is simply a tool to manipulate human workflows, drivers, and blockers.
 
+---
+
+## Glossary (Quick Reference)
+
+| Term | Plain English |
+| :--- | :--- |
+| **UDO** (Ultimate Desired Outcome) | The end result your user actually wants — a life outcome, not a feature (e.g. "Effortless weight management", not "A calorie app"). |
+| **UDS** (Ultimate Driving System) | The forces *pushing* the user toward the UDO — what motivates them. |
+| **UBS** (Ultimate Blocking System) | The forces *stopping* the user from reaching the UDO — what's in their way. |
+| **UDS.UD / UBS.UB** | The root *driver* of a driver / the root *blocker* of a blocker — the deepest "why" behind each force. |
+| **UDS.UB / UBS.UD** | The root *blocker* of a driver / the root *driver* of a blocker — what undermines each force. |
+| **Verb** | The one core action the user takes to reach the UDO (e.g. "Track meals"). |
+| **Adverb** | How the action should feel — effectiveness outcomes in 3 pillars: Sustainability, Efficiency, Scalability (e.g. "Securely", "Frugally", "Repeatedly"). |
+| **Noun** | The tool/feature you build for the user to take the Verb (e.g. "Meal Logger"). |
+| **Adjective** | Attributes of the Noun that enable the Adverbs (e.g. "Encrypted", "Lightweight", "Modular"). |
+| **A.C.** (Acceptance Criteria) | A single, deterministic pass/fail test that proves a requirement is met. Identified by stable IDs (e.g. Verb-AC1, SustainAdv-AC2). |
+| **MECE** | Mutually Exclusive, Collectively Exhaustive — no overlaps, no gaps. Every A.C. appears exactly once. |
+| **Desirable Wrapper** | The hook that gets the user to *use* the tool — the attractive outer layer (UI, first impression). |
+| **Effective Core** | The hidden mechanic that actually solves the root drivers/blockers — the real engine under the Wrapper. |
+| **Principles** | General or scientific rules governing the drivers and blockers — the "why" behind the design. |
+| **Environment** | Where the solution must live to be effective — Physical, Digital, or Cultural context. |
+| **SOP** (Standard Operating Procedure) | The step-by-step action the user follows to leverage the Tools in the Environment. |
+| **Holy Trinity** | The three canonical docs: Requirements, Design, Planning — the single source of truth. |
+| **Iteration** | One phase of the 4-phase roadmap: 1 Concept → 2 Prototype → 3 MVE → 4 Leadership. |
+| **Master Scope Mapping** | The table that assigns each A.C. to exactly one iteration — MECE, no gaps. |
+| **Execution Matrix** | The task-level breakdown within each iteration — what gets built, in what order. |
+| **User Gate** | The approval checkpoint: the agent stops and waits for the User to say "Approved" before proceeding. |
+
+---
+
 When executing the "Understanding Requirements" phase, you must sequentially complete the following three phases:
 
 Phase 1: Problem Discovery (The System Map)

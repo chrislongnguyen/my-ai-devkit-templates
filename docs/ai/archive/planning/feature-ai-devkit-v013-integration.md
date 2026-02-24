@@ -76,7 +76,7 @@ description: High-density execution matrix for tracking Micro-tasks and Macro-ri
 
 ---
 
-# 5. IMPLEMENTATION & UPGRADE GUIDE (Non-Tech Founder)
+# 5. IMPLEMENTATION & UPGRADE GUIDE (Non-Tech User)
 
 *Use this section to implement ai-devkit in **all your projects** and to **keep upgrading** the kit safely.*
 

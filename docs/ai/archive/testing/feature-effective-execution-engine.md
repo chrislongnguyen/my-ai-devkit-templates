@@ -10,7 +10,7 @@ description: Define testing approach, test cases, and quality assurance
 **What level of testing do we aim for?**
 
 - No unit/integration code for this feature (skill is markdown prompts + routing). Validation is manual: run the 2-State Engine and verify behavior against Acceptance Criteria in the requirements doc.
-- **Critical path:** (1) Strategy State A produces UDO/UDS/UBS map; (2) Execution State B runs one task, presents evidence, stops for Founder approval; (3) ai-devkit CLI and MCP Memory do not crash when Agent stops.
+- **Critical path:** (1) Strategy State A produces UDO/UDS/UBS map; (2) Execution State B runs one task, presents evidence, stops for User approval; (3) ai-devkit CLI and MCP Memory do not crash when Agent stops.
 
 ## Manual Test Cases (Acceptance-Criteria-Led)
 
@@ -21,7 +21,7 @@ description: Define testing approach, test cases, and quality assurance
 ### State B — execute-micro-task.md
 - [ ] **AC-V1:** One run processes exactly one task from the planning doc.
 - [ ] **AC-V2:** Agent stops and presents evidence that the task's Acceptance Criteria are met before any "next step."
-- [ ] **AC-V3:** No next task is started until Founder explicitly approves (or rejects).
+- [ ] **AC-V3:** No next task is started until User explicitly approves (or rejects).
 - [ ] **AC-E2 / AC-NE2 (T-202):** Run a dummy micro-task with Stop-and-Validate; ai-devkit CLI and MCP Memory do not crash.
 
 ### SKILL.md routing
@@ -40,7 +40,7 @@ description: Define testing approach, test cases, and quality assurance
 ## Manual Testing
 **What requires human validation?**
 
-- Founder (Accountable) must perform approval step in State B and confirm no crash.
+- User (Accountable) must perform approval step in State B and confirm no crash.
 - Confirm archived legacy files are not referenced by SKILL.md.
 
 ## Bug Tracking

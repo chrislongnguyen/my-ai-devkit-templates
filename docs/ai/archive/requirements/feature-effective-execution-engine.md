@@ -7,9 +7,9 @@ description: The causal mapping of the User's reality and the deterministic cons
 # PHASE 1: PROBLEM DISCOVERY (The System Map)
 *Goal: Understand the human reality before introducing technology.*
 
-* **User Persona & Anti-Persona:** **Responsible:** AI Agent (e.g. Cursor). **Accountable (Reviewer):** Founder. Anti-Persona: Anyone who expects open-ended AI output without Founder validation.
-* **Ultimate Desired Outcome (UDO):** A deterministic, risk-managed development loop where Cursor executes precisely (Responsible) and the Founder mathematically verifies (Accountable) without needing to understand code.
-* **User's Action:** Restrict the AI to a 1-to-1 task execution loop with a hard stop for Founder validation.
+* **User Persona & Anti-Persona:** **Responsible:** AI Agent (e.g. Cursor). **Accountable (Reviewer):** User. Anti-Persona: Anyone who expects open-ended AI output without User validation.
+* **Ultimate Desired Outcome (UDO):** A deterministic, risk-managed development loop where Cursor executes precisely (Responsible) and the User mathematically verifies (Accountable) without needing to understand code.
+* **User's Action:** Restrict the AI to a 1-to-1 task execution loop with a hard stop for User validation.
 
 ## The Drivers (UDS - Ultimate Driving System)
 * **UDS:** The demand for high-leverage, low-risk venture building using AI.
@@ -26,11 +26,11 @@ description: The causal mapping of the User's reality and the deterministic cons
 # PHASE 2: THE SYSTEM DESIGN (Context & Bridge)
 *Goal: Define the conceptual solution space based ONLY on what we understand about the User in Phase 1.*
 
-* **Principles (Why):** Deterministic verification (Founder validates against Acceptance Criteria); no AI advancement without explicit approval; grammar-owned execution (Verbs/Adverbs/Nouns/Adjectives under Founder control).
+* **Principles (Why):** Deterministic verification (User validates against Acceptance Criteria); no AI advancement without explicit approval; grammar-owned execution (Verbs/Adverbs/Nouns/Adjectives under User control).
 * **Environment (Where):** `.cursor/skills/dev-lifecycle/` (the skill directory that routes the Agent).
 * **Tools (What):** 
   * *State A — Strategy Engine:* `strategy-mapping.md` (discovery and mapping of UDO/UDS/UBS).
-  * *State B — Execution Loop:* `execute-micro-task.md` (1-to-1 task execution with hard stop for Founder validation).
+  * *State B — Execution Loop:* `execute-micro-task.md` (1-to-1 task execution with hard stop for User validation).
   * *Routing:* `SKILL.md` updated to point only to these two states.
 * **SOP (How):** Destroy the 8-step Waterfall; implement the 2-State Engine. Agent uses State A for strategy/causal map; State B for executing one micro-task at a time with validation gate.
 
@@ -40,18 +40,18 @@ description: The causal mapping of the User's reality and the deterministic cons
 *Goal: Translate the System Design into strict, deterministic engineering requirements.*
 
 ## 1. USER(S)
-* **Primary User Persona:** Founder (Accountable). Validates task completion against Acceptance Criteria without needing to read code. AI Agent (Cursor) is Responsible for execution.
+* **Primary User Persona:** User (Accountable). Validates task completion against Acceptance Criteria without needing to read code. AI Agent (Cursor) is Responsible for execution.
 * **Anti-Persona:** Teams that rely on AI self-review or open-ended prompts without human validation gates.
 
 ## 2. DESIRED USER ACTION(S)
 
-**Verb:** Restrict the AI to a 1-to-1 task execution loop with a hard stop for Founder validation.
+**Verb:** Restrict the AI to a 1-to-1 task execution loop with a hard stop for User validation.
 
 | Acceptance Criteria |
 | --- |
 | AC-V1: Each run of the execution loop processes exactly one task from the planning doc. |
-| AC-V2: The Agent MUST stop and present evidence that the task's Acceptance Criteria are met before the Founder approves. |
-| AC-V3: No next task is started until the Founder explicitly approves (or rejects and recycles). |
+| AC-V2: The Agent MUST stop and present evidence that the task's Acceptance Criteria are met before the User approves. |
+| AC-V3: No next task is started until the User explicitly approves (or rejects and recycles). |
 
 **Adverbs (Effectiveness Outcomes):**
 
@@ -82,7 +82,7 @@ description: The causal mapping of the User's reality and the deterministic cons
 | AC-N1: Legacy 8-step reference files are archived; only State A and State B references are active. |
 | AC-N2: SKILL.md routes the Agent only to strategy-mapping.md and execute-micro-task.md. |
 | AC-N3: strategy-mapping.md enforces the UDO/UDS/UBS discovery loop. |
-| AC-N4: execute-micro-task.md enforces "Stop and Validate" logic (1 task, evidence, Founder approval). |
+| AC-N4: execute-micro-task.md enforces "Stop and Validate" logic (1 task, evidence, User approval). |
 
 **Adjectives:**
 
@@ -90,7 +90,7 @@ description: The causal mapping of the User's reality and the deterministic cons
 | Acceptance Criteria |
 | --- |
 | AC-NS1: Every micro-task has explicit Acceptance Criteria in the planning doc. |
-| AC-NS2: No code or doc change is committed as "done" without Founder sign-off on criteria. |
+| AC-NS2: No code or doc change is committed as "done" without User sign-off on criteria. |
 
 * **Efficiency Adjective:** Minimal, deterministic.
 | Acceptance Criteria |
