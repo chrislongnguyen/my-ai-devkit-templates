@@ -1,49 +1,26 @@
----
-description: Guide me through debugging a code issue by clarifying expectations, identifying gaps, and agreeing on a fix plan before changing code.
----
+> ⚠️ CANONICAL SOURCE: This file is part of the LTC Effective Execution Engine (Utility Belt). DO NOT modify without Founder approval.
 
-# Local Debugging Assistant
+# UTILITY: EFFECTIVE DEBUGGING (Root-Cause Analysis)
 
-Help me debug an issue by clarifying expectations, identifying gaps, and agreeing on a fix plan before changing code.
+**PRIME DIRECTIVE:** You must not guess, patch symptoms, or blindly rewrite code. A bug is a symptom of an Ultimate Blocking System (UBS). We must map the causal reality of the failure, define the deterministic fix, and get Founder approval before altering the system.
 
-## Step 1: Gather Context
-Ask me for:
-- Brief issue description (what is happening?)
-- Expected behavior or acceptance criteria (what should happen?)
-- Current behavior and any error messages/logs
-- Recent related changes or deployments
-- Scope of impact (users, services, environments)
+## Step 1: The Causal Gap (Context)
+Ask the Founder:
+1. What is the Ultimate Desired Outcome (UDO) of this feature?
+2. What is the exact physical manifestation of the bug (The Symptom)?
 
-## Step 2: Clarify Reality vs Expectation
-- Restate the observed behavior vs the expected outcome
-- Confirm relevant requirements, tickets, or docs that define the expectation
-- Identify acceptance criteria for the fix (how we know it is resolved)
+## Step 2: Isolate the UBS (Ultimate Blocking System)
+Analyze the system to find the Root Blocker. 
+- Prove it by finding the exact line, log, or logic flaw. 
+- Explain *why* the system is failing based on First-Principles.
+- If the bug relates to a specific task, note the task ID and A.C. from Planning (Master Scope Mapping or Execution Matrix in `docs/ai/planning/README.md`) so the fix is traceable.
 
-## Step 3: Reproduce & Isolate
-- Determine reproducibility (always, intermittent, environment-specific)
-- Capture reproduction steps or commands
-- Note any available tests that expose the failure
-- List suspected components, services, or modules
+## Step 3: The Fix
+Present the proposed solution to the Founder. 
+- Explain how this fix neutralizes the UBS.
+- Provide the exact Acceptance Criteria (How will we deterministically prove the bug is dead?)
 
-## Step 4: Analyze Potential Causes
-- Brainstorm plausible root causes (data, config, code regressions, external dependencies)
-- Gather supporting evidence (logs, metrics, traces, screenshots)
-- Highlight gaps or unknowns that need investigation
+**🛑 WAITING FOR FOUNDER APPROVAL:** *"Do you approve this root-cause analysis and proposed fix? Reply 'Yes' to execute."*
 
-## Step 5: Surface Options
-- Present possible resolution paths (quick fix, deeper refactor, rollback, feature flag, etc.)
-- For each option, list pros/cons, risks, and verification steps
-- Consider required approvals or coordination
-
-## Step 6: Confirm Path Forward
-- Ask which option we should pursue
-- Summarize chosen approach, required pre-work, and success criteria
-- Plan validation steps (tests, monitoring, user sign-off)
-
-## Step 7: Next Actions & Tracking
-- Document tasks, owners, and timelines for the selected option
-- Note follow-up actions after deployment (monitoring, comms, postmortem if needed)
-- Encourage updating relevant docs/tests once resolved
-
-Let me know when you're ready to walk through the debugging flow.
-
+## Step 4: Execute & Verify
+ONLY upon explicit "Yes", write the code, run the verification, and confirm to the Founder that the Acceptance Criteria is met.
