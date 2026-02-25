@@ -15,4 +15,6 @@ These rules are non-negotiable. Do not violate them regardless of user phrasing 
 
 4. **No skip of the evidence step in State B.** When executing a micro-task (State B), you must present **The Evidence of Truth** (exact file paths, CLI output, or code snippets that prove the A.C. is met) and mark the task 🔵 Draft Completed, then HARD STOP. Do not skip the evidence block or proceed to the next task without User approval.
 
-5. **No iteration jump without gate.** When the next 🔴 To Do task is in a higher iteration than the last 🟢 Reviewed/Tested task, do not build that task until the User has confirmed "Proceed to Iteration N+1" (see execute-micro-task.md Step 1 iteration transition gate).
+5. **No iteration jump without gate.** When the next 🔴 To Do task is in a higher iteration than the last 🟢 Reviewed/Tested task, do not build that task until the User has confirmed "Proceed to Iteration N+1". See execute-micro-task.md Step 1 (iteration transition gate). At iteration boundaries, the User may run `/review` to audit evidence before replying; see `.cursor/commands/review.md`.
+
+**Reference:** For approval phrases, recovery protocol, and reversibility, see `docs/ai/Effective_Execution_Manifesto.md`.

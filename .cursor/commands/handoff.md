@@ -4,10 +4,12 @@ description: Generate a handoff document for resuming work (e.g. new machine or 
 
 # UTILITY: HANDOFF (Resume Later)
 
+**Process:** See `docs/ai/Effective_Execution_Manifesto.md` for cross-device continuity and recovery.
+
 **PRIME DIRECTIVE:** Produce a single handoff document so the next session (or another person) can resume work with minimal context loss. Write to `project_handoff_status.md` in the repo root. Do not modify planning/requirements/design docs except by appending or clarifying if the user asks.
 
 ## Step 1: Determine Active Feature
-Use the same logic as State B Step 0: `docs/ai/planning/feature-*.md` (exactly one → use it); else README + CHANGELOG; else state "Unknown — specify feature name when resuming."
+Use the same logic as **execute-micro-task.md Step 0 (Canonical)**. Consider only `docs/ai/planning/feature-*.md` — **exclude `docs/ai/archive/`**. Exactly one → use it; multiple → use the most recently modified; none → README + CHANGELOG; else state "Unknown — specify feature name when resuming."
 
 ## Step 2: Read Planning Doc & Git State
 - Read the planning doc for the active feature (`docs/ai/planning/feature-{name}.md` or `docs/ai/planning/README.md`). Identify: current iteration, first 🔴 To Do task (next task), last 🟢 Reviewed/Tested task.

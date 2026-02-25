@@ -20,6 +20,7 @@ description: Show all available commands and when to use each one.
 | Capture a principle or rule | `/remember` | Saves to persistent AI memory for future sessions. |
 | Prepare to resume later | `/handoff` | Generates `project_handoff_status.md` with everything the next session needs. |
 | Review a completed iteration | `/review` | Shows all evidence from the iteration; asks if UDO still holds before advancing. |
+| Heavy analysis (big codebase/review) | `/heavy` | Delegates analysis to PTC MCP; IDE gets a summary (saves context and cost). |
 | Look up a term (UDO, Verb, etc.) | Open `docs/ai/frameworks/effective-system-design.md` | Glossary at the top defines every term in plain English. |
 
 **Approval phrases (what the agent expects you to type):**
@@ -28,5 +29,7 @@ description: Show all available commands and when to use each one.
 - At iteration gate → **"Proceed to Iteration N+1"** or **"Re-plan"**
 - At /ship → **"Yes"**
 - At /debug fix → **"Yes"**
+
+**Process and recovery:** See [Effective Execution Manifesto](../../docs/ai/Effective_Execution_Manifesto.md) for approval phrases, recovery protocol, and cross-device continuity.
 
 **First time?** Clone this repo → Open in Cursor → Run `/state-a` → Give a feature name → Follow the 4 sub-steps → Run `/state-b` to build. See [README.md](../../README.md) and [Effective System Design Framework](../../docs/ai/frameworks/effective-system-design.md) (includes Glossary).

@@ -1,2 +1,8 @@
 # macOS
 .DS_Store
+
+# MCP server secrets (do not commit)
+tools/claude-ptc-mcp/.env
+
+# PTC usage logs (benchmark / instrumentation)
+tools/claude-ptc-mcp/logs/usage.jsonl

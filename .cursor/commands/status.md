@@ -4,13 +4,15 @@ description: Show current execution state — active feature, iteration, next ta
 
 # UTILITY: STATUS (Where Am I?)
 
+**Process:** See `docs/ai/Effective_Execution_Manifesto.md` for recovery and cross-device continuity.
+
 **PRIME DIRECTIVE:** Provide a read-only snapshot of the current venture state so the User (or a new session) can resume work without context loss. Do not modify any docs or execute tasks.
 
 ## Step 1: Determine Active Feature(s)
-List all files matching `docs/ai/planning/feature-*.md` (excluding `docs/ai/archive/`).
+Use the same logic as **execute-micro-task.md Step 0 (Canonical)**. List files matching `docs/ai/planning/feature-*.md` **only** under `docs/ai/planning/` — **exclude `docs/ai/archive/`**.
 
 - **If exactly one exists:** That is the active feature.
-- **If multiple exist:** Show the **Feature Dashboard** (see Step 4 below) listing all features, then use the most recently modified `feature-*.md` as the "active" one for the detailed report. The User can ask for a different feature by name.
+- **If multiple exist:** Show the **Feature Dashboard** (see Step 4 below) listing all features, then use the **most recently modified** `feature-*.md` as the "active" one for the detailed report. The User can ask for a different feature by name.
 - **If none exist:** Read `README.md` and `CHANGELOG.md` for context; if still ambiguous, state "Active feature: unknown — run /state-b and specify the feature name when asked."
 
 ## Step 2: Read Planning Doc

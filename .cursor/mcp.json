@@ -2,7 +2,17 @@
   "mcpServers": {
     "ai-devkit-memory": {
       "command": "npx",
-      "args": ["-y", "@ai-devkit/memory"]
+      "args": [
+        "-y",
+        "@ai-devkit/memory"
+      ]
+    },
+    "claude-ptc-mcp": {
+      "command": "node",
+      "args": [
+        "tools/claude-ptc-mcp/src/index.js"
+      ],
+      "cwd": "."
     }
   }
 }

@@ -20,7 +20,7 @@ Present the proposed solution to the User.
 - Explain how this fix neutralizes the UBS.
 - Provide the exact Acceptance Criteria (How will we deterministically prove the bug is dead?)
 
-**🛑 WAITING FOR USER APPROVAL:** *"Do you approve this root-cause analysis and proposed fix? Reply 'Yes' to execute."*
+**🛑 WAITING FOR USER APPROVAL:** *"Do you approve this root-cause analysis and proposed fix? Reply 'Yes' to execute."* (Canonical phrase for /debug — see `docs/ai/Effective_Execution_Manifesto.md`.)
 
 ## Step 4: Execute & Verify
 ONLY upon explicit "Yes", write the code, run the verification, and confirm to the User that the Acceptance Criteria is met.

@@ -4,10 +4,12 @@ description: Iteration retrospective — review all evidence before advancing. U
 
 # UTILITY: REVIEW (Iteration Retrospective)
 
+**Process:** See `docs/ai/Effective_Execution_Manifesto.md` for approval phrases. At iteration boundaries, `/state-b` will hard-stop; run `/review` before replying "Proceed to Iteration N+1" or "Re-plan".
+
 **PRIME DIRECTIVE:** Produce a structured evidence review of a completed (or in-progress) iteration so the User can make an informed decision about whether the UDO/UDS/UBS mapping still holds before advancing. Read-only — do not modify docs or execute tasks.
 
 ## Step 0: Determine Active Feature
-Same logic as State B Step 0. Identify the active feature and its planning doc.
+Use the same logic as **execute-micro-task.md Step 0 (Canonical)** — only `docs/ai/planning/feature-*.md`, **excluding `docs/ai/archive/`**. Identify the active feature and its planning doc.
 
 ## Step 1: Identify the Iteration to Review
 - Default: the **most recently completed iteration** (the highest iteration number where all tasks are 🟢 Reviewed/Tested).

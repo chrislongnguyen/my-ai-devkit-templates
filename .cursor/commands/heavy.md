@@ -4,6 +4,8 @@ description: Delegate heavy analysis to the PTC MCP tool so the IDE receives onl
 
 # COMMAND: /heavy (Heavy Analysis via PTC)
 
+**Process:** Listed in `/help`. For approval phrases and recovery, see `docs/ai/Effective_Execution_Manifesto.md`.
+
 **When the user runs this command:** You must delegate the work to the MCP tool instead of reading many files yourself.
 
 ## Rule (Agent must follow)

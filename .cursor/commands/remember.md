@@ -2,6 +2,8 @@
 
 # UTILITY: PERSISTENT MEMORY (Knowledge Capture)
 
+**Governance:** This command does not modify the planning doc or task status. See `.cursor/rules/context-preservation.mdc` Rule 6 for scope; `docs/ai/Effective_Execution_Manifesto.md` for the Utility Belt.
+
 **PRIME DIRECTIVE:** Use this utility to store First-Principles, Venture Architecture rules, and strictly defined User's Requirements into the `@ai-devkit/memory` MCP server. Do not store generic, low-level coding advice.
 
 ## Step 1: Capture the Truth

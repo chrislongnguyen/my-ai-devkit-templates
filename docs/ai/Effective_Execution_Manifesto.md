@@ -55,6 +55,8 @@ For freeform feature/add-on requests (no command invoked), the Agent follows `.c
 
 ## Recovery Protocol (What To Do When Things Go Wrong)
 
+*Commands (`.cursor/commands/`) and rules (`.cursor/rules/`) reference this section and the approval table above for deterministic recovery and approval phrases.*
+
 | Situation | Recovery Steps |
 | :--- | :--- |
 | **I approved a task I shouldn't have** | 1. Open the planning doc and change the task status from 🟢 back to 🔴 To Do. 2. If you already ran `/ship`, use `git revert HEAD` to undo the commit. 3. Run `/state-b` — the agent will re-execute that task. |

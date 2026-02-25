@@ -59,9 +59,9 @@ If you use the **`/heavy`** command (PTC bridge for heavy analysis), the MCP ser
 
 1. **Clone or pull** the repo so `tools/claude-ptc-mcp/` is present.
 2. **Install dependencies:** `cd tools/claude-ptc-mcp && npm install`
-3. **Register the server in Cursor:** Cursor → Settings → MCP → Add server. Command: `node src/index.js`; working directory: path to this repo’s `tools/claude-ptc-mcp` (e.g. `{workspace}/tools/claude-ptc-mcp`).
-
-Set `ANTHROPIC_API_KEY` in the server env (or your shell) for the API call. Optional: set `WORKSPACE_ROOT` to the repo root so the server can read files when you pass a scope. After that, `/heavy` will call the `run_heavy_analysis_ptc` tool on that machine. No cloud install — the server ships with the template.
+3. **Server is pre-registered** in `.cursor/mcp.json` (command: `node tools/claude-ptc-mcp/src/index.js`, cwd: `tools/claude-ptc-mcp`). If you see `Cannot find module '.../src/index.js'`, the MCP config must use the path from repo root: `tools/claude-ptc-mcp/src/index.js` in args. If you added the server manually in Cursor Settings → MCP, you can leave that or remove the duplicate.
+4. **Set `ANTHROPIC_API_KEY`:** Copy `tools/claude-ptc-mcp/.env.example` to `tools/claude-ptc-mcp/.env` and add your key. Or set it in Cursor → Settings → MCP → claude-ptc-mcp → Environment. Optional: set `WORKSPACE_ROOT` to the repo root so the server can read files when you pass a scope.
+5. **Restart Cursor** so it picks up the MCP config. After that, `/heavy` will call the `run_heavy_analysis_ptc` tool. No cloud install — the server ships with the template.
 
 ---
 
