@@ -54,6 +54,15 @@ To start building a new feature, database, or venture, open your AI IDE (Cursor)
 
 **New venture checklist:** 1. Clone this repo (or duplicate the folder). 2. Open in Cursor. 3. Run **/help** to see all commands. 4. Run **/state-a** and give the feature/venture name; complete the four sub-steps. 5. Run **/state-b** to execute the first task; approve and repeat. *See [docs/ai/examples/walkthrough.md](docs/ai/examples/walkthrough.md) for a complete end-to-end example.*
 
+### MCP setup (per device)
+If you use the **`/heavy`** command (PTC bridge for heavy analysis), the MCP server runs locally. On **each device** where you want `/heavy` to work:
+
+1. **Clone or pull** the repo so `tools/claude-ptc-mcp/` is present.
+2. **Install dependencies:** `cd tools/claude-ptc-mcp && npm install`
+3. **Register the server in Cursor:** Cursor → Settings → MCP → Add server. Command: `node src/index.js`; working directory: path to this repo’s `tools/claude-ptc-mcp` (e.g. `{workspace}/tools/claude-ptc-mcp`).
+
+Set `ANTHROPIC_API_KEY` in the server env (or your shell) for the API call. Optional: set `WORKSPACE_ROOT` to the repo root so the server can read files when you pass a scope. After that, `/heavy` will call the `run_heavy_analysis_ptc` tool on that machine. No cloud install — the server ships with the template.
+
 ---
 
 ## 📂 The Holy Trinity (Documentation)

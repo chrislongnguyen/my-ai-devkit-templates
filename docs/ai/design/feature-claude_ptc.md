@@ -61,6 +61,10 @@ flowchart LR
 * **Outputs:** Tool result: summary string (or structured output) to the IDE. No database; state is the tool invocation and the API response.
 * **API contract:** Anthropic Messages API with `code_execution_20260120`; optional custom tool (e.g. read_file_content) with `allowed_callers: ["code_execution_20260120"]`; cacheable system/block for Prompt Caching.
 
+## 2.4 Repeated use & long sessions (ScalAdv-AC1, ScalAdv-AC2, ScalAdj-AC1)
+* **Repeated use:** The feature can be invoked repeatedly (same command `/heavy`, same MCP tool `run_heavy_analysis_ptc`) without degradation. Each invocation is stateless: the server does not retain conversation or tool state between calls. Prompt Caching (same `CACHEABLE_SYSTEM_BLOCK` with each request) reduces API cost on repeated use.
+* **Long-session API use:** When long-session API use (e.g. multi-turn project chat, persistent conversation with the Anthropic API) is added in a future design, **Context Compaction** will be the intended approach to manage context growth. Implementation of Context Compaction is deferred until that long-session design exists.
+
 ---
 
 # 3. EFFECTIVENESS ATTRIBUTES (The Adjectives)

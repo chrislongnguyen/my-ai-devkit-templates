@@ -79,6 +79,10 @@ description: The causal mapping of the User's reality and the deterministic cons
 | ScalAdv-AC1 | The feature can be invoked repeatedly (same command, same MCP tool) without degradation. |
 | ScalAdv-AC2 | Context Compaction is documented as the intended approach when long-session API use (e.g. multi-turn project chat) is added; implementation is deferred until that design exists. |
 
+**Repeated-use behavior:** Each `/heavy` invocation is stateless; the same command and MCP tool can be run any number of times without degradation. Prompt Caching (same cacheable system block per request) reduces API cost on repeated use.
+
+**Context Compaction (long sessions):** When long-session API use (e.g. multi-turn project chat with the Anthropic API) is added in a future design, Context Compaction will be used to manage context growth. Implementation is deferred until that design exists. See Design §2.4.
+
 3. **FEATURE:**
 
 **Noun:** An MCP server that exposes one tool (e.g. `run_heavy_analysis_ptc`), invoked by a dedicated IDE command, and that calls the Anthropic API with code execution (PTC), optional Elicitation, and a cacheable static block.
@@ -109,5 +113,7 @@ description: The causal mapping of the User's reality and the deterministic cons
 | :--- | :--- |
 | ScalAdj-AC1 | The design or requirements document states that Context Compaction will be used when long-session API use is implemented. |
 | ScalAdj-AC2 | The trigger (dedicated command) and MCP contract are defined so any compatible IDE (e.g. Cursor, AntiGravity) can invoke the same tool the same way. |
+
+**Context Compaction:** Design §2.4 and the Scalability section above state that Context Compaction will be the intended approach when long-session API use is implemented.
 
 ---
