@@ -6,3 +6,6 @@ tools/claude-ptc-mcp/.env
 
 # PTC usage logs (benchmark / instrumentation)
 tools/claude-ptc-mcp/logs/usage.jsonl
+
+# Optional: cloned course notes (run: git clone https://github.com/MarkShawn2020/DeepLearning.ai-Courses-ClaudeCode.git claude-code-course-transcript/references/community-notes)
+claude-code-course-transcript/references/community-notes/
