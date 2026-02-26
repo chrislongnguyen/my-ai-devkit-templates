@@ -1,8 +1,0 @@
-# ai-devkit init template: merge v0.13.0 capabilities WITHOUT overwriting docs/ai/
-# Use: npx ai-devkit init -t ai-devkit-init-merge.yaml -e cursor
-# Do NOT use -a or -p (phases); phases must stay empty so custom templates are preserved.
-version: "0.13.0"
-environments:
-  - cursor
-phases: []   # empty = no phase files copied; docs/ai/ requirements/design/planning READMEs unchanged
-skills: []   # optional: add entries like { registry: "https://...", skill: "name" }

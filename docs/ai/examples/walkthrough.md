@@ -1,6 +1,6 @@
 # Worked Example: Personal Habit Tracker
 
-> This walkthrough shows a complete flow from `/state-a` through the first `/state-b` task. Use it as a reference for what "doing it right" looks like. All outputs below are illustrative — your venture will have different content.
+> This walkthrough shows a complete flow from `/state-a` through the first `/state-b` task. Use it as a reference for what "doing it right" looks like. All outputs below are illustrative — your enablement will have different content.
 
 ---
 

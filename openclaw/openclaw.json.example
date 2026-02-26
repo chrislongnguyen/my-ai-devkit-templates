@@ -1,0 +1,25 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/ABSOLUTE/PATH/TO/my-ai-devkit-templates"
+    },
+    "list": [
+      {
+        "id": "build",
+        "name": "Agent Build",
+        "workspace": "/ABSOLUTE/PATH/TO/my-ai-devkit-templates",
+        "tools": {
+          "profile": "coding",
+          "allow": ["group:fs", "group:runtime", "group:sessions"]
+        },
+        "subagents": {
+          "allowAgents": ["build"],
+          "runTimeoutSeconds": 1800
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "coding"
+  }
+}

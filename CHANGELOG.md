@@ -1,6 +1,6 @@
 # Changelog — LTC Master Template
 
-All notable changes to the Master Template (this repo) are documented here. Ventures clone a snapshot; this log helps you see what changed in the template over time. **When you update the Master Template, add an entry with date and change.**
+All notable changes to the Master Template (this repo) are documented here. Enablements clone a snapshot; this log helps you see what changed in the template over time. **When you update the Master Template, add an entry with date and change.**
 
 ---
 
@@ -18,7 +18,7 @@ All notable changes to the Master Template (this repo) are documented here. Vent
 - **Guided mode for State A:** strategy-mapping now asks "Are you familiar with the framework, or would you like guided mode with examples?" before the Causal Map. Lowers the entry barrier for beginners.
 
 ### Changed
-- README: added `/help`, `/review`, guided mode mention, context preservation, approval phrases quick reference, walkthrough link, and updated new venture checklist.
+- README: added `/help`, `/review`, guided mode mention, context preservation, approval phrases quick reference, walkthrough link, and updated new enablement checklist.
 - strategy-mapping Sub-Step 1: added guided mode check (step 2), renumbered subsequent steps.
 - Manifesto: added Recovery Protocol and User approval phrases sections.
 
@@ -49,7 +49,7 @@ All notable changes to the Master Template (this repo) are documented here. Vent
 - **Design §4:** Optional guidance on requesting Resources/Budget from the User (when to ask, what to specify, approval gate).
 - **Document flow:** Explicit chain Req → Design → Planning → Execution Matrix in README and Manifesto.
 - **Utility Belt & When to use which:** Manifesto lists /state-a, /state-b, /ship, /debug, /remember and when to use each.
-- **New venture checklist:** README: clone → open in Cursor → /state-a → /state-b.
+- **New enablement checklist:** README: clone → open in Cursor → /state-a → /state-b.
 - **Archive clarification:** README states docs/ai/archive/ is historical only; live docs are requirements/, design/, planning/.
 - **Company board sync:** Planning README maps template statuses to Scrumban (TODO, READY TO DO, DRAFT COMPLETED, REVIEWED/TESTED, STUCK).
 - **Ship ↔ Planning:** Ship command considers updating planning doc (e.g. task 🟢 Reviewed/Tested) before proposing commit.

@@ -32,7 +32,7 @@ description: Strict prioritization and sequencing of tasks to manage failure ris
 
 ### Table B — By A.C. (detail: requirement, iteration, evidence, status)
 
-*One row per A.C. ID. Traceability: A.C. ID matches Requirements Phase 3 (e.g. `docs/ai/requirements/README.md` or venture-specific requirements doc).*
+*One row per A.C. ID. Traceability: A.C. ID matches Requirements Phase 3 (e.g. `docs/ai/requirements/README.md` or enablement-specific requirements doc).*
 
 | A.C. ID | Requirement (from Req Phase 3) | Iter | Deterministic Evidence | Status |
 | :--- | :--- | :--- | :--- | :--- |

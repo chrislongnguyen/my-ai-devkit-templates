@@ -14,11 +14,11 @@ description: Translates the approved System Design into technical architecture f
   * P4 — Ship-to-Learn: every engine element must serve the path from idea to live product.
   * P5 — Environment Portability: all logic lives in `engine/`; IDE-specific folders are thin adapters pointing inward.
 
-* **Environment (Where):** Digital — Cursor IDE, Claude Cowork, AntiGravity, any future MCP-capable environment. Git (version control), local filesystem (docs), bash (guardrails). Cultural — solo non-technical operator; all enforcement must work without the user understanding the code.
+* **Environment (Where):** Digital — **Cursor IDE (primary)**; Claude Cowork, AntiGravity, any future MCP-capable IDE or CLI as secondary via adapters. Git (version control), local filesystem (docs), bash (guardrails). **Git hooks** are used for commit-time enforcement so the same rules apply in any IDE that uses git. Cultural — solo non-technical operator; all enforcement must work without the user understanding the code.
 
 * **Tools (What):**
-  * *Desirable Wrapper:* The existing Utility Belt unchanged (`/state-a`, `/state-b`, `/status`, `/ship`, `/debug`, `/handoff`, `/review`, `/remember`, `/help`, `/heavy`). No new commands. The engine improves underneath, invisibly to the user's workflow.
-  * *Effective Core:* Five mechanisms operating together — Cleanup Pass, Portable Core extraction, Guardrail Layer, Vocabulary Pass, Ship Skeleton.
+  * *Desirable Wrapper:* In **Cursor**, the Utility Belt: `/state-a`, `/state-b`, `/status`, `/test-write`, `/test`, `/ship`, `/debug`, `/handoff`, `/review`, `/remember`, `/help`, `/heavy`. **`/test-write`** is owned by the Test Agent and writes tests from approved planning. **`/test`** runs the test skeleton against current implementation. **`/ship`** is for git commit and push only (no test run) so committing does not conflict with testing. In Cowork/other environments, the same workflow is invoked by name (State A, State B, Test Write, Test, Ship) via their adapters. The engine improves underneath, invisibly to the user's workflow.
+  * *Effective Core:* Five mechanisms operating together — Cleanup Pass, Portable Core extraction, Guardrail Layer, Vocabulary Pass, Ship Skeleton. Cleanup includes removal of ai-devkit root files (`.ai-devkit.json`, `ai-devkit-init-merge.yaml`) so the canonical top-level is engine-defined only.
 
 * **SOP (How):**
   1. User runs `/state-b` — agent executes one atomic task, presents evidence, hard-stops.
@@ -49,7 +49,7 @@ graph TD
     ROOT --> ARCHIVE[claude-code-course-transcript/ — Learning Archive]
     ROOT --> SETUP[setup.sh — One-command guardrail install]
     ROOT --> CHECK[check-engine.sh — Structural validator]
-    ROOT --> CHECKLIST[new-venture-checklist.md]
+    ROOT --> CHECKLIST[new-enablement-checklist.md]
 
     ENGINE --> ESKILL[engine/SKILL.md — Single AI Entry Point]
     ENGINE --> ECMDS[engine/commands/ — All command logic]
@@ -65,8 +65,11 @@ graph TD
     DOCS --> FW[frameworks/]
     DOCS --> EX[examples/]
 
-    TESTS --> RUNNER[tests/run-tests.sh — Called by /ship]
-    DEPLOY --> DREAD[deploy/README.md — Vercel / Railway / CF Workers]
+    TESTS --> TWRITE[/test-write — Test Agent writes tests from planning]
+    TESTS --> RUNNER[tests/run-tests.sh — Discover & run; invoked by /test]
+    TESTS --> TREAD[tests/README.md — Contract doc]
+    DEPLOY --> DREAD[deploy/README.md — Actionable patterns]
+    DEPLOY --> DRUN[deploy/run-deploy.sh — Optional CLI entrypoint]
 
     subgraph IDE_ADAPTERS [IDE Adapters — thin, bolt-on]
         CURSOR
@@ -89,7 +92,7 @@ Structure:
 ```
 engine/
   SKILL.md                          ← single AI entry point
-  commands/                         ← all command logic (state-a, state-b, status, ship, debug, handoff, review, remember, help, heavy)
+  commands/                         ← all command logic (state-a, state-b, status, test-write, test, ship, debug, handoff, review, remember, help, heavy)
   rules/                            ← anti-patterns.md, ambient-flow.md, context-preservation.md
   skills/
     dev-lifecycle/
@@ -99,7 +102,7 @@ engine/
 ```
 
 **Cursor Adapter (`.cursor/`):**
-Thin pointer layer only. Each `.cursor/commands/{name}.md` file contains exactly: one-line description + `See: engine/commands/{name}.md`. The `.cursor/mcp.json` stays here (Cursor-specific config). No logic lives in `.cursor/`.
+Thin pointer layer only — Cursor-first. Each `.cursor/commands/{name}.md` file contains exactly: one-line description + `See: engine/commands/{name}.md`. Each `.cursor/rules/*.mdc` contains one-line description + `See: engine/rules/{name}.md` (agent resolves pointer to load full rule). `.cursor/skills/` points to engine content: e.g. `.cursor/skills/dev-lifecycle/SKILL.md` is minimal entry + `See: engine/skills/dev-lifecycle/SKILL.md` so Cursor discovers the skill but all logic lives in `engine/`. The `.cursor/mcp.json` stays here (Cursor-specific MCP server config; e.g. ai-devkit-memory, claude-ptc-mcp). No command/rule/skill logic lives in `.cursor/`; only pointers and IDE-specific config.
 
 **Claude Cowork / Claude Agent Adapter (`CLAUDE.md`):**
 A single file at repo root that loads engine context for any Claude-based agent (Cowork, Claude Code, Claude API agents). Contains: project name, engine entry point path (`engine/SKILL.md`), how to invoke State A and State B by name, and the approval phrases table. Any Claude agent that reads `CLAUDE.md` on session start knows exactly how to operate the engine.
@@ -109,14 +112,17 @@ A README adapter section (and optional stub folder) documenting how to point Ant
 
 **Guardrail Layer:**
 - `setup.sh` — Single copy-paste command that installs the pre-commit hook and makes `check-engine.sh` executable. Plain-English output confirms what was installed.
-- `check-engine.sh` — Validates: (a) all canonical files/folders present, (b) no legacy artifact paths (hardcoded list of known dead paths), (c) no broken `See:` cross-references in `.cursor/commands/`, (d) `engine/` free of IDE-specific path strings. Exit 0 = pass. Non-zero = plain-English violation list.
-- `.git/hooks/pre-commit` — Installed by `setup.sh`. Blocks: (a) code file commit without corresponding `docs/ai/design/` doc, (b) `.env` / common secrets-pattern file commits. Prints plain-English error on block. Runs in < 3 seconds.
+- `check-engine.sh` — Validates: (a) all canonical files/folders present, (b) no legacy artifact paths (hardcoded list: e.g. `.cursor/skills/.../legacy_codeaholic/`, root `.ai-devkit.json`, `ai-devkit-init-merge.yaml`, `docs/ai/implementation/`, `docs/ai/deployment/`, `docs/ai/monitoring/`), (c) no broken `See:` cross-references in `.cursor/commands/` (and `.cursor/rules/` if pointer-only), (d) `engine/` free of IDE-specific path strings. Exit 0 = pass. Non-zero = plain-English violation list.
+- `.git/hooks/pre-commit` — **Git** pre-commit hook (bash script), installed by `setup.sh`. Runs on `git commit` in any IDE. Blocks: (a) code file commit without the full Holy Trinity in the same commit (at least one staged file in each of `docs/ai/requirements/`, `docs/ai/design/`, `docs/ai/planning/`), (b) `.env` / common secrets-pattern file commits. Prints plain-English error on block (lists which of requirements, design, or planning is missing). Runs in < 3 seconds. Keeps the Holy Trinity in sync across devices and merges. (This is a git hook, not an IDE tool-lifecycle hook; chosen for P5 portability.)
 
-**Ship Skeleton (`tests/`):**
-- `tests/run-tests.sh` — Called by `engine/commands/ship.md` before proposing commit. On first use: prints "No tests defined yet — add test scripts here" and exits 0 (non-blocking). Once test scripts are added: runs them; non-zero exit blocks `/ship` and the agent reports which tests failed.
+**Ship Skeleton (`tests/`) — robust, stack-agnostic, and role-separated:**
+- `/test-write` command (`engine/commands/test-write.md` with `.cursor/commands/test-write.md` pointer) — owned by the **Test Agent**. It reads approved requirements/design/planning and writes or updates tests before execution tasks run. This freezes the test baseline for the approved scope and prevents execution-time goalpost moving. Authoring policy: test from specification (AC + behavior contract), not implementation internals; include both happy-path and failure-path coverage; if AC is ambiguous, hard-stop and ask for clarification.
+- `tests/run-tests.sh` — Invoked by **`/test`** (see `engine/commands/test.md`). Testing is separate from commit: **`/ship`** is for git commit and push only and does not run tests. **Discovery:** script detects common test runners in a fixed order (e.g. `package.json` → `npm test`, pytest/pyproject → `pytest`, `Cargo.toml` → `cargo test`, `go.mod` → `go test ./...`). If none detected: prints "No tests defined yet — add a test runner or script for your stack" and exits 0 (non-blocking). If a runner is detected: runs it; non-zero exit = failure (agent reports to user). Exit 0 = pass or no tests; non-zero = failure. No stack is chosen by the template — the script adapts to the project.
+- `tests/README.md` — Documents the contract: `/test-write` (author tests) and `/test` (execute tests) are separate commands; baseline test changes after execution starts require explicit user approval via re-plan (State A). `/ship` remains commit-only.
 
-**Deployment Skeleton (`deploy/`):**
-- `deploy/README.md` — Three deployment patterns, each ≤ 10 lines: Vercel (frontend), Railway (backend), Cloudflare Workers (edge). Each entry has "what you do" (1–2 user actions) and "what the AI does for you" (what State B handles).
+**Deployment Skeleton (`deploy/`) — robust, stack-agnostic:**
+- `deploy/README.md` — Three deployment patterns: Vercel (frontend), Railway (backend), Cloudflare Workers (edge). Each entry is **actionable:** when to use it, exact commands, where secrets go (e.g. `.env` gitignored or platform dashboard; never commit), explicit environment targeting (staging/preview vs production), post-deploy verification steps (how to confirm success), and one-line rollback where applicable. Each has "what you do" and "what the AI does for you." Concise but complete — no strict line cap; clarity and actionability take precedence.
+- `deploy/run-deploy.sh` (optional) — Single entrypoint: accepts target (vercel | railway | workers) and environment (staging | prod) via env or arguments; invokes the corresponding platform CLI (`npx vercel --prod`, `railway up`, `npx wrangler deploy`, etc.) or prints a short "Install and configure" message if the CLI is missing. The script should require explicit confirmation for production deployment (no implicit prod default). No project-specific config in the template; the script only delegates to standard CLIs. Contract: run from repo root; script delegates to the user's platform.
 
 ## 2.3 Data Models & APIs
 
@@ -131,7 +137,7 @@ This feature is pure engine infrastructure — no database, no external API beyo
 The Execution Matrix must include this note at the top of each iteration block: *"Add task rows as the feature requires; there is no maximum."* This prevents the agent from self-limiting at ~25 tasks. A feature with 50+ A.C. and 60+ tasks across 4 iterations is structurally valid and expected for complex products.
 
 **Multi-Feature-Set Pattern:**
-When a live (I4) product needs new capabilities, a new `feature-{name}` set is started with its own independent I1→I4 cycle. The engine supports unlimited concurrent and sequential feature sets within one product repo. Each feature set has its own Holy Trinity docs. The `new-venture-checklist.md` documents this pattern explicitly.
+When a live (I4) product needs new capabilities, a new `feature-{name}` set is started with its own independent I1→I4 cycle. The engine supports unlimited concurrent and sequential feature sets within one product repo. Each feature set has its own Holy Trinity docs. The `new-enablement-checklist.md` documents this pattern explicitly.
 
 ---
 
@@ -163,4 +169,4 @@ When a live (I4) product needs new capabilities, a new `feature-{name}` set is s
 * **Build Complexity:** Medium. The work is mechanical (delete, migrate, rewrite, create scripts) but there are many files to touch across 25 tasks. Risk of broken cross-references if migration order is wrong — mitigated by sequencing cleanup (I1) before migration (I2).
 * **ROI Sanity Check:** High. A clean, enforced, portable engine is the prerequisite for every product that ships through it. Every hour invested here saves multiples in every future feature build.
 
-*Ongoing tracking:* See Planning §3 (Resource & Budget Tracker) for current usage vs limits.
+*Ongoing tracking:* See Planning §4 (Resource & Budget Tracker) for current usage vs limits.

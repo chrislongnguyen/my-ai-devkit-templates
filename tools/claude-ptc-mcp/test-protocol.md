@@ -162,7 +162,7 @@ So for T3 Cursor normal, a reasonable **inferred split** is: **input ~33,000 tok
 | **T3** | **9.2%** context window (Auto Mode) | If 200k → **~18,400 tokens** | **True PTC:** scope .cursor/commands/, .cursor/rules/, execute-micro-task.md, Effective_Execution_Manifesto.md. Claude-PTC dashboard **76,411 + 29,307** tokens (Feb 25 06:27–06:28 UTC). In-reply _usage: 285 input / 2424 output / 88487 cache_read / 14522 cache_create; est_cost_usd 0.107; latency ~72.8s. |
 
 
-**T1 /heavy (true PTC) output:** Project summary (LTC Effective Execution Engine, AI-first venture-building); what it does (90/10 rule, 2-state engine, Strategy & planning + Micro-execution, reduces "building in isolation"); who it's for (solo founders, avoid heavy SDLC, AI-guided hypothesis-driven); core idea (Approach 2, no code until needs defined, custom commands). Scored below.
+**T1 /heavy (true PTC) output:** Project summary (LTC Effective Execution Engine, AI-first enablement-building); what it does (90/10 rule, 2-state engine, Strategy & planning + Micro-execution, reduces "building in isolation"); who it's for (solo founders, avoid heavy SDLC, AI-guided hypothesis-driven); core idea (Approach 2, no code until needs defined, custom commands). Scored below.
 
 **T2 /heavy (true PTC) output:** Execution Matrix Analysis (PTC summary): task flow & status lifecycle (5 states, agent HARD STOPS, user gate, iteration gate); A.C. ID traceability (Requirements Phase 3 → Tables A & B → Execution Matrix); risk-based iteration sequencing (Concept, Working Prototype, MVE, Leadership); validation gates & evidence. In-reply line: "PTC usage: ~174 input / ~870 output tokens; latency ~24.7s." Scored below.
 

@@ -49,7 +49,7 @@ UDO: *"Evidence of task completion is machine-verified by a test suite, not depe
 
 *Orchestrator state:* After each feature ships, the agent writes a structured summary (decisions made, UBS discovered, patterns that led to revisions) to a searchable memory store. At the start of every State A, this history is surfaced automatically — not because you asked, but because it is relevant.
 
-*What closing it gives you:* The agent learns from your venture's history. The more you build, the smarter the starting point for each new feature.
+*What closing it gives you:* The agent learns from your enablement's history. The more you build, the smarter the starting point for each new feature.
 
 *Action:* Run `/state-a` with feature name `ambient-project-memory`.
 UDO: *"At the start of every new feature, the agent automatically surfaces relevant decisions and patterns from all past features, without me having to remember to /remember them."*

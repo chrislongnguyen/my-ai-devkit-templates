@@ -8,17 +8,17 @@ The Prime Directive: Never propose a technical solution / user enablement (Noun)
 
 | Term | Plain English |
 | :--- | :--- |
-| **UDO** (Ultimate Desired Outcome) | The end result your user actually wants — a life outcome, not a feature (e.g. "Effortless weight management", not "A calorie app"). |
-| **UDS** (Ultimate Driving System) | The forces *pushing* the user toward the UDO — what motivates them. |
-| **UBS** (Ultimate Blocking System) | The forces *stopping* the user from reaching the UDO — what's in their way. |
-| **UDS.UD / UBS.UB** | The root *driver* of a driver / the root *blocker* of a blocker — the deepest "why" behind each force. |
-| **UDS.UB / UBS.UD** | The root *blocker* of a driver / the root *driver* of a blocker — what undermines each force. |
+| **UDO** (Ultimate Desired Outcome) | Goal — the outcome the user actually wants (life outcome, not a feature). |
+| **UDS** (Ultimate Driving System) | What motivates the user (drivers pushing them toward the goal). |
+| **UBS** (Ultimate Blocking System) | What's in the user's way (blockers stopping them from the goal). |
+| **UDS.UD / UBS.UB** | Root *driver* of the driver / root *blocker* of the blocker (deepest "why"). |
+| **UDS.UB / UBS.UD** | The root *blocker* of a driver / the root *driver* of a blocker — (deepest "why"). |
 | **Verb** | The one core action the user takes to reach the UDO (e.g. "Track meals"). |
 | **Adverb** | How the action should feel — effectiveness outcomes in 3 pillars: Sustainability, Efficiency, Scalability (e.g. "Securely", "Frugally", "Repeatedly"). |
 | **Noun** | The tool/feature you build for the user to take the Verb (e.g. "Meal Logger"). |
 | **Adjective** | Attributes of the Noun that enable the Adverbs (e.g. "Encrypted", "Lightweight", "Modular"). |
 | **A.C.** (Acceptance Criteria) | A single, deterministic pass/fail test that proves a requirement is met. Identified by stable IDs (e.g. Verb-AC1, SustainAdv-AC2). |
-| **MECE** | Mutually Exclusive, Collectively Exhaustive — no overlaps, no gaps. Every A.C. appears exactly once. |
+| **MECE** | Mutually Exclusive, Collectively Exhaustive — no overlaps, no gaps. every item counted exactly once. |
 | **Desirable Wrapper** | The hook that gets the user to *use* the tool — the attractive outer layer (UI, first impression). |
 | **Effective Core** | The hidden mechanic that actually solves the root drivers/blockers — the real engine under the Wrapper. |
 | **Principles** | General or scientific rules governing the drivers and blockers — the "why" behind the design. |

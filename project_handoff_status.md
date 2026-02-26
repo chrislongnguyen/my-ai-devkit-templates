@@ -1,46 +1,29 @@
 # Project Handoff Status
-*Generated: 2026-02-25. Use /status for a quick snapshot; use this file for full handoff.*
+*Generated: 2026-02-20. Use /status for a quick snapshot; use this file for full handoff.*
 
 ## Active feature
-`claude_ptc` — PTC bridge: Cursor `/heavy` → MCP tool `run_heavy_analysis_ptc` → Node MCP server → Anthropic API (code execution) → summary only to IDE.
+engine-hardening
 
 ## Planning doc
-`docs/ai/planning/feature-claude_ptc.md`
+`docs/ai/planning/feature-engine-hardening.md`
 
 ## Current iteration
-**I4 — Scalability** (final iteration — all executable tasks complete)
+**3 — MVE (Minimum Viable Enablement)**
 
 ## Next task
-- **ID:** T-302
-- **Title:** (Reserved for future: Context Compaction implementation when long-session design exists.)
-- **Status:** 🔴 To Do — **intentionally deferred**; no action required until a long-session API design is created.
+- **ID:** T-304
+- **Title:** Create `tests/` with `tests/run-tests.sh` (discovery script), `tests/README.md`, `/test-write` command (Test Agent), `/test` command; `/ship` remains commit-only. Verify test authoring flow and no-runner / with-runner cases.
+- **Status:** ⚪ Pending
 
 ## Last approved task
-- **ID:** T-401
-- **Title:** Final verification: all A.C. have evidence; handoff-ready.
-- **Evidence:** Table B 22/22 🟢; all tasks T-101–T-301 🟢 Reviewed/Tested; code and docs verified aligned.
-
-## Feature completion summary
-All 22 Acceptance Criteria are 🟢. All 6 executable tasks (T-101 through T-301) plus T-401 (final verification) are 🟢 Reviewed/Tested. The feature is **complete and handoff-ready**.
-
-Key artifacts:
-- `.cursor/commands/heavy.md` — `/heavy` command + IDE-agnostic contract
-- `tools/claude-ptc-mcp/src/index.js` — MCP server: `run_heavy_analysis_ptc`, Elicitation, `CACHEABLE_SYSTEM_BLOCK`, scope reader, summary-only result
-- `README.md` — MCP setup section (per-device install instructions)
-- `docs/ai/requirements/feature-claude_ptc.md` — requirements with repeated-use + Context Compaction notes
-- `docs/ai/design/feature-claude_ptc.md` — design §2.4 (repeated use & long sessions)
+- **ID:** T-303
+- **Evidence:** T-303 approved; all `engine/commands/*.md` ≤ 30 lines; active-feature logic canonical in execute-micro-task Step 0; handoff/status/review use See: pointer. EffAdv-AC3 🟢 in Table B.
 
 ## Modified / uncommitted files
-```
-M  README.md
-M  docs/ai/design/feature-claude_ptc.md
-M  docs/ai/planning/feature-claude_ptc.md
-M  docs/ai/requirements/feature-claude_ptc.md
-?? .cursor/commands/heavy.md          (new file — untracked)
-?? tools/                             (new directory — untracked, contains MCP server)
-```
+- **Staged (changes to be committed):** Deletions of legacy_codeaholic, ai-devkit vestiges, docs/ai/archive/* (many files).
+- **Not staged:** Modified — .cursor/commands/* (debug, handoff, heavy, help, remember, review, ship, state-a, state-b, status), .cursor/skills/.../strategy-mapping.md, CHANGELOG.md, README.md, docs/ai/Effective_Execution_Manifesto.md, docs/ai/Orchestrator_Roadmap.md, docs/ai/design/feature-engine-hardening.md, docs/ai/examples/walkthrough.md, docs/ai/frameworks/effective-system-design.md, docs/ai/planning/README.md, docs/ai/planning/feature-engine-hardening.md, docs/ai/requirements/feature-engine-hardening.md, tools/claude-ptc-mcp/test-protocol.md.
+- **Untracked:** .antigravity/, .claude/, .cursor/commands/test.md, CLAUDE.md, check-engine.sh, docs/ai/archive/, docs/ai/examples/*-evidence.md (several), engine/, openclaw/, scripts/, setup.sh.
 
 ## Next actions
-1. Run `/ship` to commit and push all changes (the prompt is ready below).
-2. On a new device: `git pull`, then `cd tools/claude-ptc-mcp && npm install`, register the MCP server in Cursor (see README MCP setup section), set `ANTHROPIC_API_KEY`.
-3. T-302 (Context Compaction) is reserved for a future design — only action when long-session API use is being designed.
+1. Run `/state-b` to execute T-304 (set T-304 to 🔴 To Do first if needed, then implement test skeleton: tests/, run-tests.sh, /test-write, /test, tests/README.md).
+2. Optionally run `/ship` to commit and push after staging Holy Trinity + code (pre-commit requires requirements + design + planning in same commit when code is staged).

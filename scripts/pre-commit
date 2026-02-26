@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Pre-commit hook: block (a) code files without Holy Trinity docs, (b) .env / secrets-pattern files.
+# When committing code, require requirements + design + planning in the same commit to avoid
+# cross-device merge mismatches (Holy Trinity stays in sync). Canonical source for setup.sh.
+
+set -e
+
+# Match staged paths that look like code (by extension)
+CODE_EXTS='\.(js|ts|tsx|jsx|mjs|cjs|py|go|rs|java|c|cpp|h|hpp|rb|php|swift|kt|scala|r|sql|sh|bash)$'
+# Match staged paths that look like secrets / .env
+SECRETS_PATTERN='(^|/)\.env($|\.)|\.pem$|secrets?\.(json|yaml|yml)$|\.key$'
+
+block_reason=""
+
+# (a) Code file without full Holy Trinity: if any staged file is code, require staged files in all three
+staged_files="$(git diff --cached --name-only)"
+if echo "$staged_files" | grep -qE "$CODE_EXTS"; then
+  missing=""
+  echo "$staged_files" | grep -q '^docs/ai/requirements/' || missing="requirements"
+  echo "$staged_files" | grep -q '^docs/ai/design/'      || missing="${missing:+$missing, }design"
+  echo "$staged_files" | grep -q '^docs/ai/planning/'   || missing="${missing:+$missing, }planning"
+  if [[ -n "$missing" ]]; then
+    block_reason="Commit blocked: you are committing code but the Holy Trinity is incomplete in this commit. Stage at least one file from each: docs/ai/requirements/, docs/ai/design/, docs/ai/planning/. Missing in this commit: $missing. This keeps requirements, design, and planning in sync across devices and avoids merge headaches."
+  fi
+fi
+
+# (b) Secrets-pattern files
+if echo "$staged_files" | grep -qE "$SECRETS_PATTERN"; then
+  block_reason="${block_reason:+$block_reason }Commit blocked: a staged file looks like a secret or .env file. Remove it from the commit (e.g. git reset HEAD -- <file>) and add it to .gitignore if needed."
+fi
+
+if [[ -n "$block_reason" ]]; then
+  echo "pre-commit hook: $block_reason"
+  exit 1
+fi
+
+exit 0

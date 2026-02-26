@@ -9,7 +9,7 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 
 * **Iteration 1 — Concept:** Neutralize the desirability risk. Does the engine work cleanly for its primary user action (Build) without legacy interference? Prove the active tree is clean and the 2-State Engine is the only model an agent will encounter.
 * **Iteration 2 — Working Prototype:** Neutralize the technical feasibility risk. Does the portable core exist, do the IDE adapters work, and do the programmatic guardrails actually enforce the rules?
-* **Iteration 3 — MVE (Minimum Viable Enablement):** Neutralize the usability risk. Can the user read, act, and ship without friction? Vocabulary rationalized, command files lean, testing and deployment skeletons in place, new-venture checklist ready.
+* **Iteration 3 — MVE (Minimum Viable Enablement):** Neutralize the usability risk. Can the user read, act, and ship without friction? Vocabulary rationalized, command files lean, testing and deployment skeletons in place, new-enablement checklist ready.
 * **Iteration 4 — Enablement Leadership:** Neutralize the scale risk. Does the engine handle indefinite growth — unbounded docs, unlimited feature sets, sub-agent portability, and verified modular adapter pattern?
 
 ---
@@ -35,31 +35,31 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 
 | A.C. ID | Requirement (from Req Phase 3) | Iter | Deterministic Evidence | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| Verb-AC1 | Clone repo → run `/state-a` with zero legacy files or competing terminology in active tree | 1 | File-tree audit: zero files outside canonical structure | 🔴 |
-| Verb-AC2 | Full `/state-a` → `/state-b` cycle follows only 2-State Engine logic — no legacy model steps | 1 | Test run of `/state-a` on fresh clone: no codeaholic/ai-devkit steps surfaced | 🔴 |
-| Verb-AC3 | Any engine concept reachable in ≤ 2 navigation steps from repo root | 1 | Navigation map showing all commands/rules/skills reachable in ≤ 2 steps | 🔴 |
-| EffAdj-AC2 | `legacy_codeaholic/` deleted; `docs/ai/archive/` cleaned to read-only label or deleted | 1 | `git rm` output confirming deletions; directory listing confirms absence | 🔴 |
-| EffAdj-AC3 | `docs/ai/` limited to: `requirements/`, `design/`, `planning/`, `frameworks/`, `examples/` | 1 | Directory listing confirming only canonical folders remain | 🔴 |
-| Verb-AC4 | State A and State B invokable by name in Claude Cowork without pasting instructions | 2 | `CLAUDE.md` exists at repo root; test invocation in Cowork follows engine logic correctly | ⚪ |
-| Verb-AC5 | State A and State B in Cursor unchanged from current workflow | 2 | `.cursor/commands/` pointer files verified; existing `/state-a` test run passes | ⚪ |
-| Verb-AC6 | State A and State B in AntiGravity via README adapter — zero `engine/` changes | 2 | README adapter section exists; `engine/` git diff shows zero changes during adapter add | ⚪ |
-| SustainAdv-AC1 | Pre-commit hook blocks code commit without corresponding design doc | 2 | Hook fires on test commit of code file with no design doc; plain-English error printed | ⚪ |
-| SustainAdv-AC2 | Pre-commit hook blocks `.env` / secrets-pattern file commits | 2 | Hook fires on test commit of `.env` file; blocked before reaching git history | ⚪ |
-| SustainAdv-AC3 | `check-engine.sh` returns pass/fail on engine structural integrity | 2 | Script runs; exit 0 on clean repo; non-zero with plain-English violation list on broken repo | ⚪ |
-| SustainAdj-AC1 | `check-engine.sh` validates: canonical files, no legacy paths, no broken `See:` refs, no IDE paths in `engine/` | 2 | Script output shows all 4 validation categories checked; each reports pass/fail independently | ⚪ |
-| SustainAdj-AC2 | `setup.sh` installs hook + validates `check-engine.sh` via single copy-paste command | 2 | `setup.sh` runs end-to-end; hook confirmed active via `ls .git/hooks/pre-commit`; plain-English confirmation printed | ⚪ |
-| Noun-AC1 | Repo top-level matches canonical structure exactly — no extra top-level folders | 2 | Directory listing confirming exact structure; `check-engine.sh` exit 0 | ⚪ |
-| Noun-AC2 | `engine/SKILL.md` alone sufficient for any AI agent to understand and operate both States | 2 | Fresh agent test: agent reads only `engine/SKILL.md` and correctly describes State A, State B, all commands, and approval phrases | ⚪ |
-| ScalAdj-AC2 | `engine/` contains zero hardcoded IDE-specific paths | 2 | `grep -r ".cursor\|CLAUDE.md\|antigravity" engine/` returns zero matches | ⚪ |
-| EffAdv-AC1 | README ≤ 60 lines of prose; user understands next action in < 3 min | 3 | Line count confirmed ≤ 60; timed read by user confirms clarity | ⚪ |
+| Verb-AC1 | Clone repo → run `/state-a` with zero legacy files or competing terminology in active tree | 1 | T-104 approved; file-tree audit in docs/ai/examples/navigation-map.md: zero files outside canonical structure | 🟢 |
+| Verb-AC2 | Full `/state-a` → `/state-b` cycle follows only 2-State Engine logic — no legacy model steps | 1 | T-105 approved; docs/ai/examples/state-a-simulation-evidence.md: /state-a flow and grep confirm no codeaholic/ai-devkit steps | 🟢 |
+| Verb-AC3 | Any engine concept reachable in ≤ 2 navigation steps from repo root | 1 | T-104 approved; docs/ai/examples/navigation-map.md shows all commands, rules, skills in ≤ 2 steps | 🟢 |
+| EffAdj-AC2 | `.cursor/skills/.../legacy_codeaholic/` and root ai-devkit files deleted; `docs/ai/archive/` cleaned to read-only label or deleted | 1 | T-101, T-102 approved; legacy_codeaholic + ai-devkit removed; archive reduced to single README.md (read-only historical) | 🟢 |
+| EffAdj-AC3 | `docs/ai/` limited to: `requirements/`, `design/`, `planning/`, `frameworks/`, `examples/` | 1 | T-103 approved; directory listing confirms no implementation/deployment/monitoring in docs/ai/; only canonical folders remain | 🟢 |
+| Verb-AC4 | State A and State B invokable by name in Claude Cowork without pasting instructions | 2 | T-203 approved; canonical Claude adapter moved to `.claude/CLAUDE.md` with project name, engine entry point, State A/B by name, approval phrases; root `CLAUDE.md` is a thin pointer for auto-load compatibility | 🟢 |
+| Verb-AC5 | State A and State B in Cursor unchanged from current workflow | 2 | T-205 approved; `.cursor/commands/state-a.md` routes to `engine/commands/state-a.md`; evidence documented in `docs/ai/examples/state-a-routing-evidence.md` | 🟢 |
+| Verb-AC6 | State A and State B in AntiGravity via README adapter — zero `engine/` changes | 2 | T-204 approved; README AntiGravity adapter section + `.antigravity/README.md` stub in place; `engine/` unchanged. Adapter structure aligned with dedicated `.claude/` and `openclaw/` folders | 🟢 |
+| SustainAdv-AC1 | **Git** pre-commit hook blocks code commit without full Holy Trinity (requirements + design + planning) in same commit | 2 | T-207 approved; hook requires staged file in each of docs/ai/requirements/, design/, planning/ when code staged; plain-English error lists missing pillar(s) | 🟢 |
+| SustainAdv-AC2 | **Git** pre-commit hook blocks `.env` / secrets-pattern file commits | 2 | T-207 approved; hook blocks .env/secrets-pattern files; evidence in docs/ai/examples/pre-commit-hook-evidence.md | 🟢 |
+| SustainAdv-AC3 | `check-engine.sh` returns pass/fail on engine structural integrity | 2 | T-206 approved; script runs; exit 0 on clean repo; non-zero with plain-English violation list on failure | 🟢 |
+| SustainAdj-AC1 | `check-engine.sh` validates: canonical files, no legacy paths, no broken `See:` refs, no IDE paths in `engine/` | 2 | T-206 approved; all 4 categories (A–D) checked; evidence in docs/ai/examples/check-engine-validation-evidence.md | 🟢 |
+| SustainAdj-AC2 | `setup.sh` installs hook + validates `check-engine.sh` via single copy-paste command | 2 | T-208 approved; ./setup.sh runs end-to-end; hook and check-engine.sh executable; plain-English confirmation; evidence in docs/ai/examples/setup-sh-evidence.md | 🟢 |
+| Noun-AC1 | Repo top-level matches canonical structure exactly — no extra top-level folders | 2 | T-209 approved; directory listing in docs/ai/examples/working-prototype-structure-evidence.md; check-engine.sh exit 0 | 🟢 |
+| Noun-AC2 | `engine/SKILL.md` alone sufficient for any AI agent to understand and operate both States | 2 | T-201 approved; engine/ created with SKILL.md as single entry point; 21 files; grep confirms zero IDE paths in engine/ | 🟢 |
+| ScalAdj-AC2 | `engine/` contains zero hardcoded IDE-specific paths | 2 | T-202 approved; `grep -r ".cursor\|CLAUDE.md\|antigravity" engine/` returns zero matches | 🟢 |
+| EffAdv-AC1 | README ≤ 60 lines of prose; user understands next action in < 3 min | 3 | T-301 approved; README prose ≤ 60 lines; timed read confirms < 3 min | 🟢 |
 | EffAdv-AC2 | Glossary maps ≥ 5 heavy terms to plain-English equivalents | 3 | Glossary diff showing before/after for ≥ 5 terms with plain-English mapped alongside proprietary names | ⚪ |
-| EffAdv-AC3 | Every command file ≤ 30 lines; zero inline duplication of logic in `engine/` | 3 | Line count on all `engine/commands/` files ≤ 30; grep for duplicated logic patterns returns zero | ⚪ |
-| EffAdj-AC1 | `.cursor/commands/*.md` = one-line description + `See:` pointer only; all logic in `engine/commands/` | 3 | Diff of all `.cursor/commands/` files confirms pointer-only content | ⚪ |
-| Noun-AC3 | `tests/run-tests.sh` exists; called by `/ship`; exits 0 with "no tests defined" message on first use | 3 | Script exists at `tests/run-tests.sh`; `engine/commands/ship.md` updated with test call; first-run output confirmed | ⚪ |
-| Noun-AC4 | `deploy/README.md` with Vercel/Railway/CF Workers patterns ≤ 10 lines each | 3 | File exists; line count per stack entry ≤ 10; "what you do" and "what the AI does" sections present for each | ⚪ |
-| ScalAdv-AC1 | `new-venture-checklist.md` enables new product init in ≤ 15 min including MCP setup | 3 | Checklist exists; timed walkthrough on fresh clone completes in ≤ 15 min | ⚪ |
+| EffAdv-AC3 | Every command file ≤ 30 lines; zero inline duplication of logic in `engine/` | 3 | T-303 approved; all engine/commands/*.md ≤ 30 lines; active-feature logic canonical in execute-micro-task Step 0, handoff/status/review use See: | 🟢 |
+| EffAdj-AC1 | `.cursor/commands/*.md` = one-line description + `See:` pointer only; all logic in `engine/commands/` | 3 | T-202 approved; all `.cursor/commands/*.md` pointer-only; logic in engine/commands/ | 🟢 |
+| Noun-AC3 | Test skeleton: **separate commands** `/test-write` (Test Agent writes tests from approved planning/spec) and `/test` (execute tests via `run-tests.sh`); `/ship` is commit-only and does not run tests | 3 | `/test-write` command exists and writes/updates tests from planning (not implementation internals) before execution; includes failure-path cases and ambiguity hard-stop; `tests/run-tests.sh` + `/test` exist and execute tests; `tests/README.md` documents role separation and baseline-lock rule; `/ship` does not run tests | ⚪ |
+| Noun-AC4 | Deploy skeleton: `deploy/README.md` actionable (when/commands/secrets/environment-targeting/verification/rollback) for Vercel, Railway, CF Workers; optional `deploy/run-deploy.sh` entrypoint | 3 | `deploy/README.md` exists with three patterns and includes explicit staging/prod targeting and post-deploy verification steps; optional `deploy/run-deploy.sh` accepts target+environment and requires explicit prod intent; "what you do" and "what the AI does" present | ⚪ |
+| ScalAdv-AC1 | `new-enablement-checklist.md` enables new product init in ≤ 15 min including MCP setup | 3 | Checklist exists; timed walkthrough on fresh clone completes in ≤ 15 min | ⚪ |
 | Verb-AC7 | Planning file grows unbounded; agent handles 50+ A.C. and 60+ tasks without truncation | 4 | Planning template updated with explicit "no cap" note; test planning doc with 50+ A.C. rows created; agent reads without truncation | ⚪ |
-| Verb-AC8 | New capabilities added as new `feature-{name}` sets with independent I1→I4 cycles | 4 | `new-venture-checklist.md` and README document multi-feature-set pattern; example in `docs/ai/examples/` shows two features coexisting in one product repo | ⚪ |
+| Verb-AC8 | New capabilities added as new `feature-{name}` sets with independent I1→I4 cycles | 4 | `new-enablement-checklist.md` and README document multi-feature-set pattern; example in `docs/ai/examples/` shows two features coexisting in one product repo | ⚪ |
 | Verb-AC9 | Second AI agent operates from `engine/SKILL.md` + one feature's planning doc independently | 4 | Sub-agent portability documented in `engine/SKILL.md`; simulated fresh agent reads entry point + planning doc and executes one task correctly | ⚪ |
 | ScalAdv-AC2 | `check-engine.sh` returns exit 0 on fresh clone after all tasks complete | 4 | Fresh clone test: `setup.sh` run; `check-engine.sh` returns exit 0; output documented as evidence | ⚪ |
 | ScalAdv-AC3 | `CHANGELOG.md` complete from v1.0 to v2.0.0; version history readable in < 2 min | 4 | `CHANGELOG.md` updated with complete v2.0.0 entry; timed read confirms < 2 min | ⚪ |
@@ -81,11 +81,11 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 
 | ID | Task | Risk Validated | Deps | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **T-101** | Delete `references/legacy_codeaholic/` folder and all contents | Dead legacy model eliminated — agent cannot hallucinate codeaholic steps | None | 🔴 To Do |
-| **T-102** | Clean `docs/ai/archive/` — delete entirely or reduce to single `README.md` with read-only historical label | Competing mental model removed from active tree | T-101 | 🔴 To Do |
-| **T-103** | Remove `implementation/`, `deployment/`, `monitoring/` ai-devkit vestige folders from `docs/ai/` active tree | Active doc tree is canonical-only (requirements, design, planning, frameworks, examples) | T-102 | 🔴 To Do |
-| **T-104** | Audit entire repo file tree; confirm zero files outside canonical structure; produce a navigation map showing every engine concept reachable in ≤ 2 steps from repo root | Desirability proven: clean engine is immediately usable on first clone | T-103 | 🔴 To Do |
-| **T-105** | Simulate `/state-a` on the current repo and confirm the agent follows only 2-State Engine logic with no legacy interference; document the test run output as evidence | Core Verb-AC2 validated: Build works without legacy contamination | T-104 | 🔴 To Do |
+| **T-101** | Delete `.cursor/skills/dev-lifecycle/references/legacy_codeaholic/` folder and all contents; delete root-level `.ai-devkit.json` and `ai-devkit-init-merge.yaml` (ai-devkit vestiges) | Dead legacy model and ai-devkit scaffolding eliminated — agent cannot hallucinate codeaholic or 7-phase steps; top-level is engine-canonical only | None | 🟢 Reviewed/Tested |
+| **T-102** | Clean `docs/ai/archive/` — delete entirely or reduce to single `README.md` with read-only historical label | Competing mental model removed from active tree | T-101 | 🟢 Reviewed/Tested |
+| **T-103** | Remove `implementation/`, `deployment/`, `monitoring/` ai-devkit vestige folders from `docs/ai/` active tree (if present) | Active doc tree is canonical-only (requirements, design, planning, frameworks, examples) | T-102 | 🟢 Reviewed/Tested |
+| **T-104** | Audit entire repo file tree; confirm zero files outside canonical structure; produce a navigation map showing every engine concept reachable in ≤ 2 steps from repo root | Desirability proven: clean engine is immediately usable on first clone | T-103 | 🟢 Reviewed/Tested |
+| **T-105** | Simulate `/state-a` on the current repo and confirm the agent follows only 2-State Engine logic with no legacy interference; document the test run output as evidence | Core Verb-AC2 validated: Build works without legacy contamination | T-104 | 🟢 Reviewed/Tested |
 
 ---
 
@@ -98,15 +98,15 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 
 | ID | Task | Risk Validated | Deps | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **T-201** | Create `engine/` folder structure; migrate all skill references, commands, and rules from `.cursor/skills/` and `.cursor/rules/` into `engine/` as the portable canonical core; write `engine/SKILL.md` as single AI entry point | Portable core exists; Noun-AC2 fulfilled | T-105 | ⚪ Pending |
-| **T-202** | Rewrite all `.cursor/commands/*.md` files to one-line description + `See: engine/commands/{name}.md` pointer only; run `grep -r ".cursor\|CLAUDE.md\|antigravity" engine/` and confirm zero matches | Cursor adapter is thin pointer; `engine/` is fully IDE-agnostic (ScalAdj-AC2) | T-201 | ⚪ Pending |
-| **T-203** | Create `CLAUDE.md` at repo root with: project name, engine entry point (`engine/SKILL.md`), how to invoke State A and State B by name, approval phrases table; test by invoking State A in Claude Cowork using only `CLAUDE.md` context | Cowork/Claude adapter works (Verb-AC4) | T-201 | ⚪ Pending |
-| **T-204** | Write AntiGravity adapter section in README ("Using this engine in AntiGravity" — one paragraph with exact steps); create stub `.antigravity/` folder with pointer file if needed; verify zero `engine/` changes required | Any-IDE portability proven (Verb-AC6) | T-201 | ⚪ Pending |
-| **T-205** | Verify Cursor workflow unchanged: run existing `/state-a` command and confirm it routes correctly through `engine/commands/state-a.md`; document test run | Cursor adapter backward-compatible (Verb-AC5) | T-202 | ⚪ Pending |
-| **T-206** | Write `check-engine.sh` with 4 validation categories: (a) canonical files/folders present, (b) no legacy artifact paths, (c) no broken `See:` cross-references in `.cursor/commands/`, (d) no IDE-specific paths in `engine/`; test on current repo | Self-validation works (SustainAdv-AC3, SustainAdj-AC1) | T-202 | ⚪ Pending |
-| **T-207** | Write `.git/hooks/pre-commit` blocking: (a) code file staged without `docs/ai/design/` doc, (b) `.env` / secrets-pattern files staged; test both trigger conditions | Hard rules enforced programmatically (SustainAdv-AC1, SustainAdv-AC2) | T-206 | ⚪ Pending |
-| **T-208** | Write `setup.sh` that installs the pre-commit hook and makes `check-engine.sh` executable; test end-to-end on clean state | Zero-friction guardrail activation (SustainAdj-AC2) | T-207 | ⚪ Pending |
-| **T-209** | Run full canonical structure verification: directory listing confirms Noun-AC1 top-level exactly; run `check-engine.sh` and confirm exit 0; document as Working Prototype evidence | Working Prototype structurally sound (Noun-AC1) | T-208 | ⚪ Pending |
+| **T-201** | Create `engine/` folder structure; migrate all skill references, commands, and rules from `.cursor/skills/` and `.cursor/rules/` into `engine/` as the portable canonical core; write `engine/SKILL.md` as single AI entry point | Portable core exists; Noun-AC2 fulfilled | T-105 | 🟢 Reviewed/Tested |
+| **T-202** | Rewrite all `.cursor/commands/*.md` files to one-line description + `See: engine/commands/{name}.md` pointer only; run `grep -r ".cursor\|CLAUDE.md\|antigravity" engine/` and confirm zero matches | Cursor adapter is thin pointer; `engine/` is fully IDE-agnostic (ScalAdj-AC2) | T-201 | 🟢 Reviewed/Tested |
+| **T-203** | Create Claude adapter with canonical `.claude/CLAUDE.md` (project name, engine entry point `engine/SKILL.md`, State A/B invocation by name, approval phrases table); keep root `CLAUDE.md` as thin pointer for compatibility; test by invoking State A in Claude Cowork using only Claude adapter context | Cowork/Claude adapter works (Verb-AC4) | T-201 | 🟢 Reviewed/Tested |
+| **T-204** | Write AntiGravity adapter section in README ("Using this engine in AntiGravity" — one paragraph with exact steps); create stub `.antigravity/` folder with pointer file if needed; verify zero `engine/` changes required; align adapter structure documentation with dedicated `.claude/` and `openclaw/` folders | Any-IDE portability proven (Verb-AC6) | T-201 | 🟢 Reviewed/Tested |
+| **T-205** | Verify Cursor workflow unchanged: run existing `/state-a` command and confirm it routes correctly through `engine/commands/state-a.md`; document test run | Cursor adapter backward-compatible (Verb-AC5) | T-202 | 🟢 Reviewed/Tested |
+| **T-206** | Write `check-engine.sh` with 4 validation categories: (a) canonical files/folders present, (b) no legacy artifact paths, (c) no broken `See:` cross-references in `.cursor/commands/`, (d) no IDE-specific paths in `engine/`; test on current repo | Self-validation works (SustainAdv-AC3, SustainAdj-AC1) | T-202 | 🟢 Reviewed/Tested |
+| **T-207** | Write **git** pre-commit hook (`.git/hooks/pre-commit`, bash) blocking: (a) code file staged without full Holy Trinity (requirements + design + planning), (b) `.env` / secrets-pattern files staged; test both trigger conditions | Hard rules enforced programmatically in any IDE that uses git (SustainAdv-AC1, SustainAdv-AC2) | T-206 | 🟢 Reviewed/Tested |
+| **T-208** | Write `setup.sh` that installs the pre-commit hook and makes `check-engine.sh` executable; test end-to-end on clean state | Zero-friction guardrail activation (SustainAdj-AC2) | T-207 | 🟢 Reviewed/Tested |
+| **T-209** | Run full canonical structure verification: directory listing confirms Noun-AC1 top-level exactly; run `check-engine.sh` and confirm exit 0; document as Working Prototype evidence | Working Prototype structurally sound (Noun-AC1) | T-208 | 🟢 Reviewed/Tested |
 
 ---
 
@@ -119,12 +119,13 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 
 | ID | Task | Risk Validated | Deps | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **T-301** | Rewrite README to ≤ 60 lines of prose (excluding tables and code blocks); every sentence is "what to do" or "why" — no decorative framing; count lines and confirm | User reads and acts in < 3 min (EffAdv-AC1) | T-209 | ⚪ Pending |
-| **T-302** | Rationalize Glossary: identify ≥ 5 heavy proprietary terms with plain-English equivalents; update Glossary with before/after mapping; Glossary remains single reference point | Cognitive load reduced (EffAdv-AC2) | T-301 | ⚪ Pending |
-| **T-303** | Trim all `engine/commands/` files to ≤ 30 lines each; remove all inline duplication (any logic that appears in two files gets moved to one canonical location with a `See:` pointer in the other); line-count all files and confirm | Every command readable in < 60 sec (EffAdv-AC3) | T-302 | ⚪ Pending |
-| **T-304** | Create `tests/` folder with `tests/run-tests.sh`; update `engine/commands/ship.md` to call `tests/run-tests.sh` before proposing commit; run script and confirm "no tests defined" + exit 0 output | Testing skeleton active; `/ship` is complete (Noun-AC3) | T-303 | ⚪ Pending |
-| **T-305** | Create `deploy/README.md` with Vercel, Railway, and Cloudflare Workers patterns; each ≤ 10 lines with "what you do" and "what the AI does for you" sections; count lines per entry and confirm | Deployment path visible to User (Noun-AC4) | T-304 | ⚪ Pending |
-| **T-306** | Write `new-venture-checklist.md` covering: clone, MCP setup, `setup.sh` run, `CLAUDE.md` verification, first `/state-a` run; time a walkthrough on fresh clone and confirm ≤ 15 min | New product initialization is frictionless (ScalAdv-AC1) | T-305 | ⚪ Pending |
+| **T-301** | Rewrite README to ≤ 60 lines of prose (excluding tables and code blocks); every sentence is "what to do" or "why" — no decorative framing; count lines and confirm | User reads and acts in < 3 min (EffAdv-AC1) | T-209 | 🟢 Reviewed/Tested |
+| **T-302** | Rationalize Glossary: identify ≥ 5 heavy proprietary terms with plain-English equivalents; update Glossary with before/after mapping; Glossary remains single reference point | Cognitive load reduced (EffAdv-AC2) | T-301 | ⚪ Pending (dropped by User) |
+| **T-303** | Trim all `engine/commands/` files to ≤ 30 lines each; remove all inline duplication (any logic that appears in two files gets moved to one canonical location with a `See:` pointer in the other); line-count all files and confirm | Every command readable in < 60 sec (EffAdv-AC3) | T-301 | 🟢 Reviewed/Tested |
+| **T-304** | Create `tests/` with `tests/run-tests.sh` that discovers and runs the project's test runner (e.g. npm test, pytest, cargo test, go test); when none detected, print "No tests defined yet — add a test runner or script for your stack" and exit 0. Add `tests/README.md` documenting the contract. Add **`/test-write`** command (`engine/commands/test-write.md` + `.cursor/commands/test-write.md`) for the Test Agent to write/update tests from approved planning before execution begins. `/test-write` must enforce spec-first policy (derive from AC/behavior contract, include failure-path tests, hard-stop on ambiguous AC). Add **`/test`** command (`engine/commands/test.md` + `.cursor/commands/test.md`) to run `tests/run-tests.sh`. **Do not** wire tests into `/ship` — `/ship` remains git commit and push only. Verify: test authoring flow exists via `/test-write`; no-runner case exits 0 with message; with a runner present, `/test` runs script and exit code propagates. | Robust test skeleton active with role separation: Test Agent writes via `/test-write`, execution validates via `/test`, `/ship` commit-only (Noun-AC3) | T-303 | ⚪ Pending |
+| **T-304a** | Add execution gate in `engine/skills/dev-lifecycle/references/execute-micro-task.md`: before first implementation task in a feature iteration, if Noun-AC3 test baseline is not established, hard-stop and prompt User to run `/test-write` (or explicitly waive). Document evidence text for this gate. | Prevents moving goalposts by requiring test baseline before implementation | T-304 | ⚪ Pending |
+| **T-305** | Create `deploy/README.md` with three actionable patterns (Vercel, Railway, Cloudflare Workers): when to use, exact commands, secrets placement, explicit environment targeting (staging/preview vs prod), post-deploy verification steps, and one-line rollback; "what you do" and "what the AI does for you" for each. Optionally add `deploy/run-deploy.sh` that accepts target (vercel \| railway \| workers) plus environment (staging \| prod), invokes corresponding platform CLI, and requires explicit intent for prod. Confirm deployment path is visible and actionable (Noun-AC4). | Robust deploy skeleton with safety principles; deployment path visible and usable (Noun-AC4) | T-304 | ⚪ Pending |
+| **T-306** | Write `new-enablement-checklist.md` covering: clone, MCP setup, `setup.sh` run, `CLAUDE.md` verification, first `/state-a` run; time a walkthrough on fresh clone and confirm ≤ 15 min | New product initialization is frictionless (ScalAdv-AC1) | T-305 | ⚪ Pending |
 
 ---
 
@@ -138,7 +139,7 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 | ID | Task | Risk Validated | Deps | Status |
 | :--- | :--- | :--- | :--- | :--- |
 | **T-401** | Update planning doc template (`docs/ai/planning/README.md`) to add explicit note in Execution Matrix section: "Add task rows as the feature requires; there is no maximum." Create a test planning doc with 50+ A.C. rows and 60+ task rows; confirm agent reads without truncation or self-limiting | No artificial task ceiling (Verb-AC7, ScalAdj-AC3) | T-306 | ⚪ Pending |
-| **T-402** | Document multi-feature-set pattern in README and `new-venture-checklist.md`: when a live (I4) product needs new capabilities, start a new `feature-{name}` set with its own I1→I4 cycle; add worked example to `docs/ai/examples/` showing two features coexisting in one product repo | Multi-product scale proven (Verb-AC8) | T-401 | ⚪ Pending |
+| **T-402** | Document multi-feature-set pattern in README and `new-enablement-checklist.md`: when a live (I4) product needs new capabilities, start a new `feature-{name}` set with its own I1→I4 cycle; add worked example to `docs/ai/examples/` showing two features coexisting in one product repo | Multi-product scale proven (Verb-AC8) | T-401 | ⚪ Pending |
 | **T-403** | Add sub-agent portability section to `engine/SKILL.md`: explains how a specialist sub-agent reads `engine/SKILL.md` + one feature's planning doc and executes tasks from its assigned iteration independently; simulate with a fresh agent and document result | Swarm-readiness validated (Verb-AC9) | T-402 | ⚪ Pending |
 | **T-404** | Add `.antigravity/` adapter as live end-to-end test of modular adapter pattern: create adapter file, add README paragraph, confirm zero `engine/` changes in git diff; document as evidence | Modular adapter pattern proven (ScalAdj-AC1) | T-403 | ⚪ Pending |
 | **T-405** | Update `CHANGELOG.md` with complete v2.0.0 entry (summary of all changes from v1.x); update `.template-version` file to `2.0.0` | Version history complete and readable in < 2 min (ScalAdv-AC3) | T-404 | ⚪ Pending |
@@ -146,7 +147,27 @@ description: 4-iteration risk-sequenced roadmap for hardening the LTC 2-State En
 
 ---
 
-# 3. RESOURCE & BUDGET TRACKER
+# 3. CURRENT REPO ALIGNMENT (No Conflicts)
+
+*Before executing engine-hardening, this section documents how current config and structure map to the hardened state. No conflicts if tasks are executed in order.*
+
+| Current item | Hardened state | Conflict? | Resolved by |
+| :--- | :--- | :--- | :--- |
+| **`.cursor/commands/*.md`** (12 files: state-a, state-b, status, test-write, test, ship, debug, handoff, review, remember, help, heavy) | Pointer-only: one-line + `See: engine/commands/{name}.md`. Same 12 files. `/test-write` is Test Agent test authoring; `/test` runs test skeleton; `/ship` is commit-only. | No | T-202: rewrite to pointers; T-304: add `/test-write` and `/test`; logic in `engine/commands/`. |
+| **`.cursor/rules/*.mdc`** (anti-patterns, context-preservation, ambient-flow) | Pointer-only: one-line + `See: engine/rules/{name}.md`. Content in `engine/rules/`. | No | T-201: migrate content to `engine/rules/`; T-202 or I3: `.cursor/rules/` become pointers. |
+| **`.cursor/skills/dev-lifecycle/`** (SKILL.md, references/, scripts/) | Content in `engine/skills/dev-lifecycle/`; `.cursor/skills/` minimal entry + `See: engine/...`. | No | T-201: create `engine/` and migrate; pointer layer in Cursor adapter. |
+| **`.claude/`** (`.claude/CLAUDE.md`, `.claude/README.md`) | Dedicated Claude adapter folder; canonical Claude instructions live in `.claude/CLAUDE.md`; root `CLAUDE.md` is pointer-only for compatibility. | No | T-203: establish canonical Claude adapter + root pointer. |
+| **`openclaw/`** (`AGENTS.md`, `TOOLS.md`, `BOOTSTRAP.md`, `openclaw.json.example`, `README.md`) | Dedicated OpenClaw adapter pack; engine entry remains `engine/SKILL.md`; OpenClaw-specific orchestration docs live outside `engine/`. | No | Alignment update: adapter structure documented; no `engine/` logic changes. |
+| **`.cursor/mcp.json`** (ai-devkit-memory, claude-ptc-mcp) | Unchanged — Cursor-specific MCP config stays in `.cursor/`. | No | No task removes it; Noun-AC1 explicitly allows `.cursor/` with MCP config. |
+| **`.ai-devkit.json`**, **`ai-devkit-init-merge.yaml`** | Removed as ai-devkit vestiges; not in canonical top-level. | Yes (if left in place) | T-101: delete both; `check-engine.sh` validates absence. |
+| **`docs/ai/implementation/`, `deployment/`, `monitoring/`** | Removed from active tree (ai-devkit vestiges). Only requirements, design, planning, frameworks, examples remain. | No | T-103: remove if present. (Currently only in `archive/`; confirm no active copies.) |
+| **`legacy_codeaholic`** (under `.cursor/skills/.../references/`) | Deleted. | No | T-101: delete folder and contents. |
+
+*Execution order preserves Cursor workflow: I1 removes legacy; I2 creates `engine/` and pointer layer so Cursor continues to discover commands/rules/skills via `.cursor/` while logic lives in `engine/`.*
+
+---
+
+# 4. RESOURCE & BUDGET TRACKER
 
 *Monitor constraints mapped to Efficiency Adjectives. Update Hard Limit after User approval per Design §4.*
 

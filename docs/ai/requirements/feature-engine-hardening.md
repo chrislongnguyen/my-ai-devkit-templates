@@ -7,9 +7,11 @@ description: Causal mapping and deterministic requirements for hardening the LTC
 # PHASE 1: PROBLEM DISCOVERY (The User's System Map)
 *Goal: Understand the human reality before introducing technology.*
 
+* **Primary platform:** Cursor IDE is the main development environment now and for the foreseeable future. The engine is **Cursor-first**; Claude Cowork, AntiGravity, and other IDEs or CLIs are supported via thin adapters so the same engine runs everywhere. Products are built in Cursor (or another supported environment), not in any specific course or CLI.
+* **Learning archive:** The `claude-code-course-transcript/` folder is a **benchmark for development best practices** (plan-first, context hygiene, MCP, etc.). It is not the platform on which products are built; it informs how the engine is designed and documented.
 * **User Persona & Anti-Persona:** See Phase 3 §1 below.
-* **Ultimate Desired Outcome (UDO):** Every product built through this engine ships to real users with confidence — the engine is clean enough to understand in 3 months, enforced enough that the AI cannot silently break its rules, portable enough to run in any supported AI environment, and complete enough to go from idea to live deployment.
-* **User's Action:** Harden the Master Template engine so it is clean (no dead artifacts), enforced (programmatic guardrails, not just markdown suggestions), portable (works in Cursor, Claude Cowork, AntiGravity, and any future MCP-capable environment), and complete (testing + deployment pathways exist and the Holy Trinity docs scale indefinitely).
+* **Ultimate Desired Outcome (UDO):** Every product built through this engine ships to real users with confidence — the engine is clean enough to understand in 3 months, enforced enough that the AI cannot silently break its rules, portable enough to run in Cursor (primary), Claude Cowork, AntiGravity, and any future MCP-capable environment, and complete enough to go from idea to live deployment.
+* **User's Action:** Harden the Master Template engine so it is clean (no dead artifacts), enforced (programmatic guardrails, not just markdown suggestions), portable (Cursor-first with Cowork/AntiGravity/other adapters), and complete (testing + deployment pathways exist and the Holy Trinity docs scale indefinitely).
 
 ## The Drivers (UDS — Ultimate Driving System)
 * **UDS:** A working 2-State Engine with a proven track record — the `claude_ptc` feature shipped through it successfully (22/22 A.C. green). The engine's philosophy (Approach 2, risk-first, user-gated) is sound. The command structure is intuitive. The context-preservation protocol solves a real problem.
@@ -33,11 +35,11 @@ description: Causal mapping and deterministic requirements for hardening the LTC
   * **P4 — Ship-to-Learn:** Every engine feature must serve the path to shipping a real product. If it doesn't help something ship, it is premature.
   * **P5 — Environment Portability:** The engine's logic must be expressed in a format any AI agent can consume, regardless of IDE. Cursor-specific mechanisms are thin adapters pointing to a portable `engine/` core.
 
-* **Environment (Where):** Digital — Cursor IDE (primary), Claude Cowork, AntiGravity, and any future MCP-capable environment. Git for version control. Local filesystem for docs. Bash for programmatic enforcement scripts and git hooks. Cultural — solo non-technical operator across devices and tools; all enforcement must work without the user understanding the underlying code.
+* **Environment (Where):** Digital — **Cursor IDE (primary)**; Claude Cowork, AntiGravity, and any future MCP-capable IDE or CLI as secondary via adapters. Git for version control. Local filesystem for docs. Bash for programmatic enforcement scripts and **git** hooks (not IDE-specific tool hooks). Cultural — solo non-technical operator across devices and tools; all enforcement must work without the user understanding the underlying code.
 
 * **Tools (What):**
-  * *Desirable Wrapper:* The same Utility Belt the user already knows (`/state-a`, `/state-b`, `/status`, etc.) — no new commands to learn. The improvements happen underneath, invisibly.
-  * *Effective Core:* Five mechanisms — (1) The Cleanup Pass: delete all legacy artifacts; (2) The Portable Core: `engine/` folder with all logic, `.cursor/` as thin pointer, `CLAUDE.md` for Cowork; (3) The Guardrail Layer: pre-commit hook + `check-engine.sh` + `setup.sh`; (4) The Vocabulary Pass: rationalize Glossary, trim all command/skill files; (5) The Ship Skeleton: `tests/run-tests.sh` called by `/ship` + `deploy/README.md`.
+  * *Desirable Wrapper:* The same Utility Belt the user already knows in Cursor (`/state-a`, `/state-b`, `/status`, etc.) — no new commands to learn. The improvements happen underneath, invisibly. In Cowork/other environments, the same workflow is invoked by name (State A, State B) via their adapters.
+  * *Effective Core:* Five mechanisms — (1) The Cleanup Pass: delete all legacy artifacts (including ai-devkit vestiges); (2) The Portable Core: `engine/` folder with all logic, `.cursor/` as **Cursor adapter** (thin pointer + MCP config), `CLAUDE.md` for Cowork; (3) The Guardrail Layer: **git** pre-commit hook + `check-engine.sh` + `setup.sh` (git hooks run in any IDE); (4) The Vocabulary Pass: rationalize Glossary, trim all command/skill files; (5) The Test and Deploy Skeletons: a **Test Agent** workflow with separate commands — `/test-write` creates or updates tests from approved planning (before execution), `/test` executes tests against implementation (during/after execution), `/ship` remains git commit and push only; plus `deploy/README.md` + optional `deploy/run-deploy.sh`.
 
 * **SOP (How):**
   1. User runs `/state-b` — each task is one atomic action (delete, create, rewrite, validate).
@@ -97,8 +99,8 @@ description: Causal mapping and deterministic requirements for hardening the LTC
 
 | A.C. ID | Acceptance Criteria |
 | :--- | :--- |
-| SustainAdv-AC1 | User is blocked from committing code without a corresponding design doc — the pre-commit hook stops the commit and prints a plain-English explanation. |
-| SustainAdv-AC2 | User is blocked from committing secrets (`.env`, API keys matching common patterns) — the pre-commit hook catches them before they reach git history. |
+| SustainAdv-AC1 | User is blocked from committing code without the full Holy Trinity in the same commit — the **git** pre-commit hook (`.git/hooks/pre-commit`, bash) requires at least one staged file in each of `docs/ai/requirements/`, `docs/ai/design/`, and `docs/ai/planning/` when code is staged, stops the commit otherwise, and prints a plain-English explanation (including which of the three is missing). Same enforcement in any IDE that uses git. Keeps requirements, design, and planning in sync across devices and avoids merge drift. |
+| SustainAdv-AC2 | User is blocked from committing secrets (`.env`, API keys matching common patterns) — the **git** pre-commit hook catches them before they reach git history. |
 | SustainAdv-AC3 | User can run `check-engine.sh` at any time and receive a pass/fail report confirming engine structural integrity — no legacy artifacts, all canonical files present. |
 
 **Efficiency Adverb: Quickly** — The User reads, understands, and acts on engine files without heavy vocabulary or redundant content slowing them down.
@@ -113,7 +115,7 @@ description: Causal mapping and deterministic requirements for hardening the LTC
 
 | A.C. ID | Acceptance Criteria |
 | :--- | :--- |
-| ScalAdv-AC1 | User can follow `new-venture-checklist.md` to initialize a clean engine for a new product in ≤ 15 minutes, including MCP setup and first `/state-a` run. |
+| ScalAdv-AC1 | User can follow `new-enablement-checklist.md` to initialize a clean engine for a new product in ≤ 15 minutes, including MCP setup and first `/state-a` run. |
 | ScalAdv-AC2 | User can verify a fresh clone is engine-complete by running `check-engine.sh` and receiving exit code 0 — no manual inspection required. |
 | ScalAdv-AC3 | User can read `CHANGELOG.md` and identify what changed between any two engine versions in under 2 minutes — version history is complete from v1.0 to current. |
 
@@ -125,10 +127,10 @@ description: Causal mapping and deterministic requirements for hardening the LTC
 
 | A.C. ID | Acceptance Criteria |
 | :--- | :--- |
-| Noun-AC1 | Repo top-level contains exactly: `engine/`, `.cursor/` (Cursor adapter — pointers only), `CLAUDE.md` (Cowork adapter), `docs/ai/`, `tools/`, `tests/`, `deploy/`, `claude-code-course-transcript/` (learning archive). No other top-level folders. |
+| Noun-AC1 | Repo top-level contains exactly: `engine/`, `.cursor/` (Cursor adapter — pointers only; includes `.cursor/mcp.json` for MCP servers), `CLAUDE.md` (Cowork adapter), `docs/ai/`, `tools/`, `tests/`, `deploy/`, `claude-code-course-transcript/` (learning archive). No other top-level folders. Root-level ai-devkit files (`.ai-devkit.json`, `ai-devkit-init-merge.yaml`) are removed as vestiges; `check-engine.sh` validates their absence. |
 | Noun-AC2 | `engine/SKILL.md` is the single entry point for any AI agent — reading it alone is sufficient to understand and operate the full 2-State Engine including all commands, rules, and skill references. |
-| Noun-AC3 | `tests/run-tests.sh` exists, is called by `/ship`, prints "No tests defined yet — add test scripts here" and exits 0 on first use; blocks `/ship` on test failure once tests are added. |
-| Noun-AC4 | `deploy/README.md` exists with deployment patterns for Vercel (frontend), Railway (backend), and Cloudflare Workers (edge) — each ≤ 10 lines with "what you do" and "what the AI does for you." |
+| Noun-AC3 | **Test skeleton (robust, stack-agnostic, no moving goalposts):** two commands exist and are intentionally separate. **`/test-write`** (Test Agent) writes/updates tests from approved requirements/design/planning before implementation tasks run; generated tests are the baseline for current scope. Test authoring rule: derive tests from spec/AC and user behavior contracts (not implementation internals), include negative/failure cases, and raise ambiguity when requirements are underspecified instead of inventing behavior. **`/test`** executes tests via `tests/run-tests.sh` (implementation agent/user can run repeatedly). `tests/run-tests.sh` discovers and runs the project's test runner when present (e.g. `package.json` → `npm test`, `pytest`/`pyproject.toml` → `pytest`, `Cargo.toml` → `cargo test`, `go.mod` → `go test ./...`); if none detected, prints "No tests defined yet — add a test runner or script for your stack" and exits 0. Non-zero exit = test failure. Test baseline changes require explicit re-plan/user approval (no silent rewrite during execution). `/ship` is git commit/push only and never runs tests. `tests/README.md` documents this contract and role separation. |
+| Noun-AC4 | **Deploy skeleton (robust, stack-agnostic):** `deploy/README.md` exists with three deployment patterns — Vercel (frontend), Railway (backend), Cloudflare Workers (edge). Each entry is actionable and includes: when to use, exact commands, where secrets go (e.g. `.env` gitignored or platform dashboard), explicit environment targeting (staging/preview vs production), post-deploy verification steps (how to confirm success), and one-line rollback where applicable; "what you do" and "what the AI does for you" included. Optionally `deploy/run-deploy.sh` exists as a single entrypoint that accepts target (vercel \| railway \| workers) and environment (e.g. staging \| prod) and invokes the corresponding platform CLI (no project-specific config in template). |
 
 **Sustainability Adjective: Self-validating** — The engine checks and enforces its own structural integrity without the user needing to inspect files manually.
 
@@ -142,7 +144,7 @@ description: Causal mapping and deterministic requirements for hardening the LTC
 | A.C. ID | Acceptance Criteria |
 | :--- | :--- |
 | EffAdj-AC1 | `.cursor/commands/*.md` files contain only a one-line description and a `See: engine/commands/{name}.md` pointer. All command logic lives exclusively in `engine/commands/`. |
-| EffAdj-AC2 | `references/legacy_codeaholic/` is deleted. `docs/ai/archive/` either deleted or contains only a single `README.md` marked read-only historical record. |
+| EffAdj-AC2 | `.cursor/skills/dev-lifecycle/references/legacy_codeaholic/` is deleted (and any top-level `references/legacy_codeaholic/` if present). `docs/ai/archive/` either deleted or contains only a single `README.md` marked read-only historical record. |
 | EffAdj-AC3 | `docs/ai/` active folders limited to: `requirements/`, `design/`, `planning/`, `frameworks/`, `examples/`. The `implementation/`, `deployment/`, `monitoring/` ai-devkit vestige folders are removed from the active tree. |
 
 **Scalability Adjective: Modular and swarm-ready** — New IDE adapters bolt on at the repo root without touching `engine/`; specialist sub-agents can operate from `engine/SKILL.md` independently.

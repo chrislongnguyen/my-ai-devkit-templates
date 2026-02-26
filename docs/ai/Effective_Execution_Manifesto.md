@@ -82,7 +82,7 @@ We allocate resources under **Approach 2**: most effort goes to **de-risking fir
 ### Path A: Master Template (Current Rollout)
 **Status:** Active.
 
-We use this repository as the **Master Template**. For every new venture, we **clone this clean repo**. The 2-State Engine, Effective System Design framework, governance headers, and `docs/ai/` structure are already wired. No global install; each venture is self-contained.
+We use this repository as the **Master Template**. For every new enablement, we **clone this clean repo**. The 2-State Engine, Effective System Design framework, governance headers, and `docs/ai/` structure are already wired. No global install; each enablement is self-contained.
 
 ### Path B: Global CLI (Iceboxed / Future Scalability)
 **Status:** Iceboxed.

@@ -1,84 +1,56 @@
-# 🏭 LTC The Effective Execution Engine
+# LTC Effective Execution Engine
 
-> *"Success is not the maximization of output. It is the efficient and scalable management of failure risks."* — Approach 2
+This repo is the Master Template for AI-first enablement building. It uses a 2-State Engine: plan in State A, execute one task at a time in State B, with approval gates so you stay in control.
 
-Welcome to the **Long Term Capital (LTC) Venture Factory Master Template**. 
-
-This is not a standard software engineering boilerplate. It is a proprietary, AI-first venture building environment designed specifically for Solo Users. It strips away the administrative bloat of traditional Software Development Life Cycles (SDLC) and replaces it with a relentless, mathematically verified execution loop.
-
-## 📖 The Philosophy: Why This Exists
-
-Most startups fail because they operate on **Approach 1**: They optimize for direct value creation (writing a lot of code, building a lot of features) under the assumption that their idea is always correct. This leads to the ultimate startup killer: *Building in Isolation*. 
-
-This workspace is strictly engineered on **Approach 2 (The 90/10 Rule)**: 90% of our resources are spent identifying and neutralizing failure risks; 10% on output delivery. We apply the **Chinese Venture Playbook**—where execution speed and extreme founder proximity beat idea quality—fused with the **High-frequency Hypothesis-Driven Learning Loop (HFVLL)**.
-
-We do not write code until the psychological reality of the User is mapped. We do not advance to the next task until the current task is mathematically proven.
+**Why:** Most failure comes from building before de-risking. This engine forces you to map the problem (State A), then execute in small, proven steps (State B), so you neutralize risks before scaling output.
 
 ---
 
-## ⚙️ The Engine: How It Works
+## What to do first
 
-We have destroyed the traditional 8-step Waterfall engineering methodology. This workspace operates on a hyper-agile **2-State Engine**, driven by the User (Accountable) and the AI Agent (Responsible).
+1. Clone this repo (or duplicate the folder) and open it in Cursor.
+2. Run **`/help`** to see all commands.
+3. Run **`/state-a`** and give your feature or enablement name; complete the four sub-steps to produce requirements, design, and planning.
+4. Run **`/state-b`** to execute the first task; the agent will stop for your **"Approved"** after each task. At iteration boundaries, reply **"Proceed to Iteration N+1"** or **"Re-plan"**.
+5. Use **`/status`** anytime to see active feature, iteration, and next task. Use **`/handoff`** before leaving so the next session can resume from `project_handoff_status.md`. Use **`/ship`** when you are ready to commit and push (you say **"Yes"** to execute).
 
-### State A: Strategy & Planning (The Discovery Engine)
-Before any Noun (code/feature) is built, the AI acts as a Venture Architect to map the causal reality:
-1. **The System Map:** Discover the User's Ultimate Desired Outcome (**UDO**), the forces driving them (**UDS**), and the forces blocking them (**UBS**).
-2. **The System Design:** Define the Principles, Environment, Tools, and SOP.
-3. **The User's Requirements:** Strict translation of psychology into technology using Verbs (Action), Adverbs (Effective Outcomes: Sustainability, Efficiency, Scalability),  Nouns (Tools/Solution/Enablement) , and Adjectives (Attributes of Noun).
-4. **The 4-Iteration Roadmap:** Tasks are sequenced strictly by iteration: Concept ➔ Prototype ➔ MVE ➔ Leadership.
+**Guardrails:** The agent follows anti-pattern rules (no code before design, no new deps without Design §4, no iteration jump without the gate) and context-preservation (re-reads planning at session start, nudges handoff before ship). Approval phrases: see [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md) — **"Approved"** (State A/B), **"Proceed to Iteration N+1"** or **"Re-plan"** (gate), **"Yes"** (/ship, /debug).
 
-### State B: The Micro-Execution Loop (The User Gate)
-The AI executes exactly **ONE** micro-task from the Planning Matrix at a time. It builds the minimal viable code, presents the exact Evidence of Truth to prove the Acceptance Criteria is met, and then **HARD STOPS**. The AI cannot proceed until the User explicitly approves.
-
----
-
-## 🚀 Quick Start Guide
-
-To start building a new feature, database, or venture, open your AI IDE (Cursor) and use your custom Utility Belt:
-
-* **`/state-a`** — Start here. Tell the AI what you want to build. It will guide you through the psychological mapping and generate your pristine `requirements`, `design`, and `planning` docs. *First-time users: the agent will ask if you want guided mode with examples or expert mode.* Searches `@ai-devkit/memory` for relevant principles before the Causal Map.
-* **`/state-b`** — Run this to execute the plan. The AI will do one task, prove it works, and wait for your approval. Before starting a new iteration, the agent will ask you to confirm "Proceed to Iteration N+1" or "Re-plan" (iteration transition gate).
-* **`/status`** — "Where am I?" Quick snapshot: active feature, current iteration, next task, last approved task and evidence, task counts. If multiple features exist, shows a **Feature Dashboard** first. Reports template version (see `.template-version` and `CHANGELOG.md`).
-* **`/review`** — Iteration retrospective: shows all evidence from a completed iteration, which A.C. are validated, open risks, and asks if the UDO still holds before you advance. Run before deciding "Proceed" or "Re-plan."
-* **`/handoff`** — Generate `project_handoff_status.md` with active feature, next task, modified files, and next actions so the next session can resume with minimal context loss.
-* **`/ship`** — Ready to save your progress? Run this. The AI will read the git status, draft a clean commit message, and safely push your code after you say "Yes."
-* **`/debug`** — Hit a bug? Do not guess. Run this to force the AI into a Root-Cause Analysis to identify the Ultimate Blocking System (UBS) before changing any code.
-* **`/remember`** — Push new First-Principles or venture rules into the persistent AI memory server (`@ai-devkit/memory`).
-* **`/help`** — Not sure what to run? This prints a simple decision tree of all commands with when to use each one.
-
-**Guard rails:**
-- **Anti-pattern rule** (`.cursor/rules/anti-patterns.mdc`): no code before design, no new dependencies without Design §4, no scope creep outside A.C., no skip of evidence in State B, no iteration jump without the gate.
-- **Context preservation** (`.cursor/rules/context-preservation.mdc`): agent re-reads planning docs at every session start, nudges `/handoff` after 3 approved tasks, reminds before `/ship` if no handoff exists. Ensures you never lose progress across sessions or devices.
-
-**Approval phrases:** The agent waits for specific words at each gate. See the [Manifesto](docs/ai/Effective_Execution_Manifesto.md) for the full table. Quick reference: **"Approved"** (State A/B), **"Proceed to Iteration N+1"** or **"Re-plan"** (iteration gate), **"Yes"** (/ship, /debug).
-
-**New venture checklist:** 1. Clone this repo (or duplicate the folder). 2. Open in Cursor. 3. Run **/help** to see all commands. 4. Run **/state-a** and give the feature/venture name; complete the four sub-steps. 5. Run **/state-b** to execute the first task; approve and repeat. *See [docs/ai/examples/walkthrough.md](docs/ai/examples/walkthrough.md) for a complete end-to-end example.*
-
-### MCP setup (per device)
-If you use the **`/heavy`** command (PTC bridge for heavy analysis), the MCP server runs locally. On **each device** where you want `/heavy` to work:
-
-1. **Clone or pull** the repo so `tools/claude-ptc-mcp/` is present.
-2. **Install dependencies:** `cd tools/claude-ptc-mcp && npm install`
-3. **Server is pre-registered** in `.cursor/mcp.json` (command: `node tools/claude-ptc-mcp/src/index.js`, cwd: `tools/claude-ptc-mcp`). If you see `Cannot find module '.../src/index.js'`, the MCP config must use the path from repo root: `tools/claude-ptc-mcp/src/index.js` in args. If you added the server manually in Cursor Settings → MCP, you can leave that or remove the duplicate.
-4. **Set `ANTHROPIC_API_KEY`:** Copy `tools/claude-ptc-mcp/.env.example` to `tools/claude-ptc-mcp/.env` and add your key. Or set it in Cursor → Settings → MCP → claude-ptc-mcp → Environment. Optional: set `WORKSPACE_ROOT` to the repo root so the server can read files when you pass a scope.
-5. **Restart Cursor** so it picks up the MCP config. After that, `/heavy` will call the `run_heavy_analysis_ptc` tool. No cloud install — the server ships with the template.
+| Command | What it does |
+| :--- | :--- |
+| `/state-a` | Map problem and scope; output requirements, design, planning. No code. |
+| `/state-b` | Execute one task from the plan, show evidence, stop for your approval. |
+| `/status` | Show active feature, iteration, next task, progress. |
+| `/test-write` | Test Agent writes tests from approved planning (run before implementation). |
+| `/test` | Run tests via `tests/run-tests.sh`. Use to validate before committing. |
+| `/ship` | Propose commit; you say "Yes" to push. Git only — does not run tests. |
+| `/review` | Iteration retrospective; run before "Proceed to Iteration N+1". |
+| `/handoff` | Write `project_handoff_status.md` for the next session. |
+| `/debug` | Root-cause (UBS) before changing code. |
+| `/remember` | Store principles in persistent memory. |
+| `/help` | Decision tree of all commands. |
+| `/heavy` | Delegate heavy analysis to PTC MCP (requires local MCP setup). |
 
 ---
 
-## 📂 The Holy Trinity (Documentation)
+## MCP setup (per device)
 
-You will notice there are no folders for testing, implementation, deployment, or monitoring. Those are *Actions*, not *Documents*. The `docs/ai/archive/` folder is historical only; do not edit. Live docs are `docs/ai/requirements/`, `docs/ai/design/`, and `docs/ai/planning/`.
-
-Our state is managed entirely within `docs/ai/` via three canonical templates:
-1.  **`requirements-README.md`**: The System Map & Grammar (Phase 3: A.C. with stable IDs — Verb-AC1, SustainAdv-AC1, etc.).
-2.  **`design-README.md`**: The Architecture & Adjectives (maps to Requirements A.C. and Planning iterations; defines how to build).
-3.  **`planning-README.md`**: The 4-Iteration Execution Matrix (Master Scope Mapping = which A.C. in which iteration + evidence; tasks per iteration).
-
-*Document flow:* Requirements Phase 3 → A.C.; Design → architecture & attributes; Planning Master Scope → which A.C. in which iteration + deterministic evidence; Execution Matrix → tasks. *For full operational details, read the [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md).*
-
-**New to the terminology?** The [Effective System Design Framework](docs/ai/frameworks/effective-system-design.md) contains a **Glossary** of every term used in this workspace (UDO, UBS, Verb, Noun, A.C., MECE, etc.) with plain-English definitions, plus the full 3-Phase framework the engine is built on.
-
-**Where does this template lead?** The [Orchestrator Roadmap](docs/ai/Orchestrator_Roadmap.md) defines the path from using one AI agent to directing an AI system — the 7 milestones, in sequence, with a `/state-a` action plan for each. This is the AI Accountability path: maximum control, minimum human overhead.
+To use **`/heavy`**: ensure `tools/claude-ptc-mcp/` is present, run `cd tools/claude-ptc-mcp && npm install`, copy `.env.example` to `.env` and set `ANTHROPIC_API_KEY`, then restart Cursor. Server is pre-registered in `.cursor/mcp.json`.
 
 ---
-**⚠️ CANONICAL SOURCE:** This repository is the LTC Master Template. To start a new venture, clone or duplicate this folder. Do not overwrite the underlying `.cursor/skills/` logic without explicit User approval.
+
+## Other environments
+
+**AntiGravity:** Open this repo and set the AI entry point to **`engine/SKILL.md`**. Invoke State A and State B by name; use the same approval phrases. No changes to `engine/` required.
+
+**OpenClaw:** Use **`engine/SKILL.md`** as entry point and the adapter pack in `openclaw/`. Agent Build runs State B for one task then stops for approval. No changes to `engine/` required.
+
+**Claude (Cowork, etc.):** Canonical adapter is `.claude/CLAUDE.md`; root `CLAUDE.md` is a pointer for auto-load.
+
+---
+
+## Docs and glossary
+
+Live docs live in **`docs/ai/requirements/`**, **`docs/ai/design/`**, and **`docs/ai/planning/`** (the Holy Trinity). Archive is `docs/ai/archive/` — historical only. For terms (UDO, UBS, Verb, Noun, A.C., etc.) and the 3-Phase framework, see the [Effective System Design Framework](docs/ai/frameworks/effective-system-design.md) Glossary. For the full process and approval table, see [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md). For the path from one agent to directing a system, see [Orchestrator Roadmap](docs/ai/Orchestrator_Roadmap.md).
+
+**New enablement:** Clone → open in Cursor → `/help` → `/state-a` (give feature name) → `/state-b` (execute, approve, repeat). See `new-enablement-checklist.md` when it exists; see [walkthrough](docs/ai/examples/walkthrough.md) for an end-to-end example.
