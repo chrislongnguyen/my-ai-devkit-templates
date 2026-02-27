@@ -21,8 +21,8 @@ This repo is the Master Template for AI-first enablement building. It uses a 2-S
 | `/state-a` | Map problem and scope; output requirements, design, planning. No code. |
 | `/state-b` | Execute one task from the plan, show evidence, stop for your approval. |
 | `/status` | Show active feature, iteration, next task, progress. |
-| `/test-write` | Test Agent writes tests from approved planning (run before implementation). |
-| `/test` | Run tests via `tests/run-tests.sh`. Use to validate before committing. |
+| `/test-write` | Test Agent writes AC-TEST-MAP from approved Holy Trinity (run once after State A). |
+| `/test` | Run tests via `tests/run-tests.sh` at each iteration boundary (+ regression). |
 | `/ship` | Propose commit; you say "Yes" to push. Git only — does not run tests. |
 | `/review` | Iteration retrospective; run before "Proceed to Iteration N+1". |
 | `/handoff` | Write `project_handoff_status.md` for the next session. |
@@ -53,4 +53,6 @@ To use **`/heavy`**: ensure `tools/claude-ptc-mcp/` is present, run `cd tools/cl
 
 Live docs live in **`docs/ai/requirements/`**, **`docs/ai/design/`**, and **`docs/ai/planning/`** (the Holy Trinity). Archive is `docs/ai/archive/` — historical only. For terms (UDO, UBS, Verb, Noun, A.C., etc.) and the 3-Phase framework, see the [Effective System Design Framework](docs/ai/frameworks/effective-system-design.md) Glossary. For the full process and approval table, see [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md). For the path from one agent to directing a system, see [Orchestrator Roadmap](docs/ai/Orchestrator_Roadmap.md).
 
-**New enablement:** Clone → open in Cursor → `/help` → `/state-a` (give feature name) → `/state-b` (execute, approve, repeat). See `new-enablement-checklist.md` when it exists; see [walkthrough](docs/ai/examples/walkthrough.md) for an end-to-end example.
+**New enablement:** Clone → open in Cursor → `/help` → `/state-a` (give feature name) → `/state-b` (execute, approve, repeat). See `new-enablement-checklist.md`; see [walkthrough](docs/ai/examples/walkthrough.md) for an end-to-end example.
+
+**Adding more capabilities (multi-feature):** When a live product (e.g. already at I4) needs new capabilities, start a new **feature set**: create `docs/ai/requirements/feature-{name}.md`, `docs/ai/design/feature-{name}.md`, `docs/ai/planning/feature-{name}.md` and run State A for that feature. Each feature has its own full I1→I4 cycle. Multiple feature sets coexist in one repo; the active feature is the one whose planning doc is used by `/state-b` (see execute-micro-task Step 0). Worked example: [Two features in one repo](docs/ai/examples/multi-feature-coexisting.md).

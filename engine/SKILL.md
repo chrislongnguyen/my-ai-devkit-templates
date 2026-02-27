@@ -50,3 +50,11 @@ The **2-State Engine**: (1) **State A** — Strategy & Planning (UDO/UDS/UBS, re
 ## Adding a New IDE Adapter
 
 See `engine/README.md` for how to add Cursor, Claude Cowork, AntiGravity, or another environment. Adapters live at repo root; zero changes to `engine/` required.
+
+## Sub-agent portability (Verb-AC9)
+
+A **specialist sub-agent** (e.g. a second AI agent assigned to one feature) can operate from this file alone plus **one feature's planning doc**. No other product context is required.
+
+**How it works:** (1) Read `engine/SKILL.md` (this file) for commands, rules, and State B procedure. (2) Read the **assigned** feature's planning doc: `docs/ai/planning/feature-{name}.md`. (3) Determine the first 🔴 To Do task from the Execution Matrix (or the first ⚪ Pending in the next iteration at the gate). (4) Load that task's A.C. from the requirements doc and implementation details from the design doc (same `feature-{name}`). (5) Execute exactly one task per `engine/skills/dev-lifecycle/references/execute-micro-task.md`, present evidence, hard-stop for User approval.
+
+The sub-agent does **not** need to know about other features or the full product roadmap. It needs only `engine/SKILL.md`, the one planning doc it is assigned, and the matching requirements/design docs for that feature. Active feature is implicit (the single assigned planning doc). Evidence: see `docs/ai/examples/sub-agent-portability-evidence.md`.

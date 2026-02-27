@@ -45,12 +45,14 @@ description: Strict prioritization and sequencing of tasks to manage failure ris
 ---
 
 # 2. EXECUTION MATRIX (Micro Sequencing)
-*Tasks are derived from the Master Scope Mapping above. Implementation details (how to build) come from Design (Component Mapping, Data Models). Do not invent new scope here. Add task rows as needed per iteration.*
+*Tasks are derived from the Master Scope Mapping above. Implementation details (how to build) come from Design (Component Mapping, Data Models). Do not invent new scope here.*
+
+**Add task rows as the feature requires; there is no maximum.** Do not self-limit the number of tasks per iteration — the planning file grows with the project.
 
 ## 2.2 Iteration Sequencing
 
 ### ITERATION 1: CONCEPT
-*Focus: Desirable Wrapper & Core Verb Validation.*
+*Focus: Desirable Wrapper & Core Verb Validation. Add task rows as the feature requires; there is no maximum.*
 
 **Active A.C. in Scope:** [List only A.C. IDs from Master Scope Mapping above, e.g. Verb-AC1, Verb-AC2]
 
@@ -60,7 +62,7 @@ description: Strict prioritization and sequencing of tasks to manage failure ris
 | **T-102** | [Task Name] | UDO Resolution | T-101 | 🔴 To Do |
 
 ### ITERATION 2: WORKING PROTOTYPE
-*Focus: Effective Core & Sustainability.*
+*Focus: Effective Core & Sustainability. Add task rows as the feature requires; there is no maximum.*
 
 **Active A.C. in Scope:** [List only A.C. IDs from Master Scope Mapping above]
 
@@ -69,7 +71,7 @@ description: Strict prioritization and sequencing of tasks to manage failure ris
 | **T-201** | [Task Name] | Technical Feasibility | T-102 | ⚪ Pending |
 
 ### ITERATION 3: MINIMUM VIABLE ENABLEMENT (MVE)
-*Focus: Fuse Wrapper & Core; Efficiency.*
+*Focus: Fuse Wrapper & Core; Efficiency. Add task rows as the feature requires; there is no maximum.*
 
 **Active A.C. in Scope:** [List only A.C. IDs from Master Scope Mapping above]
 
@@ -78,7 +80,7 @@ description: Strict prioritization and sequencing of tasks to manage failure ris
 | **T-301** | [Task Name] | Usability / Friction | T-201 | ⚪ Pending |
 
 ### ITERATION 4: ENABLEMENT LEADERSHIP
-*Focus: Scalability, volume, edge cases, modular growth.*
+*Focus: Scalability, volume, edge cases, modular growth. Add task rows as the feature requires; there is no maximum.*
 
 **Active A.C. in Scope:** [List only A.C. IDs from Master Scope Mapping above]
 

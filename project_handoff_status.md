@@ -1,29 +1,72 @@
 # Project Handoff Status
-*Generated: 2026-02-20. Use /status for a quick snapshot; use this file for full handoff.*
+
+**Generated:** 2026-02-27
+
+---
 
 ## Active feature
-engine-hardening
+
+**engine-hardening**
+
+---
 
 ## Planning doc
+
 `docs/ai/planning/feature-engine-hardening.md`
 
+---
+
 ## Current iteration
-**3 — MVE (Minimum Viable Enablement)**
+
+**Iteration 4 — Enablement Leadership**
+
+---
 
 ## Next task
-- **ID:** T-304
-- **Title:** Create `tests/` with `tests/run-tests.sh` (discovery script), `tests/README.md`, `/test-write` command (Test Agent), `/test` command; `/ship` remains commit-only. Verify test authoring flow and no-runner / with-runner cases.
-- **Status:** ⚪ Pending
+
+| ID | Title | Status |
+| :--- | :--- | :--- |
+| **T-404** | Add `.antigravity/` adapter as live end-to-end test of modular adapter pattern: create adapter file, add README paragraph, confirm zero `engine/` changes in git diff; document as evidence | ⚪ Pending |
+
+*When proceeding: set T-404 to 🔴 To Do, then execute per State B (one task, evidence, HARD STOP).*
+
+---
 
 ## Last approved task
-- **ID:** T-303
-- **Evidence:** T-303 approved; all `engine/commands/*.md` ≤ 30 lines; active-feature logic canonical in execute-micro-task Step 0; handoff/status/review use See: pointer. EffAdv-AC3 🟢 in Table B.
+
+| ID | Evidence |
+| :--- | :--- |
+| **T-403** | Sub-agent portability: `engine/SKILL.md` "Sub-agent portability (Verb-AC9)"; `docs/ai/examples/sub-agent-portability-evidence.md`; `docs/ai/examples/sub-agent-patterns.md` (3 patterns + pipeline model for future features). Table B Verb-AC9 → 🟢. |
+
+---
 
 ## Modified / uncommitted files
-- **Staged (changes to be committed):** Deletions of legacy_codeaholic, ai-devkit vestiges, docs/ai/archive/* (many files).
-- **Not staged:** Modified — .cursor/commands/* (debug, handoff, heavy, help, remember, review, ship, state-a, state-b, status), .cursor/skills/.../strategy-mapping.md, CHANGELOG.md, README.md, docs/ai/Effective_Execution_Manifesto.md, docs/ai/Orchestrator_Roadmap.md, docs/ai/design/feature-engine-hardening.md, docs/ai/examples/walkthrough.md, docs/ai/frameworks/effective-system-design.md, docs/ai/planning/README.md, docs/ai/planning/feature-engine-hardening.md, docs/ai/requirements/feature-engine-hardening.md, tools/claude-ptc-mcp/test-protocol.md.
-- **Untracked:** .antigravity/, .claude/, .cursor/commands/test.md, CLAUDE.md, check-engine.sh, docs/ai/archive/, docs/ai/examples/*-evidence.md (several), engine/, openclaw/, scripts/, setup.sh.
+
+**Modified (8):**
+- `README.md`
+- `docs/ai/design/feature-engine-hardening.md`
+- `docs/ai/planning/README.md`
+- `docs/ai/planning/feature-engine-hardening.md`
+- `docs/ai/requirements/feature-engine-hardening.md`
+- `engine/SKILL.md`
+- `engine/commands/test.md`
+- `engine/skills/dev-lifecycle/references/execute-micro-task.md`
+
+**Untracked / new:**
+- `.cursor/commands/test-write.md`
+- `deploy/` (README.md, run-deploy.sh)
+- `docs/ai/archive/`
+- `docs/ai/examples/multi-feature-coexisting.md`
+- `docs/ai/examples/planning-scale-test.md`
+- `docs/ai/examples/sub-agent-patterns.md`
+- `docs/ai/examples/sub-agent-portability-evidence.md`
+- `engine/commands/test-write.md`
+- `new-enablement-checklist.md`
+- `tests/` (run-tests.sh, README.md, AC-TEST-MAP-TEMPLATE.md)
+
+---
 
 ## Next actions
-1. Run `/state-b` to execute T-304 (set T-304 to 🔴 To Do first if needed, then implement test skeleton: tests/, run-tests.sh, /test-write, /test, tests/README.md).
-2. Optionally run `/ship` to commit and push after staging Holy Trinity + code (pre-commit requires requirements + design + planning in same commit when code is staged).
+
+1. **Resume:** Read this file and run `/status` or `/state-b` to continue. If starting Iteration 4 next task, set T-404 to 🔴 To Do and execute one micro-task (evidence, then HARD STOP).
+2. **Optional:** Run `/ship` to commit and push the current engine-hardening work (Iterations 2–4) if not yet done.
