@@ -7,6 +7,7 @@
 | Feature | Archived Date | Contents | Status |
 | :--- | :--- | :--- | :--- |
 | **engine-hardening** | 2026-02-28 | Requirements, Design, Planning | v2.0.0 Complete — all A.C. 🟢 |
+| **claude_ptc** | 2026-02-28 | Requirements, Design, Planning | v1.0.0 Complete — 18/19 A.C. 🟢 (T-302 placeholder for future Context Compaction) |
 
 *System Wiki remains active at `docs/ai/wiki/system-engine-hardening.md` as the definitive operational record.*
 
