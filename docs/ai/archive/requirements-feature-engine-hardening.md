@@ -41,7 +41,7 @@ description: Causal mapping and deterministic requirements for hardening the LTC
   * *Desirable Wrapper:* The same Utility Belt the user already knows in Cursor (`/state-a`, `/state-b`, `/status`, etc.) — no new commands to learn. The improvements happen underneath, invisibly. In Cowork/other environments, the same workflow is invoked by name (State A, State B) via their adapters.
   * *Effective Core:* Five mechanisms — (1) The Cleanup Pass: delete all legacy artifacts (including ai-devkit vestiges); (2) The Portable Core: `engine/` folder with all logic, `.cursor/` as **Cursor adapter** (thin pointer + MCP config), `CLAUDE.md` for Cowork; (3) The Guardrail Layer: **git** pre-commit hook + `check-engine.sh` + `setup.sh` (git hooks run in any IDE); (4) The Vocabulary Pass: rationalize Glossary, trim all command/skill files; (5) The Test and Deploy Skeletons: a **Test Agent** workflow with separate commands — `/test-write` runs once after State A to write the full AC-TEST-MAP (frozen baseline covering all iterations and all A.C.), `/test` runs at each iteration boundary to validate that iteration's A.C. pass (+ regression), `/ship` remains git commit and push only; plus `deploy/README.md` + optional `deploy/run-deploy.sh`.
 
-* **SOP (How):**
+* **EOP (How):**
   1. User runs `/state-b` — each task is one atomic action (delete, create, rewrite, validate).
   2. For cleanup tasks: agent removes/moves files, presents file-tree diff as evidence.
   3. For guardrail tasks: agent writes script/hook, runs it, presents output as evidence.

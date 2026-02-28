@@ -6,6 +6,12 @@
 
 **FEATURE NAME (used in every sub-step):** The project/feature name (e.g. integrated-learning-environment) must be established at the start. All exports go to `docs/ai/requirements/feature-{name}.md`, `docs/ai/design/feature-{name}.md`, and `docs/ai/planning/feature-{name}.md`. Use kebab-case. If the User did not yet provide it, ask first: *"What is the name of the project or feature you are building?"*
 
+## STEP 0: ELF LEARNING BOOK CHECK
+Before beginning Sub-Step 1, ask the User: *"Have you completed an ELF (Effective Learning Framework) Learning Book for this feature or domain? If yes, share it or point me to the file — it directly replaces the Sub-Step 1 discovery questions."*
+
+- **If a Learning Book is provided:** Extract all 7 ELF layers verbatim — UDO, User Roles, UBS (all recursive layers), UDS (all recursive layers), EPS (pre-bucketed by S/E/Sc as `P[n](S)`, `P[n](E)`, `P[n](Sc)`), UES (3 causal layers), EOP. These become the direct inputs to Sub-Steps 1–3. **Do not ask discovery questions** — your role is to translate, not discover. Map ELF layers to ESD phases using `docs/ai/frameworks/effective-system-design.md` §2 (ELF ↔ ESD Mapping).
+- **If no Learning Book exists:** Inform the User: *"Noted — proceeding with guided discovery. An ELF Learning Book, when available, produces higher-confidence inputs here."* Then continue to Sub-Step 1 as written.
+
 ## SUB-STEP 1: THE CAUSAL MAP (Problem Discovery)
 1. Confirm or ask for the **feature name** (see above). This name will be used for all feature docs in this workspace.
 2. **Guided mode check:** After confirming the feature name, ask the User: *"Are you familiar with the Effective System Design framework (UDO, UDS, UBS, Causal Map), or would you like me to guide you through it step by step with examples?"* If they choose guided mode: before each question in steps 4–6 below, provide a brief concrete example (e.g. *"For a weight-loss app, the UDO might be 'Effortless weight management.' What's yours?"*). Also point them to the Glossary in `docs/ai/frameworks/effective-system-design.md` for reference. If they choose expert mode (or say they're familiar), proceed normally without examples.
@@ -22,7 +28,7 @@ Once Sub-Step 1 is approved, translate the psychology into a system.
 1. Define the **Principles** (Scientific and/or general rules to amplify each of the Drivers/starve each of the Blockers).
 2. Define the **Environment** (Where it lives: Physical/Digital/Cultural).
 3. Define the **Tools** (The Desirable Wrapper + The Effective Core).
-4. Define the **SOP** (The step-by-step human action).
+4. Define the **EOP** (The step-by-step human action).
 **🛑 WAITING FOR USER APPROVAL:** *"Do you approve this System Design?"*
 
 ## SUB-STEP 3: THE User's Requirements (Requirements)

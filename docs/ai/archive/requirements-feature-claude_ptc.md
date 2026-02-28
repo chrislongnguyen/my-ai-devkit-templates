@@ -33,7 +33,7 @@ description: The causal mapping of the User's reality and the deterministic cons
 * **Tools (What):** 
   * *Desirable Wrapper:* One MCP tool (e.g. `run_heavy_analysis_ptc`) invoked by a **dedicated command** (e.g. `/heavy` or `/ptc`). Same contract works in any IDE that supports MCP and a command (Cursor, AntiGravity).
   * *Effective Core:* MCP server uses Elicitation when a critical param is missing; calls Anthropic API with code execution (PTC) so the model never sees full file contents; sends a saved, cacheable static block (Prompt Caching); Context Compaction documented for when long-session API use is designed.
-* **SOP (How):** User runs the dedicated command and provides a prompt → Agent calls MCP tool with prompt and scope → If critical input missing, MCP Elicitation prompts user → MCP server calls Anthropic API (cacheable block + user message) → Claude runs code (PTC), returns only summary → MCP server returns summary to IDE.
+* **EOP (How):** User runs the dedicated command and provides a prompt → Agent calls MCP tool with prompt and scope → If critical input missing, MCP Elicitation prompts user → MCP server calls Anthropic API (cacheable block + user message) → Claude runs code (PTC), returns only summary → MCP server returns summary to IDE.
 
 ---
 # Phase 3: THE FORMALIZATION (The Output)

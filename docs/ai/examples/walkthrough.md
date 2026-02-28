@@ -53,7 +53,7 @@ The agent searches `@ai-devkit/memory` (finds nothing relevant) and then asks:
 > - **Tools:**
 >   - *Desirable Wrapper:* Streak counter with visual calendar — the hook that makes checking in feel rewarding
 >   - *Effective Core:* Time-based smart reminders + streak-break alerts that interrupt the forgetting loop at the exact moment the UBS activates
-> - **SOP:** (1) Open app at reminder time → (2) Tap to confirm habit done → (3) See streak update → (4) Receive next reminder or end-of-day summary
+> - **EOP:** (1) Open app at reminder time → (2) Tap to confirm habit done → (3) See streak update → (4) Receive next reminder or end-of-day summary
 >
 > *🛑 "Do you approve this System Design?"*
 

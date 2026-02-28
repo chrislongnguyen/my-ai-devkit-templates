@@ -20,7 +20,7 @@ description: Translates the approved System Design into technical architecture f
   * *Desirable Wrapper:* In **Cursor**, the Utility Belt: `/state-a`, `/state-b`, `/status`, `/test-write`, `/test`, `/ship`, `/debug`, `/handoff`, `/review`, `/remember`, `/help`, `/heavy`. **`/test-write`** is owned by the Test Agent and runs once after State A to write the full AC-TEST-MAP (frozen baseline). **`/test`** runs at each iteration boundary to validate that iteration's A.C. pass. **`/ship`** is for git commit and push only (no test run) so committing does not conflict with testing. In Cowork/other environments, the same workflow is invoked by name (State A, State B, Test Write, Test, Ship) via their adapters. The engine improves underneath, invisibly to the user's workflow.
   * *Effective Core:* Five mechanisms operating together — Cleanup Pass, Portable Core extraction, Guardrail Layer, Vocabulary Pass, Ship Skeleton. Cleanup includes removal of ai-devkit root files (`.ai-devkit.json`, `ai-devkit-init-merge.yaml`) so the canonical top-level is engine-defined only.
 
-* **SOP (How):**
+* **EOP (How):**
   1. User runs `/state-b` — agent executes one atomic task, presents evidence, hard-stops.
   2. Cleanup tasks: agent deletes/moves files → presents `git rm` output and directory listing.
   3. Portable core tasks: agent creates/migrates files → presents file tree and content diff.

@@ -10,7 +10,7 @@ We operate a **2-State Effective Execution Engine** instead of a multi-phase wat
 
 ### State A: Strategy & Planning (The Discovery Engine)
 - **Purpose:** Map the causal reality of a problem and define the Execution Grammar.
-- **No code.** The Agent helps the User discover UDO (Ultimate Desired Outcome), UDS (Drivers), UBS (Blockers), then derives Principles, Environment, Tools, SOP, and the 4-Iteration Roadmap.
+- **No code.** The Agent helps the User discover UDO (Ultimate Desired Outcome), UDS (Drivers), UBS (Blockers), then derives Principles, Environment, Tools, EOP, and the 4-Iteration Roadmap.
 - **Output:** Requirements, Design, and Planning docs written into `docs/ai/` using workspace templates. User approves each sub-step before the Agent continues.
 - **Entry:** Use `/state-a` or trigger the Dev Lifecycle Skill → State A.
 
