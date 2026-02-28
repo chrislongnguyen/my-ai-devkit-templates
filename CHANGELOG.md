@@ -4,6 +4,32 @@ All notable changes to the Master Template (this repo) are documented here. Enab
 
 ---
 
+## [2.0.0] — 2026-02-28
+
+### Summary (engine-hardening complete)
+
+Template is now a **portable, enforced, scalable** LTC 2-State Engine: single canonical core in `engine/`, IDE-agnostic logic, programmatic guardrails, test/deploy skeletons, multi-feature support, and sub-agent portability. Version history v1.0 → v2.0 is complete and readable in under 2 minutes.
+
+### Added
+- **Portable engine:** `engine/` as single canonical core; `engine/SKILL.md` as sole AI entry point. All commands, rules, and skills live in `engine/`; `.cursor/` and `.claude/` are thin pointer adapters. Zero IDE paths in `engine/` (ScalAdj-AC2).
+- **IDE adapters:** Cursor (`.cursor/commands/*` → `See: engine/commands/`), Claude (`.claude/CLAUDE.md`), AntiGravity (README + `.antigravity/`). New adapter = repo root file/folder + one README paragraph; zero `engine/` changes (ScalAdj-AC1).
+- **Guardrails:** `check-engine.sh` (canonical structure, no legacy paths, no broken `See:` refs, no IDE paths in engine); git pre-commit hook (Holy Trinity + no `.env`/secrets); `setup.sh` one-command install.
+- **Test skeleton:** `tests/run-tests.sh`, `tests/AC-TEST-MAP-TEMPLATE.md`, `tests/README.md`; `/test-write` (once after State A → frozen AC-TEST-MAP); `/test` at iteration boundary; iteration gate in execute-micro-task (AC-TEST-MAP check + run `/test`).
+- **Deploy skeleton:** `deploy/README.md` (Vercel, Railway, CF Workers, GCP, GCS, Colab); `deploy/run-deploy.sh`; when/commands/secrets/environment/verification/rollback.
+- **New-enablement checklist:** `new-enablement-checklist.md` at repo root (clone, MCP, setup.sh, CLAUDE.md, first `/state-a`; ≤ 15 min).
+- **Scale & multi-feature:** Planning template allows unbounded task rows per iteration; multi-feature pattern documented (README, checklist, `docs/ai/examples/multi-feature-coexisting.md`); sub-agent portability in `engine/SKILL.md` + `docs/ai/examples/sub-agent-patterns.md`.
+
+### Changed
+- Legacy removed: `legacy_codeaholic/`, ai-devkit vestiges, `docs/ai/archive/` reduced to read-only; `docs/ai/` limited to requirements, design, planning, frameworks, examples.
+- README ≤ 60 lines; every `engine/commands/*.md` ≤ 30 lines; pointer-only `.cursor/commands/*.md`.
+- `/status` includes template version and (when multiple features) feature dashboard; `/handoff` writes `project_handoff_status.md` for cross-device resume.
+
+### Template version
+
+- `.template-version` set to `2.0.0`.
+
+---
+
 ## [1.3.0] — 2026-02-24
 
 ### Added

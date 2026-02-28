@@ -1,72 +1,57 @@
 # Project Handoff Status
 
-**Generated:** 2026-02-27
+**Generated:** 2026-02-28
 
 ---
 
 ## Active feature
 
-**engine-hardening**
+**None — engine-hardening v2.0.0 complete**
+
+Last completed: engine-hardening (all 4 iterations, 24/27 A.C. 🟢, v2.0.0 shipped)
 
 ---
 
-## Planning doc
+## Next Action
 
-`docs/ai/planning/feature-engine-hardening.md`
+**Start next feature via `/state-a`**
 
----
+Recommended priorities per Orchestrator Roadmap:
 
-## Current iteration
-
-**Iteration 4 — Enablement Leadership**
-
----
-
-## Next task
-
-| ID | Title | Status |
-| :--- | :--- | :--- |
-| **T-404** | Add `.antigravity/` adapter as live end-to-end test of modular adapter pattern: create adapter file, add README paragraph, confirm zero `engine/` changes in git diff; document as evidence | ⚪ Pending |
-
-*When proceeding: set T-404 to 🔴 To Do, then execute per State B (one task, evidence, HARD STOP).*
+| Priority | Feature | Milestone | UDO |
+| :--- | :--- | :--- | :--- |
+| **⭐ 1** | `automated-test-verification` | M1 | Evidence machine-verified by CI, not manual review |
+| 2 | `execution-observability` | M3 | See revision rates and failure patterns |
+| 3 | `ambient-project-memory` | M2 | Auto-surface past decisions at State A start |
+| 4 | `production-monitor-agent` | Custom | Post-deploy feedback loop to Director |
 
 ---
 
-## Last approved task
+## Repo State
 
-| ID | Evidence |
+| Check | Status |
 | :--- | :--- |
-| **T-403** | Sub-agent portability: `engine/SKILL.md` "Sub-agent portability (Verb-AC9)"; `docs/ai/examples/sub-agent-portability-evidence.md`; `docs/ai/examples/sub-agent-patterns.md` (3 patterns + pipeline model for future features). Table B Verb-AC9 → 🟢. |
+| Engine integrity | ✅ `check-engine.sh` passes all 4 categories |
+| Version | ✅ 2.0.0 (template and CHANGELOG) |
+| Active feature docs | ✅ None — clean slate |
+| Archive | ✅ engine-hardening docs archived |
+| Sub-agent portability | ✅ Proven (T-403) |
 
 ---
 
-## Modified / uncommitted files
+## Quick Commands
 
-**Modified (8):**
-- `README.md`
-- `docs/ai/design/feature-engine-hardening.md`
-- `docs/ai/planning/README.md`
-- `docs/ai/planning/feature-engine-hardening.md`
-- `docs/ai/requirements/feature-engine-hardening.md`
-- `engine/SKILL.md`
-- `engine/commands/test.md`
-- `engine/skills/dev-lifecycle/references/execute-micro-task.md`
+```bash
+# Start next feature
+/state-a
 
-**Untracked / new:**
-- `.cursor/commands/test-write.md`
-- `deploy/` (README.md, run-deploy.sh)
-- `docs/ai/archive/`
-- `docs/ai/examples/multi-feature-coexisting.md`
-- `docs/ai/examples/planning-scale-test.md`
-- `docs/ai/examples/sub-agent-patterns.md`
-- `docs/ai/examples/sub-agent-portability-evidence.md`
-- `engine/commands/test-write.md`
-- `new-enablement-checklist.md`
-- `tests/` (run-tests.sh, README.md, AC-TEST-MAP-TEMPLATE.md)
+# Check status anywhere
+/status
+
+# See all milestones
+/docs/ai/Orchestrator_Roadmap.md
+```
 
 ---
 
-## Next actions
-
-1. **Resume:** Read this file and run `/status` or `/state-b` to continue. If starting Iteration 4 next task, set T-404 to 🔴 To Do and execute one micro-task (evidence, then HARD STOP).
-2. **Optional:** Run `/ship` to commit and push the current engine-hardening work (Iterations 2–4) if not yet done.
+*Engine ready. Awaiting next feature via `/state-a`.*

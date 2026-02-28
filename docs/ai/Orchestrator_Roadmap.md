@@ -2,19 +2,13 @@
 
 > *"The endgame is not to use AI. It is to direct AI systems — where you set the direction, and the system executes, verifies, and learns without requiring your technical skill."*
 
-This document defines the path from **User of one AI agent** to **Orchestrator of AI Systems** — and the 7 milestones that mark the journey.
+The path from **User of one AI agent** to **Orchestrator of AI Systems** — 7 milestones, sequenced by impact.
 
 ---
 
-## The Two Paths (And Why This One Is Different)
+## The Two Paths
 
-Most of the AI industry is racing toward **maximum autonomy**: AI that needs the human less and less, until the human is out of the loop entirely. That race is crowded, and it is built for people who have the technical depth to audit what the AI produces.
-
-This template takes the opposite direction: **maximum AI accountability with minimum human overhead.**
-
-The distinction is not how much the AI does — in both cases the AI does nearly everything. The distinction is *who catches mistakes, and when.*
-
-| | Maximum Autonomy | AI Accountability |
+| | Maximum Autonomy | **AI Accountability (This Template)** |
 | :--- | :--- | :--- |
 | **Who sets direction?** | AI infers it | You confirm it |
 | **When are mistakes caught?** | At the end (expensive) | At each gate (cheap) |
@@ -22,131 +16,173 @@ The distinction is not how much the AI does — in both cases the AI does nearly
 | **Cost of being wrong** | Weeks of wasted work | One task |
 | **Required technical skill** | High (to audit output) | None (to confirm intent) |
 
-**The Orchestrator path is the accountability path taken to its logical conclusion:** a solo non-tech operator directing a system of AI agents — each one accountable, each one gated — where your role is purely directional judgment, not technical execution.
+---
+
+## Your Vision: Autonomous Agent Pipeline
+
+```
+Director → Learning → Build → Test → Deploy → Monitor
+    ↑_________________________________________|
+              (Continuous Improvement)
+```
+
+**Current State:** Human-in-the-loop at every stage. Build/Test/Deploy work; human gates remain. No Monitor agent; no autonomous Director.
+
+**Target State:** Machine-verified evidence, ambient memory, observability, self-improving rules, parallel agents.
 
 ---
 
 ## The 7 Milestones
 
-Each milestone below is a gap between where this template is today and where an Orchestrator-grade system lives. They are sequenced by impact — close them in order.
+### Phase 1: Foundation (NOW → 2 months)
+Close these together — they compound. Observability tells you where to improve; memory carries improvements forward; automated testing removes manual verification.
+
+#### Milestone 1: Machine-Verified Evidence ⭐ **START HERE**
+*Current:* You manually review evidence block (file paths, CLI output).  
+*Target:* CI runs tests automatically on `/ship`. Green build = objective evidence. You only review if CI fails.
+
+| Item | Detail |
+| :--- | :--- |
+| **Action** | `/state-a` with feature `automated-test-verification` |
+| **UDO** | Evidence of task completion is machine-verified, not dependent on my manual review |
+| **Deliverable** | `/.github/workflows/ci.yml` or equivalent; runs `tests/run-tests.sh` on every push |
+| **Impact** | 2-min task approval → 30-sec scan; agent cannot pass broken task |
 
 ---
 
-### Milestone 1: Machine-Verified Evidence
-*Current state:* You manually review the agent's claim that a task works. The "Evidence of Truth" is text and file paths — human-reviewed.
+#### Milestone 3: Observability
+*Current:* No metrics. You don't know which task types fail most.  
+*Target:* `/metrics` command produces dashboard: tasks completed, revision rate, stuck frequency.
 
-*Orchestrator state:* A test suite runs automatically on every `/ship`. The evidence is a green CI build — machine-verified, not agent-claimed. You only review if CI fails.
-
-*What closing it gives you:* Your 2-minute task approval becomes a 30-second scan. The agent cannot pass a broken task. Evidence becomes objective.
-
-*Action:* Run `/state-a` with feature name `automated-test-verification`.
-UDO: *"Evidence of task completion is machine-verified by a test suite, not dependent on my manual review."*
-
----
-
-### Milestone 2: Ambient Project Memory
-*Current state:* Memory is intentional — you `/remember` a principle and the agent retrieves it. Past decisions from previous features are not automatically available.
-
-*Orchestrator state:* After each feature ships, the agent writes a structured summary (decisions made, UBS discovered, patterns that led to revisions) to a searchable memory store. At the start of every State A, this history is surfaced automatically — not because you asked, but because it is relevant.
-
-*What closing it gives you:* The agent learns from your enablement's history. The more you build, the smarter the starting point for each new feature.
-
-*Action:* Run `/state-a` with feature name `ambient-project-memory`.
-UDO: *"At the start of every new feature, the agent automatically surfaces relevant decisions and patterns from all past features, without me having to remember to /remember them."*
+| Item | Detail |
+| :--- | :--- |
+| **Action** | `/state-a` with feature `execution-observability` |
+| **UDO** | I can see where tasks needed revision and which types were underestimated |
+| **Deliverable** | `engine/commands/metrics.md` — parses planning docs, outputs markdown report |
+| **Impact** | Data-driven State A scoping; fix the map, not the territory |
 
 ---
 
-### Milestone 3: Observability (Know What's Working)
-*Current state:* There are no metrics. You don't know which task types fail most, which iterations produce the most re-plans, or where your time is actually going.
+#### Milestone 2: Ambient Project Memory
+*Current:* Memory is intentional — you `/remember` principles. Past decisions not auto-surfaced.  
+*Target:* After each feature ships, agent writes structured summary to memory. At State A start, relevant history auto-surfaces.
 
-*Orchestrator state:* A `/metrics` command reads your planning docs and produces a simple dashboard: tasks completed, revision rate (how often a task goes from 🔵 back to 🔴), iteration completion rate, stuck frequency by task type.
-
-*What closing it gives you:* After 2–3 features, the data tells you where your State A scoping is consistently wrong. You fix the map, not the territory.
-
-*Action:* Run `/state-a` with feature name `execution-observability`.
-UDO: *"After each feature, I can see a simple report of where tasks needed revision and which task types were consistently underestimated, so I can improve future State A scoping."*
-
----
-
-### Milestone 4: Task Confidence Scoring
-*Current state:* All tasks in the Execution Matrix are treated equally. A task with vague A.C. and a task with crystal-clear A.C. both start at 🔴 To Do.
-
-*Orchestrator state:* Each task row has a Confidence Score (1–5) populated by the agent at State A time, based on A.C. clarity, design completeness, and dependency complexity. Low-confidence tasks trigger a scope clarification before execution.
-
-*What closing it gives you:* You know before you build which tasks are likely to need revision. You clarify the A.C. then, not after. Revision rate drops.
-
-*Action:* Run `/state-a` with feature name `task-confidence-scoring`.
-UDO: *"Before executing a task, I want to know how confident the agent is that the A.C. is clear enough to pass first time — so I can improve the spec before wasting a build cycle."*
+| Item | Detail |
+| :--- | :--- |
+| **Action** | `/state-a` with feature `ambient-project-memory` |
+| **UDO** | Agent auto-surfaces relevant decisions from past features without me asking |
+| **Deliverable** | MCP memory integration; `memory-store/project-lessons.md` auto-populated |
+| **Impact** | The more you build, the smarter the starting point |
 
 ---
 
-### Milestone 5: Self-Improving Rules (/meta-review)
-*Current state:* The rules in `.cursor/rules/` and the skill files are static. If a certain type of task consistently needs two revision cycles, the system does not learn that.
+### Phase 2: Intelligence (2 → 4 months)
 
-*Orchestrator state:* After each feature ships, a `/meta-review` command runs. The agent reads the full revision history — every task that went from 🔵 back to 🔴, every piece of feedback — and proposes specific updates to `anti-patterns.mdc`, `execute-micro-task.md`, or the requirements template. You approve or reject each proposed rule change.
+#### Milestone 4: Task Confidence Scoring
+*Current:* All tasks treated equally.  
+*Target:* Confidence Score (1–5) per task at State A time. Low confidence triggers scope clarification before execution.
 
-*What closing it gives you:* The system gets better with every feature you ship. The agent's rules are co-authored by the agent's own failure patterns.
-
-*Action:* Run `/state-a` with feature name `meta-review-self-improvement`.
-UDO: *"After each feature, the agent analyses what kept going wrong and proposes specific rule changes to prevent the same failures next time. I approve each change."*
-
----
-
-### Milestone 6: Parallel Specialist Agents
-*Current state:* One agent, one task, one thread. Sequential by design.
-
-*Orchestrator state:* For tasks with no dependency on each other (e.g., "write tests for T-101" and "write documentation for T-102"), two background agent sessions run in parallel. You review two outputs instead of waiting twice. The planning doc remains the single source of truth — each agent writes to its own section, no conflicts.
-
-*What closing it gives you:* Clock time per feature drops without reducing control. You are still the single approval gate — but two agents bring work to that gate simultaneously.
-
-*Action:* Only close this milestone after Milestones 1–3 are complete. Parallelization amplifies whatever verification system is already in place. Without automated testing (Milestone 1), parallel agents double the manual review burden.
-
-Run `/state-a` with feature name `parallel-agent-execution`.
-UDO: *"Tasks with no dependencies on each other can be executed by two agents simultaneously, cutting feature delivery time without reducing my approval control."*
+| Item | Detail |
+| :--- | :--- |
+| **Action** | `/state-a` with feature `task-confidence-scoring` |
+| **UDO** | I know which tasks are likely to need revision before building |
+| **Deliverable** | Planning template adds "Confidence" column; agent populates from A.C. clarity |
+| **Impact** | Revision rate drops; clarify spec then, not after |
 
 ---
 
-### Milestone 7: Structured State (For Scale Beyond Solo)
-*Current state:* All project state lives in markdown files. This is correct for one person, one agent.
+#### Milestone 5: Self-Improving Rules (/meta-review)
+*Current:* Rules in `.cursor/rules/` are static.  
+*Target:* After each feature, `/meta-review` analyzes revision history and proposes rule updates. You approve/reject each.
 
-*Orchestrator state:* Task state is stored in a machine-readable format (JSON/YAML) with schema validation. The agent cannot write an invalid status. Multiple agents or contributors cannot create conflicting updates.
-
-*What closing it gives you:* The template becomes deployable for a small team or as a product for other users. This milestone is not about your personal velocity — it is about whether this system can scale beyond you.
-
-*Action:* Only relevant if you are building this template into a product for others, or adding team members. If solo, skip for now.
+| Item | Detail |
+| :--- | :--- |
+| **Action** | `/state-a` with feature `meta-review-self-improvement` |
+| **UDO** | Agent proposes specific rule changes based on failure patterns; I approve each |
+| **Deliverable** | `engine/commands/meta-review.md`; updates `anti-patterns.mdc`, `execute-micro-task.md` |
+| **Impact** | System learns from its own failures; rules co-authored by failure patterns |
 
 ---
 
-## The Sequencing (What To Do First)
+### Phase 3: Scale (4 → 6+ months)
+
+#### Milestone 6: Parallel Specialist Agents ⚠️ **DEPENDENCY: M1-M3**
+*Current:* One agent, one task, one thread.  
+*Target:* Tasks with no dependencies run in parallel. You review two outputs simultaneously.
+
+| Item | Detail |
+| :--- | :--- |
+| **Action** | Only after M1-M3 complete. `/state-a` with feature `parallel-agent-execution` |
+| **UDO** | Independent tasks execute in parallel without reducing my approval control |
+| **Deliverable** | Dependency graph in planning docs; agent dispatcher for parallel execution |
+| **Warning** | Without automated testing (M1), parallel agents double manual review burden |
+
+---
+
+#### Milestone 7: Structured State
+*Current:* All state in markdown files. Correct for solo.  
+*Target:* Machine-readable state (JSON/YAML) with schema validation.
+
+| Item | Detail |
+| :--- | :--- |
+| **Action** | Only if building for team or as product for others |
+| **UDO** | Multiple agents/contributors without conflicting updates |
+| **Deliverable** | JSON schema for planning docs; validation layer |
+| **Note** | Skip if solo. Only for scale beyond you. |
+
+---
+
+## Custom: Monitor Agent (Not in Milestones)
+
+**Critical gap for your vision:** No Monitor agent exists. This is the feedback loop from Deploy → Director.
+
+| Item | Detail |
+| :--- | :--- |
+| **What it does** | Post-deploy: captures logs, errors, metrics, uptime; feeds structured summary to Director for re-planning |
+| **Trigger** | After every `/ship` or on schedule; creates `docs/ai/monitoring/feature-{name}-live.md` |
+| **UDO** | I know what's working in production without checking logs manually; failures auto-trigger re-plan |
+| **Action** | `/state-a` with feature `production-monitor-agent` |
+
+---
+
+## The Sequencing
 
 ```
-NOW          →  Milestone 1: Automated Testing
-             →  Milestone 3: Observability
-             →  Milestone 2: Ambient Memory
+NOW (Month 1-2)    →  M1: Automated Testing ⭐
+                   →  M3: Observability
+                   →  M2: Ambient Memory
 
-NEXT         →  Milestone 4: Confidence Scoring
-             →  Milestone 5: Self-Improving Rules
+NEXT (Month 3-4)   →  M4: Confidence Scoring
+                   →  M5: Self-Improving Rules
+                   →  Custom: Monitor Agent
 
-WHEN SCALING →  Milestone 6: Parallel Agents
-             →  Milestone 7: Structured State (only if building for others)
+SCALE (Month 5+)   →  M6: Parallel Agents
+                   →  M7: Structured State (if team/product)
 ```
 
-Close Milestones 1, 3, and 2 together — they compound each other. Observability tells you where to improve; memory carries those improvements forward; automated testing removes the manual verification bottleneck.
+**Start with M1.** It unlocks everything else.
 
 ---
 
-## What an Orchestrator Actually Does
+## Endgame: What an Orchestrator Does
 
-When all 7 milestones are closed, your workflow looks like this:
+When all milestones + Monitor agent are complete:
 
-1. **State A:** Answer 3–4 questions. The agent searches memory for relevant past decisions automatically. You approve direction. (~30 minutes, once per feature)
-2. **State B:** Agent executes one task. CI runs tests automatically. You see green/red. If green: "Approved." If red: the agent already knows why and proposes a fix. (~2 minutes per task)
-3. **End of feature:** `/meta-review` proposes rule improvements. `/metrics` shows revision rate. Memory is updated automatically. (~15 minutes)
+1. **State A:** Answer 3–4 questions. Memory auto-surfaces past decisions. You approve direction. (~30 min once)
+2. **State B:** Agent executes. CI runs tests. Green = auto-approval for routine tasks. Red = agent proposes fix. (~2 min per task)
+3. **Monitor:** Production data auto-summarized. Issues trigger re-plan. (~0 min — passive)
+4. **End of feature:** `/meta-review` proposes rule improvements. `/metrics` shows revision rate. Memory updated. (~15 min)
 
 You make zero technical decisions. You make every directional decision.
 
-That is what an Orchestrator is: not someone who uses AI, but someone who directs AI systems — accountably, with the minimum overhead required to stay in control.
+---
+
+## Status Log
+
+| Date | Event |
+| :--- | :--- |
+| 2026-02-28 | engine-hardening v2.0.0 complete; all milestones remain open; Build agent proven via T-403 |
 
 ---
 
-*This roadmap is a companion to the [Effective Execution Manifesto](Effective_Execution_Manifesto.md) and the [Effective System Design Framework](frameworks/effective-system-design.md). Each milestone is a feature — close it using `/state-a` with the provided UDO, then `/state-b` to execute.*
+*Each milestone is a feature. Close using `/state-a` with the provided UDO, then `/state-b` to execute.*
