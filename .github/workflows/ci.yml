@@ -1,0 +1,30 @@
+# CI — run project tests on every push.
+# Exit 0 = pass or no tests; non-zero = failure. See tests/README.md and Orchestrator_Roadmap.md Milestone 1.
+
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        id: test
+        run: |
+          bash tests/run-tests.sh
+          EXIT=$?
+          echo "exit_code=$EXIT" >> "$GITHUB_OUTPUT"
+          exit $EXIT
+        continue-on-error: true
+      - name: Record learning-loop (automatic)
+        if: always()
+        run: |
+          EXIT="${{ steps.test.outputs.exit_code }}"
+          bash tests/append-learning-loop.sh automated-test-verification "${EXIT:-0}" "CI: run-tests.sh exit code ${EXIT:-0}."
+      - name: Fail if tests failed
+        if: always() && steps.test.outcome != 'success'
+        run: exit "${{ steps.test.outputs.exit_code }}"

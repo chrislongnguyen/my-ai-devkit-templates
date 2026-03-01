@@ -16,20 +16,21 @@ This repo is the Master Template for AI-first enablement building. It uses a 2-S
 
 **Guardrails:** The agent follows anti-pattern rules (no code before design, no new deps without Design §4, no iteration jump without the gate) and context-preservation (re-reads planning at session start, nudges handoff before ship). Approval phrases: see [Effective Execution Manifesto](docs/ai/Effective_Execution_Manifesto.md) — **"Approved"** (State A/B), **"Proceed to Iteration N+1"** or **"Re-plan"** (gate), **"Yes"** (/ship, /debug).
 
-| Command | What it does |
-| :--- | :--- |
-| `/state-a` | Map problem and scope; output requirements, design, planning. No code. |
-| `/state-b` | Execute one task from the plan, show evidence, stop for your approval. |
-| `/status` | Show active feature, iteration, next task, progress. |
-| `/test-write` | Test Agent writes AC-TEST-MAP from approved Holy Trinity (run once after State A). |
-| `/test` | Run tests via `tests/run-tests.sh` at each iteration boundary (+ regression). |
-| `/ship` | Propose commit; you say "Yes" to push. Git only — does not run tests. |
-| `/review` | Iteration retrospective; run before "Proceed to Iteration N+1". |
-| `/handoff` | Write `project_handoff_status.md` for the next session. |
-| `/debug` | Root-cause (UBS) before changing code. |
-| `/remember` | Store principles in persistent memory. |
-| `/help` | Decision tree of all commands. |
-| `/heavy` | Delegate heavy analysis to PTC MCP (requires local MCP setup). |
+| Command              | What it does                                                                                |
+| :------------------- | :------------------------------------------------------------------------------------------ |
+| `/state-a`           | Map problem and scope; output requirements, design, planning. No code.                      |
+| `/state-b`           | Execute one task from the plan, show evidence, stop for your approval.                      |
+| `/state-b-iteration` | Optional. Run full iteration → test → one approval; only when machine-verified tests exist. |
+| `/status`            | Show active feature, iteration, next task, progress.                                        |
+| `/test-write`        | Test Agent writes AC-TEST-MAP from approved Holy Trinity (run once after State A).          |
+| `/test`              | Run tests via `tests/run-tests.sh` at each iteration boundary (+ regression).               |
+| `/ship`              | Propose commit; you say "Yes" to push. Git only — does not run tests.                       |
+| `/review`            | Iteration retrospective; run before "Proceed to Iteration N+1".                             |
+| `/handoff`           | Write `project_handoff_status.md` for the next session.                                     |
+| `/debug`             | Root-cause (UBS) before changing code.                                                      |
+| `/remember`          | Store principles in persistent memory.                                                      |
+| `/help`              | Decision tree of all commands.                                                              |
+| `/heavy`             | Delegate heavy analysis to PTC MCP (requires local MCP setup).                              |
 
 ---
 

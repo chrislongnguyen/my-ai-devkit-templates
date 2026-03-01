@@ -29,3 +29,19 @@ State A → Holy Trinity approved
 ## Run Tests
 
 From repo root: `./tests/run-tests.sh` (or invoke `/test`).
+
+## Learning-loop record (when enabled)
+
+When a feature uses the learning loop (trace test result → requirement/design, record outcome):
+
+- **Location:** Design doc §5 (Learning Loop Log) of the active feature: `docs/ai/design/feature-{name}.md`. The design template (`docs/ai/design/README.md`) defines §5 with an append-only table.
+- **Format:** One row per test run (or per A.C. scope): **Date** | **A.C. / Scope** | **Result** (Pass/Fail) | **Outcome (one line)** | **Req/Design ref**. Outcome must not contain `|` or newlines (so the table parses). Trace: test result → AC-TEST-MAP → requirement/design. No fabricated content; derive only from test output and AC-TEST-MAP.
+- **Mechanism:** When `/test` is run, the agent (per `engine/commands/test.md`) appends one row to the active feature design doc §5. When CI runs (`tests/run-tests.sh` on push), the workflow calls `tests/append-learning-loop.sh` with the feature name and test exit code so the learning-loop row is written automatically—no separate manual doc step.
+
+### For tooling (metrics, meta-review)
+
+Learning-loop records accumulate without manual consolidation. Future features (e.g. metrics dashboards, meta-review scripts) can consume the log as follows:
+
+- **Discovery:** List `docs/ai/planning/feature-*.md`; for each file, the feature name is the stem (e.g. `feature-automated-test-verification.md` → `automated-test-verification`). The log lives in `docs/ai/design/feature-{name}.md` in the section titled `# 5. LEARNING LOOP LOG`. If that section is absent, the feature has no learning loop.
+- **Schema:** Markdown table. Columns in order: **Date** (YYYY-MM-DD), **A.C. / Scope** (free text: A.C. ID, "suite", "CI", etc.), **Result** (Pass | Fail), **Outcome (one line)** (free text from test output; **must not contain `|` or newlines** — writers enforce so the table parses), **Req/Design ref** (e.g. "Req Verb-AC1; Design §2.2"). Rows are append-only; data rows match the pattern `| YYYY-MM-DD | ...`.
+- **Consumption:** Parse the table from the first `| Date` header row to the line before `_Do not remove or edit prior rows_.` Pass rate, failure clustering by A.C., and audit trail can be derived from Result + A.C./Scope + Req/Design ref.

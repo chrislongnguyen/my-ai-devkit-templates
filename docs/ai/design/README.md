@@ -8,52 +8,66 @@ note: This template captures architecture decisions. Derives from Requirements P
 # Design — ESD Phase 2 Architecture
 
 > **ESD Phase:** System Design → Physical/Digital Architecture
-> 
+>
 > This document captures **how** the system is built. The **what** and **when** live in Requirements and Planning. For methodology, reference `docs/ai/frameworks/effective-system-design.md` §2.
 
 ---
 
 ## Quick Reference: Design-to-Requirements Mapping
 
-| Design Section | Derives From | Outputs To |
-| :--- | :--- | :--- |
-| **Principles** | Requirements Phase 2 (EPS) | Component Mapping decisions |
-| **Environment** | Requirements Phase 2 (UES) | Wrapper/Core implementation context |
-| **Tools** | Requirements Phase 2 (Wrapper/Core concept) | Technical Architecture §2 |
-| **EOP** | Requirements Phase 2 (EOP outline) | System Wiki §6 (detailed EOP after I4) |
-| **Effectiveness Attributes** | Requirements Phase 3 (Adjectives) | Implementation strategy per A.C. |
-| **Resource Impact** | Planning §3 (Budget Tracker) | Hard limits for execution |
+| Design Section               | Derives From                                | Outputs To                                  |
+| :--------------------------- | :------------------------------------------ | :------------------------------------------ |
+| **Principles**               | Requirements Phase 2 (EPS)                  | Component Mapping decisions                 |
+| **Environment**              | Requirements Phase 2 (UES)                  | Technical Architecture §2                   |
+| **Tools**                    | Requirements Phase 2 (Wrapper/Core concept) | §2.2 Component Mapping table                |
+| **EOP**                      | Requirements Phase 2 (EOP outline)          | System Wiki §6 (detailed EOP after I4)      |
+| **Effectiveness Attributes** | Requirements Phase 3 (Adjectives)           | §3 table (implementation strategy per A.C.) |
+| **Resource Impact**          | Planning §3 (Budget Tracker)                | Hard limits for execution                   |
 
-*Iteration mapping (ESD §6):* Desirable Wrapper = Iterations 1–2 (Concept, Prototype); Effective Core = Iterations 3–4 (MVE, Leadership). Planning assigns A.C.s to iterations per ESD §6.
+_Iteration mapping (ESD §6):_ Desirable Wrapper = Iterations 1–2 (Concept, Prototype); Effective Core = Iterations 3–4 (MVE, Leadership). Planning assigns A.C.s to iterations per ESD §6.
 
-*For UBS/UDS/EPS definitions, see ESD §1.3.*
+_For UBS/UDS/EPS definitions, see ESD §1.3._
+
+---
+
+# 0. DOCUMENT CONTROL (Design Doc)
+
+_Lightweight traceability during I1–I4. Full Document Control lives in System Wiki §0.1 after I4._
+
+| Field            | Value                          |
+| :--------------- | :----------------------------- |
+| **Feature**      | [feature name, kebab-case]     |
+| **Version**      | [e.g. 0.1]                     |
+| **Status**       | [Draft / In Review / Approved] |
+| **Last updated** | [Date]                         |
 
 ---
 
 # 1. THE SYSTEM DESIGN (Context & Bridge)
-*ESD §2: Map the approved Phase 2 from Requirements into physical/digital space.*
+
+_ESD §2: Map the approved Phase 2 from Requirements into physical/digital space._
 
 **Source:** EPS (Effective Principles), UES (Ultimate Enabling System), EOP outline from Requirements Phase 2.
 
-* **Principles (Why):** [The general and/or scientific principles governing the drivers and blockers — from EPS]
-  * *ESD labels:* `P1(S)`, `P2(S)` (Sustainability), `P3(E)`, `P4(E)` (Efficiency), `P5(Sc)`, `P6(Sc)` (Scalability)
-* **Environment (Where):** [The physical/digital/cultural context where the solution/enablement lives — UES layers: Foundational / Operational / Enhancement]
-* **Tools (What):** 
-  * *Desirable Wrapper:* [The hook/interface the user interacts with — aligns with UDO from Requirements Phase 1]
-  * *Effective Core:* [The hidden mechanic solving the root drivers/blockers most effectively — neutralizes UBS via UBS.UB principles]
-* **EOP (How):** [The step-by-step user action required to use the Tools in the Environment — **conceptual outline here; detailed EOP with per-step RACI in System Wiki §6 after I4 completion**]
+| Element                 | Content                                                                                                                 |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| **Principles (Why)**    | [General/scientific principles governing drivers and blockers. ESD labels: P1(S), P2(S), P3(E), P4(E), P5(Sc), P6(Sc).] |
+| **Environment (Where)** | [Physical/digital/cultural context — UES layers: Foundational / Operational / Enhancement.]                             |
+| **Desirable Wrapper**   | [The hook/interface the user interacts with — aligns with UDO.]                                                         |
+| **Effective Core**      | [The hidden mechanic solving root drivers/blockers — neutralizes UBS via UBS.UB.]                                       |
+| **EOP (How)**           | [Step-by-step user action outline. Detailed EOP with per-step RACI in System Wiki §6 after I4.]                         |
 
 ---
 
 # 2. TECHNICAL ARCHITECTURE (The Noun)
-*ESD: Provide clear, material explanation of the architecture.*
 
-**Goal:** Explain how the Wrapper and Core physically operate.
+_ESD: Provide clear, material explanation of the architecture._
 
-* **Feature Noun:** [What specific Tool/Solution/Enablement are we building?]
+**Feature Noun:** [What specific Tool/Solution/Enablement are we building?]
 
 ## 2.1 Visual Map (Mermaid)
-*ESD: Map user flow, Desirable Wrapper (UI/Client), and Effective Core (Backend/Logic)*
+
+_ESD: Map user flow, Desirable Wrapper, and Effective Core._
 
 ```mermaid
 graph TD
@@ -63,47 +77,75 @@ graph TD
     CORE --> UBS[Neutralizes UBS via UBS.UB]
 ```
 
-*[Insert feature-specific Mermaid diagram]*
+_[Insert feature-specific Mermaid diagram]_
 
 ## 2.2 Component Mapping
-*ESD: Map to Effectiveness Attributes (Sustainability, Efficiency, Scalability)*
 
-* **Wrapper Implementation:** [How the UI/UX is built to act as the Desirable Wrapper — aligns with `SustainAdj-AC*`, `EffAdj-AC*`, `ScalAdj-AC*`]
-* **Core Implementation:** [How the backend logic/scripts act as the Effective Core — implements `P[n](S/E/Sc)` principles]
+_ESD: One row per component. Map to A.C. IDs delivered and implementation summary._
+
+| Component             | A.C. IDs delivered                | Implementation summary                           |
+| :-------------------- | :-------------------------------- | :----------------------------------------------- |
+| [e.g. Wrapper / UI]   | [e.g. SustainAdj-AC1, EffAdj-AC1] | [How it is built; aligns with Wrapper/Core.]     |
+| [e.g. Core / backend] | [e.g. Noun-AC1, SustainAdv-AC1]   | [How it implements principles and delivers A.C.] |
+
+_Add rows as needed. Do not invent A.C.; reference Requirements Phase 3 and Planning Table B._
 
 ## 2.3 Data Models & APIs
-*ESD §2.3: Define inputs, outputs, database schema. Apply Data Science best practices where applicable.*
 
-[Define the inputs, outputs, and database schema. Explain materially why this data structure is the most effective choice.]
+_ESD §2.3: Define inputs, outputs, schema. One row per key entity or contract._
 
-*Where applicable, apply Data Science best practices: Data Collection, Data Management, Descriptive Analytics, Diagnosis Analytics, Predictive Analytics, Prescriptive Analytics.*
+| Entity / artifact            | Key fields or behavior      | Notes                 |
+| :--------------------------- | :-------------------------- | :-------------------- |
+| [e.g. Input schema]          | [Fields, types, or trigger] | [Source; validation.] |
+| [e.g. Output / API response] | [Fields, types]             | [Consumer; format.]   |
+
+_Where applicable, apply Data Science best practices: Data Collection, Data Management, Descriptive/Diagnosis/Predictive/Prescriptive Analytics._
 
 ---
 
-# 3. EFFECTIVENESS ATTRIBUTES OF THE SOLUTION / ENABLEMENT (The Adjectives)
-*ESD: How feature attributes enable the user to reach the Effectiveness Outcomes (Adverbs from Requirements Phase 3).*
+# 3. EFFECTIVENESS ATTRIBUTES (The Adjectives)
 
-**Mapping:** Map each attribute below to the corresponding Requirements A.C. IDs (e.g., `SustainAdj-AC1`, `EffAdj-AC1`, `ScalAdj-AC1`) and to the Planning iteration where that A.C. is validated.
+_ESD: How feature attributes enable Effectiveness Outcomes. One row per attribute or pillar._
 
-* **Design defines how; Requirements and Planning define what and when.**
+**Mapping:** Each row maps to Requirements A.C. IDs (e.g. SustainAdj-ACn, EffAdj-ACn, ScalAdj-ACn) and Planning iteration.
 
-* **Sustainability (Risk/Safety):** [List Adjectives + Exact Implementation Strategy — e.g., "Encrypted: AES-256 at rest"; maps to `SustainAdj-AC*`]
-* **Efficiency (Speed/Utility):** [List Adjectives + Exact Implementation Strategy — e.g., "Automated: CI/CD pipeline"; maps to `EffAdj-AC*`]
-* **Scalability (Growth):** [List Adjectives + Exact Implementation Strategy — e.g., "Modular: microservices"; maps to `ScalAdj-AC*`]
+| Pillar             | Attribute                       | Implementation strategy                   | A.C. IDs         | Iter  |
+| :----------------- | :------------------------------ | :---------------------------------------- | :--------------- | :---- |
+| **Sustainability** | [e.g. Encrypted, Deterministic] | [Exact strategy — e.g. "AES-256 at rest"] | [SustainAdj-ACn] | [1–4] |
+| **Efficiency**     | [e.g. Automated, Lightweight]   | [Exact strategy — e.g. "CI/CD pipeline"]  | [EffAdj-ACn]     | [1–4] |
+| **Scalability**    | [e.g. Modular, API-driven]      | [Exact strategy — e.g. "Microservices"]   | [ScalAdj-ACn]    | [1–4] |
+
+_Design defines how; Requirements and Planning define what and when._
 
 ---
 
 # 4. RESOURCE IMPACT (The "Price Tag")
-*ESD §4: Monitor constraints mapped to Efficiency Adjectives. Tracked in Planning §3 (Resource & Budget Tracker).*
 
-* **Financial Cost (OpEx):** [Estimated monthly/fixed costs — e.g., "$X/month for hosting"]
-* **Build Complexity:** [Low/Medium/High — map to `EffAdv-AC*` (e.g., "Frugally" may imply Low complexity)]
-* **ROI Sanity Check:** [Does this architecture respect the Principle of Efficiency? `P3(E)`: Maximize de-risking at current resources; `P4(E)`: Maximize outputs at current resources]
+_ESD §4: Tracked in Planning §3 (Resource & Budget Tracker)._
+
+| Metric                    | Value                              | Hard limit         | Status       |
+| :------------------------ | :--------------------------------- | :----------------- | :----------- |
+| **Financial Cost (OpEx)** | [e.g. $X/month]                    | [From Planning §3] | 🟢 / 🟡 / 🔴 |
+| **Build Complexity**      | [Low / Medium / High]              | —                  | —            |
+| **ROI sanity check**      | [P3(E)/P4(E) alignment — one line] | —                  | —            |
 
 **Requesting Resources / Budget from the User (optional):** When the design or execution requires a budget increase, new tool, or paid service:
-1. **When to ask:** Before committing to a task that exceeds current limits (e.g., new API, hosting, paid tier). Do not assume; request explicit approval.
-2. **What to specify:** Amount or ceiling (e.g., $X/month, Y API calls/day), purpose (which A.C. or task it serves), and alternative if the User says no.
-3. **Approval gate:** Do not spend or integrate until the User approves. Record the approved limit in Planning §3 (Hard Limit) and proceed. If the User declines, adjust scope or task (e.g., mark 🟠 Stuck and propose an alternative).
+
+1. **When to ask:** Before committing to a task that exceeds current limits. Do not assume; request explicit approval.
+2. **What to specify:** Amount or ceiling, purpose (which A.C. or task), and alternative if the User says no.
+3. **Approval gate:** Do not spend or integrate until the User approves. Record the approved limit in Planning §3. If the User declines, adjust scope or mark 🟠 Stuck and propose an alternative.
+
+---
+
+# 5. LEARNING LOOP LOG
+
+_Append-only. When a test fails or succeeds, trace to A.C. and requirement/design; record decision and outcome concisely. Source: test output + AC-TEST-MAP. Filled automatically or by agent after each test run._
+
+| Date | A.C. / Scope | Result      | Outcome (one line) | Req/Design ref                           |
+| :--- | :----------- | :---------- | :----------------- | :--------------------------------------- |
+|      |              | Pass / Fail |                    | [e.g. Req Phase 3 Verb-AC1; Design §2.2] |
+
+_Each row: one test run or one A.C. scope. Trace is in the row. Do not remove or edit prior rows; append only._
 
 ---
 
@@ -111,8 +153,8 @@ graph TD
 
 **When Iteration 4 completes, the detailed operational record is created:**
 
-* **System Wiki:** `docs/ai/wiki/system-{name}.md` (from `docs/ai/frameworks/system-wiki-template.md`)
-* **Filled sections:** Document Control (§0.1), RACI (§2), EOP with per-step RACI (§6), Core Values (§3.4), KPIs (§0.5), Version History (§0.8)
-* **Trigger:** `execute-micro-task.md` §3 — Iteration 4 final completion
+- **System Wiki:** `docs/ai/wiki/system-{name}.md` (from `docs/ai/frameworks/system-wiki-template.md`)
+- **Filled sections:** Document Control (§0.1), RACI (§2), EOP with per-step RACI (§6), Core Values (§3.4), KPIs (§0.5), Version History (§0.8)
+- **Trigger:** `execute-micro-task.md` §3 — Iteration 4 final completion
 
-*For methodology, see `docs/ai/frameworks/effective-system-design.md` §2 and `docs/ai/frameworks/system-wiki-template.md`.*
+_For methodology, see `docs/ai/frameworks/effective-system-design.md` §2 and `docs/ai/frameworks/system-wiki-template.md`._
