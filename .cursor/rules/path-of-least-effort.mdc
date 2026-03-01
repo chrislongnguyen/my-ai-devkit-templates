@@ -1,0 +1,212 @@
+---
+description: Choose the minimal-cost execution path before acting. Think → rank alternatives → execute the cheapest one that guarantees success. Applies to every tool invocation.
+alwaysApply: true
+---
+
+# Execution Economy: Think → Rank → Act
+
+Before every task, **stop and rank execution paths by total cost** (tool calls × context consumed × risk of failure). Choose the cheapest path that guarantees correctness. Never default to the first approach that comes to mind.
+
+---
+
+## 1. Cost Model — Know What's Cheap and What's Expensive
+
+### Cheapest (prefer)
+
+| Action                                                   | Tool                                                          | Why                                                                                                              |
+| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Bulk file ops (move, copy, rename, delete, mkdir)        | **Shell** (`mv`, `cp`, `mkdir -p`, `rm`, `find … -exec`)      | Zero context window cost, atomic, handles globs natively                                                         |
+| Bulk text transforms (uniform find/replace across files) | **Shell** (`sed -i`, `perl -pi -e`, `awk`)                    | One command replaces N StrReplace calls                                                                          |
+| Discovery: find a file by name                           | **Glob** (glob pattern)                                       | Returns paths only — minimal context                                                                             |
+| Discovery: find text/symbol across codebase              | **Grep** (with `path` or `glob` filter)                       | Returns matches with line numbers, no full-file reads                                                            |
+| Discovery: semantic/fuzzy concept search                 | **SemanticSearch** (with `target_directories`)                | Use when Grep would miss intent; always scope to a directory                                                     |
+| Git operations                                           | **Shell** (`git diff`, `git log`, `git stash`, etc.)          | Richer than reading files to infer state                                                                         |
+| Check structure                                          | **Shell** (`ls`, `tree`) or **Glob**                          | One call, no file content loaded                                                                                 |
+| Validate syntax/types/tests                              | **Shell** (`tsc --noEmit`, `eslint`, `pytest`, `cargo check`) | Compiler/linter as oracle — don't re-read files to verify                                                        |
+| MCP-exposed operations                                   | MCP tool calls                                                | If an MCP server exposes DB queries, API calls, deployments — use them directly instead of scripting around them |
+
+### Mid-cost (use when necessary)
+
+| Action                       | Tool                              | When                                                                                     |
+| ---------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------- |
+| Targeted file edit           | **StrReplace** (targeted regions) | Content must change and the change is localized (< ~5 edit regions per file)             |
+| Read a specific file section | **Read** with line range          | Need to understand logic before editing; always use line ranges when you know the region |
+
+### Expensive (avoid unless no alternative)
+
+| Action                                       | Tool                                    | Why                                                                                            |
+| -------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Full-file read                               | **Read** (no range)                     | Consumes context window proportional to file size                                              |
+| Read-then-rewrite entire file                | **Read** → **Write** (full replacement) | 2× context cost; prefer **Shell** with `sed`/script for structural rewrites                    |
+| Multiple sequential reads to "explore"       | Repeated **Read**                       | Use **Grep** or **SemanticSearch** to pinpoint, then read only what's needed                   |
+| Reading files to determine project structure | Multiple **Read** / **Shell** (`ls`)    | Run **Shell** `find . -type f -name '*.ts' \| head -40` or `tree -L 3 -I node_modules` instead |
+
+---
+
+## 2. Decision Trees
+
+### A. "I need to find something"
+
+```
+Is it a filename/path?
+  → Glob (glob pattern)
+Is it a known string, symbol, import, or error message?
+  → Grep (use path/glob to scope)
+Is it a concept, intent, or fuzzy match?
+  → SemanticSearch (always set target_directories)
+Do I need surrounding context after finding it?
+  → Read with ±10 line range around the match
+```
+
+**Anti-pattern:** Reading 5+ files hoping to stumble on the right one.
+
+### B. "I need to change something"
+
+```
+Is the change a uniform text substitution across files?
+  → Shell: sed/perl one-liner (verify with dry-run first: sed without -i, or grep)
+Is it a structural refactor (rename symbol, move imports)?
+  → Shell: language-aware tools first (e.g. jscodeshift, cargo fix, grit, ast-grep)
+  → Fall back to StrReplace only for non-automatable parts
+Is it a localized logic change in 1–3 files?
+  → StrReplace (targeted regions)
+Is it a new file?
+  → Write (new file) or Shell with heredoc/cat for boilerplate
+Does it require moving/renaming/copying files?
+  → Shell (mv, cp) — never read+write+delete
+```
+
+**Anti-pattern:** Using StrReplace 15 times for a rename that `sed -i 's/OldName/NewName/g' $(grep -rl OldName src/)` handles in one Shell call.
+
+### C. "I need to verify something"
+
+```
+Does a compiler/linter/type-checker exist?
+  → Shell (tsc, eslint, mypy, cargo check, go vet)
+Does a test suite cover it?
+  → Shell (pytest, vitest, cargo test -- specific_test)
+Is it a runtime behavior question?
+  → Shell (execute a minimal script/snippet)
+Is it about file state (exists? permissions? encoding?)
+  → Shell (ls -la, file, stat, wc -l)
+```
+
+**Anti-pattern:** Re-reading a file you just edited to "verify" it — run the linter/compiler via Shell instead.
+
+### D. "I need to understand the codebase"
+
+```
+Start with:
+  → Shell: ls on root (or key directories); tree -L 2 -I 'node_modules|.git|dist|__pycache__'
+  → Grep for entry points (main, index, app, server)
+Then:
+  → Read with line ranges on the 1–2 most relevant files
+  → SemanticSearch for specific concepts as questions arise
+```
+
+**Anti-pattern:** Reading package.json, then tsconfig, then 5 source files sequentially "to get context." Get the map first, read surgically.
+
+---
+
+## 3. Fewer Calls, Not More
+
+Prefer **combining** operations into fewer tool calls rather than long sequences:
+
+- Where possible, **one Shell call** (piped chain, `&&`, or short script) instead of several separate Shell/Read/Grep calls.
+- Multiple independent facts needed? Prefer **Grep** (one call with a pattern) or **Shell** (`grep -E 'A|B'`, `head`/`tail`) over multiple Read calls.
+- Discovery + structure: **Grep** for what you need, or **Shell** (`ls`/`tree`) once — avoid serial exploration.
+
+**Rule:** Combine into fewer calls when the same outcome is achieved; don’t serialize steps that can be one command or one batched query.
+
+---
+
+## 4. Context Window Discipline
+
+Your context window is a finite, non-renewable resource within a conversation. Every **Read** call taxes it.
+
+- **Never read a file "just in case."** Have a specific question the read answers.
+- **Always use line ranges** when you know (or can Grep for) the relevant section.
+- **Prefer tool output over file content** — **Grep** returns exactly the lines you need; **Shell** with `head`/`tail`/`awk` extracts slices.
+- **Don't re-read files already in context.** Track what you've seen.
+- **Summarize and discard.** If you read a large file, extract what matters and move on — don't re-read it later.
+- **Keep Cursor indexing lean.** Ensure `.cursorignore` excludes generated, vendored, and lock files (see `docs/ai/examples/cursor-indexing.md`); scope Grep/SemanticSearch to source when needed.
+
+---
+
+## 5. MCP-Aware Execution
+
+If MCP servers are connected, they are **first-class tools**, not afterthoughts:
+
+- **Database queries** → Use the DB MCP tool directly, not **Shell** with a CLI client
+- **API interactions** → Use API MCP tools, not curl in terminal
+- **Memory/knowledge** → Use memory MCP tools to store and retrieve project-specific context instead of re-deriving it
+- **Deployment/infra** → Use infra MCP tools over manual CLI sequences
+- **Before scripting a workflow**, check: "Does an MCP tool already do this or part of this?"
+
+When multiple MCP servers are available, prefer the most specific one (e.g., a Postgres MCP over a generic SQL MCP, a GitHub MCP over git CLI for PR operations).
+
+---
+
+## 6. Extended Reference (when needed)
+
+**Terminal power patterns** and **scenario trees** (debug, review, long-running, merge, patch) are in **`.cursor/rules/path-of-least-effort-reference.mdc`** (not always applied). Use **@path-of-least-effort-reference** or open that file when you need bash patterns or the E–I decision trees.
+
+---
+
+## 7. The 3-Call Rule
+
+If your plan requires **more than 3 tool calls for a single logical operation on a single concern**, pause:
+
+1. Can a single **Shell** call (piped chain or short script) replace the sequence?
+2. Can you write a small script file, run it once, then delete it?
+3. Are you doing multiple unrelated edits? If so, 4–6 targeted **StrReplace** calls can be correct — don’t contort them into one script. The rule targets _one_ concern (e.g. one rename, one bulk replace), not unrelated changes across files.
+
+If the answer to (1) or (2) is yes, restructure. If you’re doing several distinct edits, it’s fine to use several calls; efficiency means not using 10 calls where 3 suffice for _that_ concern.
+
+---
+
+## 8. Hard Constraints
+
+Efficiency never overrides these:
+
+1. **Correctness first.** If the cheap path has edge-case risk (encoding, permissions, symlinks, binary files), take the safer path.
+2. **Verify after mutation.** Every file change must be validated — but use compilers/linters/tests, not re-reads.
+3. **No destructive operations without backup.** `git stash` or copy before bulk `sed -i` or `rm` on user code.
+4. **Dry-run first for risky bulk ops.** Run `sed` without `-i` (or `grep` the pattern) before applying, especially with regex.
+5. **Don't skip project conventions.** If the project has a Makefile, scripts in `package.json`, or a task runner — use those over raw commands.
+6. **Respect existing gates.** Design before code, evidence before claims, tests before completion — efficiency means doing each step faster, not skipping steps.
+7. **Rule priority.** This rule does not override other workspace rules (.cursor/rules, .cursorrules). On conflict (e.g. another rule says "always read before editing"), correctness and project gates win; apply efficiency within those bounds.
+
+---
+
+## 9. Self-Check Before Every Action
+
+Before each tool invocation, ask:
+
+1. **Can Shell do this in one call?** → Use it.
+2. **Can I combine multiple steps into one command/script?** → Do it.
+3. **Am I about to read a file? Do I actually need its content, or just a fact about it?** → Grep / Shell (ls, stat) instead.
+4. **Am I about to make the same edit in multiple places?** → Shell (`sed`/script), not repeated StrReplace.
+5. **Is there an MCP tool for this?** → Use it over manual alternatives.
+6. **Are my next 3 tool calls independent?** → Combine into fewer calls where possible (see §3).
+7. **Will this approach cost more than 3 tool calls for one logical operation?** → Restructure (see §7).
+8. **Am I reading something already in my context?** → Use what I have.
+
+---
+
+## 10. Tool Name Reference (Cursor)
+
+This rule uses Cursor’s tool names throughout:
+
+| Generic / legacy name                | Cursor tool                          |
+| ------------------------------------ | ------------------------------------ |
+| file_search (glob by name)           | **Glob**                             |
+| grep_search                          | **Grep**                             |
+| codebase_search                      | **SemanticSearch**                   |
+| read_file                            | **Read**                             |
+| edit_file (targeted)                 | **StrReplace**                       |
+| edit_file (new file or full replace) | **Write**                            |
+| run_terminal_cmd                     | **Shell**                            |
+| list_dir                             | **Shell** (`ls`, `tree`) or **Glob** |
+
+---

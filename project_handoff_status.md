@@ -1,45 +1,48 @@
 # Project Handoff Status
 
-**Generated:** 2026-02-24
+**Generated:** 2026-03-01 (session handoff before ship)
+
+---
 
 ## Active feature
 
-**automated-test-verification**
+**None** — No `docs/ai/planning/feature-*.md` exists. Template is in default state; use `/state-a` with a feature name when starting a new feature.
+
+---
 
 ## Planning doc
 
-`docs/ai/planning/feature-automated-test-verification.md`
+`docs/ai/planning/README.md` (template only)
 
-## Current state
+---
 
-- **Current iteration:** 4 (Leadership) — **complete**
-- **Next task:** None. All tasks I1–I4 are 🟢 Reviewed/Tested.
-- **Last approved task:** **T-401** — Address any spawned A.C.s from MVE testing. Evidence: I4 closure note in planning (no spawned A.C.s); System Wiki §0.5 + §1 filled for I3→I4; Design §5 learning-loop row for I4.
+## Current iteration / Next task / Last approved task
 
-## Modified / uncommitted files (from git status)
+- **Current iteration:** N/A
+- **Next task:** N/A
+- **Last approved task:** N/A
 
-**Modified (6):**
+---
 
-- README.md
-- docs/ai/Effective_Execution_Manifesto.md
-- docs/ai/design/README.md
-- engine/commands/state-b.md
-- engine/commands/test.md
-- tests/README.md
+## Modified / uncommitted (this branch vs main)
 
-**Untracked (9):**
+Branch has diverged from main with local commits. Uncommitted workspace changes (from this session and prior work) include:
 
-- .cursor/commands/state-b-iteration.md
-- .github/ (workflows)
-- docs/ai/design/feature-automated-test-verification.md
-- docs/ai/planning/feature-automated-test-verification.md
-- docs/ai/requirements/feature-automated-test-verification.md
-- docs/ai/wiki/system-automated-test-verification.md
-- engine/commands/state-b-iteration.md
-- tests/AC-TEST-MAP-automated-test-verification.md
-- tests/append-learning-loop.sh
+- **Engine / execution:** Fail-twice stop-and-ask (execute-micro-task.md Step 2.5), Manifesto recovery row, MCP local launch (mcp.json, README, .gitignore)
+- **Rules:** yolo-policy.mdc (new), path-of-least-effort indexing bullet
+- **Indexing:** .cursorignore (new), docs/ai/examples/cursor-indexing.md (new)
+- **Repo rename:** effective-build-agent — openclaw.json.example, claude-ptc-mcp .env.example, docs/ai/examples/repo-rename-checklist.md
+- **Archive / docs:** automated-test-verification archived (design/planning/requirements removed), archive README and wiki refs updated; CLAUDE.md frontmatter; table formatting in .claude/CLAUDE.md
+
+**Note:** If your git root is not this folder, run `git status` and `git diff --stat` from the repo root to see actual staged/unstaged state.
+
+---
 
 ## Next actions
 
-1. **Ship:** Commit and push the automated-test-verification feature (run `/ship` and reply **Yes** to execute).
-2. **Resume later:** In a new session, read this file and run `/status` to confirm state; no further tasks for this feature unless starting a new one via `/state-a`.
+1. **Push this branch:** Run `/ship` and reply **Yes** to execute commit and push to `origin` (effective-build-agent). Ensure remote is set: `git remote -v` → `https://github.com/chrislongnguyen/effective-build-agent.git`
+2. **Next session:** Open this repo, read `project_handoff_status.md`, run `/status` or `/state-a` (new feature) or `/state-b` (if a feature plan exists).
+
+---
+
+_Handoff written so the next session can resume with minimal context loss. See `docs/ai/Effective_Execution_Manifesto.md` for cross-device continuity._

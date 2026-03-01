@@ -1,0 +1,37 @@
+# Generated and build artifacts
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.eggs/
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+*.min.js
+*.bundle.js
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Rust / Cargo
+target/
+
+# Lock files (huge, rarely useful for semantic search; pollute Grep)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+Cargo.lock
+*.lock
+
+# VCS and system
+.git/
+.DS_Store
+
+# Do NOT ignore: source code, docs/ai/, engine/, .cursor/

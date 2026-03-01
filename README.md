@@ -38,6 +38,8 @@ This repo is the Master Template for AI-first enablement building. It uses a 2-S
 
 To use **`/heavy`**: ensure `tools/claude-ptc-mcp/` is present, run `cd tools/claude-ptc-mcp && npm install`, copy `.env.example` to `.env` and set `ANTHROPIC_API_KEY`, then restart Cursor. Server is pre-registered in `.cursor/mcp.json`.
 
+To use **`/remember`** and memory search: run **`npm install --prefix tools/ai-devkit-memory`** once (from repo root). The ai-devkit-memory MCP server is then started from `tools/ai-devkit-memory/` (no npx at Cursor startup). If the server shows "errored" in Cursor, see `tools/ai-devkit-memory/README.md`.
+
 ---
 
 ## Other environments

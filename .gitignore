@@ -4,6 +4,9 @@
 # MCP server secrets (do not commit)
 tools/claude-ptc-mcp/.env
 
+# MCP memory server deps (run: npm install --prefix tools/ai-devkit-memory)
+tools/ai-devkit-memory/node_modules/
+
 # PTC usage logs (benchmark / instrumentation)
 tools/claude-ptc-mcp/logs/usage.jsonl
 

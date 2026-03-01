@@ -59,7 +59,7 @@ esd_reference: docs/ai/frameworks/effective-system-design.md
 | SustainAdj-AC2 | Fast-iteration flow does not skip the test run; approval is gated on test result.                                                           | 1    | T-103 approved; state-b-iteration.md Step 4 + 5                               | 🟢     |
 | EffAdj-AC1     | Learning-loop recording is automatic (triggered by test run or agent step), not a separate manual doc step.                                 | 2    | T-201 approved; test.md Step 3 (agent) + append-learning-loop.sh in CI        | 🟢     |
 | EffAdj-AC2     | Fast-iteration flow is opt-in; default remains one task → evidence → approve.                                                               | 1    | T-103 approved; state-b.md + Manifesto: default one-task                      | 🟢     |
-| ScalAdj-AC1    | Learning-loop format and location are documented so future features can consume them.                                                       | 3    | T-301 approved; tests/README §For tooling + Outcome constraint; Design §5     | 🟢     |
+| ScalAdj-AC1    | Learning-loop format and location are documented so future features can consume them.                                                       | 3    | T-301 approved; tests/README §For tooling + Outcome constraint; Design §5       | 🟢     |
 
 ---
 

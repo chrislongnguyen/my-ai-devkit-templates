@@ -1,0 +1,78 @@
+---
+description: Extended reference for path-of-least-effort — terminal patterns and scenario trees (debug, review, long-running, merge, patch). Use when needed; not always applied.
+alwaysApply: false
+---
+
+# Path of Least Effort — Extended Reference
+
+Use this when you need **terminal power patterns** or **scenario-specific trees** (debug, review, long-running, merge, patch). The always-on rule is `.cursor/rules/path-of-least-effort.mdc`.
+
+---
+
+## Terminal Power Patterns
+
+**Shell** is your most versatile tool. Master patterns:
+
+```bash
+# Discovery
+find src -name "*.tsx" -newer src/index.tsx          # files modified after a reference
+grep -rn "TODO\|FIXME\|HACK" src/ --include="*.ts"  # all tech debt markers
+git log --oneline -20                                 # recent history
+git diff --name-only HEAD~3                           # what changed recently
+wc -l src/**/*.ts | sort -n | tail -20               # largest files
+
+# Bulk operations
+sed -i 's/oldImport/newImport/g' $(grep -rl 'oldImport' src/)
+find src -name "*.test.ts" -exec mv {} tests/ \;
+rename 's/\.jsx$/.tsx/' src/components/*.jsx          # bulk rename
+
+# Validation
+tsc --noEmit 2>&1 | head -30                         # first 30 type errors
+npm test -- --reporter=dot 2>&1 | tail -20           # test summary
+eslint src/ --format compact 2>&1 | wc -l            # count lint issues
+
+# Scaffolding
+mkdir -p src/{components,hooks,utils,types,services}
+cat > src/types/api.ts << 'EOF'
+export interface ApiResponse<T> { data: T; error?: string; }
+EOF
+```
+
+---
+
+## Additional Scenarios (E–I)
+
+### E. "I need to debug / investigate a failure"
+
+- **Reproduce first:** **Shell** — run the failing test or minimal script; capture stdout/stderr. Don’t read code “to understand” before you have a failure signal.
+- **Inspect logs / stack trace:** **Grep** for the error message or file:line; then **Read** with a line range around the match. Don’t read whole log files — use **Shell** (`tail -n 100`, `grep -n "Error" log.txt`) to narrow, then Read only the relevant slice.
+- **Trace execution:** **Grep** for call sites or entry points; **SemanticSearch** for “where is X called?” or “how does Y get its input?”; **Read** with ranges on the 1–2 most relevant files.
+- **Add logging or a minimal repro:** **StrReplace** in the minimal set of files; re-run via **Shell**.
+- **Anti-pattern:** Reading five files “to get context” before running the failing command. Run first, then narrow with Grep → Read ranges.
+
+### F. "I need to review code (e.g. PR, changed files)"
+
+- **Get the set of changed files:** **Shell** (`git diff --name-only main`, `git status --short`, or `git diff --name-only HEAD~1`).
+- **Find high-signal spots:** **Grep** for patterns (e.g. `TODO`, `FIXME`, error handling, security-sensitive APIs) in those paths; **Read** with line ranges only for the hunks that matter.
+- **Understand context:** **SemanticSearch** scoped to the changed directories for specific questions; **Read** with ranges on 1–2 key files.
+- **Anti-pattern:** Reading every changed file top-to-bottom. List changed files → Grep for risk patterns → Read only targeted ranges.
+
+### G. "I need to run something long-running or in the background"
+
+- **Start the process:** **Shell** with the dev server, test watcher, or build command. For background: **Shell** with `&` or `nohup` (e.g. `npm run dev &`); or run in a separate terminal. Document that the agent may not see stdout after detach.
+- **Check if it’s already running:** **Shell** (`pgrep -f "vite"`, `lsof -i :3000`) before starting a second instance.
+- **Anti-pattern:** Running a long-running command in the foreground when you only need to trigger it; use background or a second terminal so the rest of the workflow can continue.
+
+### H. "I need to resolve merge conflicts"
+
+- **Locate conflict markers:** **Grep** for `<<<<<<<`, `=======`, `>>>>>>>` (and `|||||||` if present), or **Shell** (`git diff --check`).
+- **Inspect:** **Read** with line ranges around each conflict block; don’t read entire files.
+- **Resolve:** **StrReplace** per conflict block (choose one version or merge); remove markers. Re-validate with **Shell** (`git diff`, then build/test).
+- **Anti-pattern:** Reading the whole file “to get context” before resolving. Grep for conflict markers → Read only those ranges → StrReplace each block.
+
+### I. "I need to apply a diff or patch"
+
+- **If you have a patch file:** **Shell** (`git apply path/to.patch` or `patch -p1 < path/to.patch`). Prefer this over manual edits when the patch is authoritative.
+- **If you’re generating the change:** Prefer **StrReplace** (targeted) over **Read** + **Write** (full file). For many files, **Shell** with `patch` or a small script.
+- **Verify:** **Shell** (linter/test) after apply.
+- **Anti-pattern:** Reading entire files and rewriting them to apply a patch; use `git apply` or `patch` when possible.

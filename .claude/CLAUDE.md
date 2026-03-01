@@ -12,15 +12,15 @@
 
 ## Approval Phrases
 
-| When | Reply |
-| :--- | :--- |
-| After State A sub-step or State B evidence | **"Approved"** |
+| When                                          | Reply                                           |
+| :-------------------------------------------- | :---------------------------------------------- |
+| After State A sub-step or State B evidence    | **"Approved"**                                  |
 | At iteration boundary (before next iteration) | **"Proceed to Iteration N+1"** or **"Re-plan"** |
-| At /ship (commit & push) | **"Yes"** |
-| At /debug fix | **"Yes"** |
+| At /ship (commit & push)                      | **"Yes"**                                       |
+| At /debug fix                                 | **"Yes"**                                       |
 
 Full approval table and recovery protocol: `docs/ai/Effective_Execution_Manifesto.md`.
 
 ---
 
-*To run State A in Cowork: ask "Run State A" or "Execute State A"; the AI should load `engine/commands/state-a.md` and follow it. To run State B: ask "Run State B" or "Execute one micro-task"; the AI should load `engine/commands/state-b.md` and follow it.*
+_To run State A in Cowork: ask "Run State A" or "Execute State A"; the AI should load `engine/commands/state-a.md` and follow it. To run State B: ask "Run State B" or "Execute one micro-task"; the AI should load `engine/commands/state-b.md` and follow it._

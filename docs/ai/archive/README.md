@@ -4,12 +4,13 @@
 
 ## Archived Features
 
-| Feature | Archived Date | Contents | Status |
-| :--- | :--- | :--- | :--- |
-| **engine-hardening** | 2026-02-28 | Requirements, Design, Planning | v2.0.0 Complete — all A.C. 🟢 |
-| **claude_ptc** | 2026-02-28 | Requirements, Design, Planning | v1.0.0 Complete — 18/19 A.C. 🟢 (T-302 placeholder for future Context Compaction) |
+| Feature                        | Archived Date | Contents | Status |
+| :----------------------------- | :------------ | :------- | :----- |
+| **automated-test-verification** | 2026-02-24    | Requirements, Design, Planning | I1–I4 complete — all A.C. 🟢 |
+| **engine-hardening**           | 2026-02-28    | Requirements, Design, Planning | v2.0.0 Complete — all A.C. 🟢 |
+| **claude_ptc**                 | 2026-02-28    | Requirements, Design, Planning | v1.0.0 Complete — 18/19 A.C. 🟢 (T-302 placeholder for future Context Compaction) |
 
-*System Wiki remains active at `docs/ai/wiki/system-engine-hardening.md` as the definitive operational record.*
+*System Wiki remains active at `docs/ai/wiki/system-{name}.md` (e.g. system-automated-test-verification.md, system-engine-hardening.md) as the definitive operational record for each feature.*
 
 *Previous archive content (legacy feature docs, ai-devkit integration, handoff snapshots) was removed during engine-hardening (T-102). The active docs live in `docs/ai/requirements/`, `docs/ai/design/`, `docs/ai/planning/`, `docs/ai/frameworks/`, `docs/ai/examples/`, and `docs/ai/wiki/`.*
 

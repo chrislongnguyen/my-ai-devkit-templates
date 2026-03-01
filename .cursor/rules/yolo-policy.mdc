@@ -1,0 +1,46 @@
+---
+description: When to auto-approve (yolo) vs require explicit user approval for Shell/terminal commands. Mutations to tracked files or history always need approval.
+alwaysApply: true
+---
+
+# Yolo Mode Policy — Safe vs Never-Rely-On
+
+When the User has enabled **yolo** (auto-approve) or similar, the agent must still **never rely on yolo** for commands that mutate tracked files or history. This rule defines the split.
+
+---
+
+## Safe for yolo / auto-approve
+
+These can run without explicit approval when the User has enabled auto-approve:
+
+| Category                                | Examples                                                                                                                                                            |
+| :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Read-only discovery**                 | `git status`, `git diff`, `git log`, `ls`, `cat`, `head`, `tail`, `wc`, `find` (no `-exec` that mutates), `grep` (when not feeding into `sed -i` or other mutation) |
+| **Tests and linters**                   | `npm test`, `pytest`, `cargo test`, `tsc --noEmit`, `eslint`, `tests/run-tests.sh` — run as verification, no file writes                                            |
+| **Deterministic install with lockfile** | **`npm ci`** — uses lockfile only, deterministic and non-destructive                                                                                                |
+| **Recoverable local state**             | **`git stash`** — recoverable; does not rewrite shared history                                                                                                      |
+
+**Principle:** If the command does **not** change tracked files or git history, and is either read-only or safely recoverable, it can be treated as safe for yolo.
+
+---
+
+## Never rely on yolo
+
+**Always require explicit user approval** for:
+
+| Category                                | Examples                                                                                                     |
+| :-------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| **Git history / remote**                | `git add`, `git commit`, `git push`, `git reset`, `git revert` (when destructive), `git merge`, `git rebase` |
+| **In-place file mutation**              | `sed -i`, `perl -pi`, any script that overwrites files                                                       |
+| **Deletion / move / copy of user code** | `rm`, `mv`, `cp` of source or tracked files; bulk rewrites                                                   |
+| **Dependency changes**                  | `npm install` when it may change lockfile; `yarn add`; `cargo add`; any install that updates dependencies    |
+| **Bulk mutation**                       | `find … -exec` that writes or deletes; `chmod` on tracked files                                              |
+| **Other mutations**                     | Any command that changes tracked files or shared history                                                     |
+
+**Principle:** If the command **can** change tracked files or history, require explicit user approval. Do not assume yolo covers it.
+
+---
+
+## Heuristic
+
+**"If it mutates tracked files or history, require approval."** Use the lists above as the baseline; when in doubt, ask.

@@ -1,0 +1,9 @@
+{
+  "name": "ai-devkit-memory-runner",
+  "version": "0.1.0",
+  "description": "Local runner for @ai-devkit/memory MCP server (used by Cursor). Run npm install here once to fix MCP server errors.",
+  "private": true,
+  "dependencies": {
+    "@ai-devkit/memory": "^0.7.0"
+  }
+}

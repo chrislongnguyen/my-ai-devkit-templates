@@ -1,13 +1,13 @@
 {
   "agents": {
     "defaults": {
-      "workspace": "/ABSOLUTE/PATH/TO/my-ai-devkit-templates"
+      "workspace": "/ABSOLUTE/PATH/TO/effective-build-agent"
     },
     "list": [
       {
         "id": "build",
         "name": "Agent Build",
-        "workspace": "/ABSOLUTE/PATH/TO/my-ai-devkit-templates",
+        "workspace": "/ABSOLUTE/PATH/TO/effective-build-agent",
         "tools": {
           "profile": "coding",
           "allow": ["group:fs", "group:runtime", "group:sessions"]

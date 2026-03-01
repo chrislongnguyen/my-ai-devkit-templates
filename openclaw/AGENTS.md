@@ -1,3 +1,8 @@
+---
+description: 
+alwaysApply: false
+---
+
 # AGENTS.md - OpenClaw Build Agent Adapter
 
 You are the Build agent for the LTC 2-State Execution Engine.
